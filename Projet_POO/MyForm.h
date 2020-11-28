@@ -1,7 +1,7 @@
 #pragma once
 #include "CL_svc_gestionPersonnes.h"
-namespace Test2 {
-
+namespace A2POOCorb6
+{
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -10,30 +10,27 @@ namespace Test2 {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Description résumée de MyForm
+	/// Description résumée de FRM_Principal
 	/// </summary>
-	public ref class MyForm : public System::Windows::Forms::Form
+
+	public ref class FRM_Principal : public System::Windows::Forms::Form
 	{
 	public:
-		MyForm(void)
+		FRM_Principal(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: ajoutez ici le code du constructeur
-			//
-		}
-
-	protected:
-		/// <summary>
-		/// Nettoyage des ressources utilisées.
-		/// </summary>
-		~MyForm()
-		{
-			if (components)
+			////TODO: ajoutez ici le code du constructeur//
+		}protected:
+			/// <summary>
+			/// Nettoyage des ressources utilisées.
+			/// </summary>
+			~FRM_Principal()
 			{
-				delete components;
+				if (components)
+				{
+					delete components;
+				}
 			}
-		}
 	private: System::Windows::Forms::Label^ lbl_id;
 	private: System::Windows::Forms::TextBox^ txt_idPersonne;
 	private: System::Windows::Forms::Label^ lbl_nom;
@@ -52,19 +49,23 @@ namespace Test2 {
 	private: System::Windows::Forms::Button^ btn_enregistrer;
 	private: NS_Svc::CL_svc_gestionPersonnes^ processusPersonnes;
 	private: Data::DataSet^ ds;
+	private: Data::DataTable^ dt;
 	private: int index;
 	private: String^ mode;
+	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: System::Windows::Forms::Button^ btn_refresh;
+	private: System::Windows::Forms::ComboBox^ comboBox1;
 	private:
 		/// <summary>
 		/// Variable nécessaire au concepteur.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
-		/// le contenu de cette méthode avec l'éditeur de code.
-		/// </summary>
+		/// Méthode requise pour la prise en charge du concepteur -ne modifiez pas
+		/// /// le contenu de cette méthode avec l'éditeur de code.
+		/// /// </summary>
 		void InitializeComponent(void)
 		{
 			this->lbl_id = (gcnew System::Windows::Forms::Label());
@@ -83,8 +84,12 @@ namespace Test2 {
 			this->btn_modifier = (gcnew System::Windows::Forms::Button());
 			this->btn_sup = (gcnew System::Windows::Forms::Button());
 			this->btn_enregistrer = (gcnew System::Windows::Forms::Button());
+			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->btn_refresh = (gcnew System::Windows::Forms::Button());
+			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
-			//
+			// 
 			// lbl_id
 			// 
 			this->lbl_id->AutoSize = true;
@@ -93,7 +98,7 @@ namespace Test2 {
 			this->lbl_id->Size = System::Drawing::Size(66, 13);
 			this->lbl_id->TabIndex = 0;
 			this->lbl_id->Text = L"ID Personne";
-			//
+			// 
 			// txt_idPersonne
 			// 
 			this->txt_idPersonne->Location = System::Drawing::Point(12, 25);
@@ -101,7 +106,7 @@ namespace Test2 {
 			this->txt_idPersonne->ReadOnly = true;
 			this->txt_idPersonne->Size = System::Drawing::Size(202, 20);
 			this->txt_idPersonne->TabIndex = 1;
-			//
+			// 
 			// lbl_nom
 			// 
 			this->lbl_nom->AutoSize = true;
@@ -110,109 +115,164 @@ namespace Test2 {
 			this->lbl_nom->Size = System::Drawing::Size(29, 13);
 			this->lbl_nom->TabIndex = 2;
 			this->lbl_nom->Text = L"Nom";
-			//
+			// 
 			// txt_nom
 			// 
 			this->txt_nom->Location = System::Drawing::Point(12, 67);
 			this->txt_nom->Name = L"txt_nom";
 			this->txt_nom->Size = System::Drawing::Size(202, 20);
 			this->txt_nom->TabIndex = 3;
-			//
+			// 
 			// lbl_prenom
-			//
+			// 
 			this->lbl_prenom->AutoSize = true;
 			this->lbl_prenom->Location = System::Drawing::Point(9, 93);
 			this->lbl_prenom->Name = L"lbl_prenom";
 			this->lbl_prenom->Size = System::Drawing::Size(43, 13);
 			this->lbl_prenom->TabIndex = 4;
 			this->lbl_prenom->Text = L"Prénom";
-			// // txt_prenom// 
+			// 
+			// txt_prenom
+			// 
 			this->txt_prenom->Location = System::Drawing::Point(12, 109);
 			this->txt_prenom->Name = L"txt_prenom";
 			this->txt_prenom->Size = System::Drawing::Size(202, 20);
 			this->txt_prenom->TabIndex = 5;
-			// // lbl_message//
+			// 
+			// lbl_message
+			// 
 			this->lbl_message->AutoSize = true;
 			this->lbl_message->Location = System::Drawing::Point(9, 180);
 			this->lbl_message->Name = L"lbl_message";
 			this->lbl_message->Size = System::Drawing::Size(50, 13);
 			this->lbl_message->TabIndex = 6;
 			this->lbl_message->Text = L"Message";
-			// //txt_message// 
+			// 
+			// txt_message
+			// 
 			this->txt_message->Location = System::Drawing::Point(12, 196);
 			this->txt_message->Multiline = true;
 			this->txt_message->Name = L"txt_message";
 			this->txt_message->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
 			this->txt_message->Size = System::Drawing::Size(412, 50);
 			this->txt_message->TabIndex = 7;
-			// // btn_first// 
+			// 
+			// btn_first
+			// 
 			this->btn_first->Location = System::Drawing::Point(12, 146);
 			this->btn_first->Name = L"btn_first";
 			this->btn_first->Size = System::Drawing::Size(46, 23);
 			this->btn_first->TabIndex = 8;
 			this->btn_first->Text = L"<<";
 			this->btn_first->UseVisualStyleBackColor = true;
-			this->btn_first->Click += gcnew System::EventHandler(this, &MyForm::btn_first_Click);
-			// // btn_previous//
+			this->btn_first->Click += gcnew System::EventHandler(this, &FRM_Principal::btn_first_Click);
+			// 
+			// btn_previous
+			// 
 			this->btn_previous->Location = System::Drawing::Point(64, 146);
 			this->btn_previous->Name = L"btn_previous";
 			this->btn_previous->Size = System::Drawing::Size(46, 23);
 			this->btn_previous->TabIndex = 9;
 			this->btn_previous->Text = L"<";
 			this->btn_previous->UseVisualStyleBackColor = true;
-			this->btn_previous->Click += gcnew System::EventHandler(this, &MyForm::btn_previous_Click);
-			// // btn_next// 
+			this->btn_previous->Click += gcnew System::EventHandler(this, &FRM_Principal::btn_previous_Click);
+			// 
+			// btn_next
+			// 
 			this->btn_next->Location = System::Drawing::Point(116, 146);
 			this->btn_next->Name = L"btn_next";
 			this->btn_next->Size = System::Drawing::Size(46, 23);
 			this->btn_next->TabIndex = 10;
 			this->btn_next->Text = L">";
 			this->btn_next->UseVisualStyleBackColor = true;
-			this->btn_next->Click += gcnew System::EventHandler(this, &MyForm::btn_next_Click);
-			// // btn_end//
+			this->btn_next->Click += gcnew System::EventHandler(this, &FRM_Principal::btn_next_Click);
+			// 
+			// btn_end
+			// 
 			this->btn_end->Location = System::Drawing::Point(168, 146);
 			this->btn_end->Name = L"btn_end";
 			this->btn_end->Size = System::Drawing::Size(46, 23);
 			this->btn_end->TabIndex = 11;
 			this->btn_end->Text = L">>";
 			this->btn_end->UseVisualStyleBackColor = true;
-			this->btn_end->Click += gcnew System::EventHandler(this, &MyForm::btn_end_Click);
-			// // btn_nouveau// 
+			this->btn_end->Click += gcnew System::EventHandler(this, &FRM_Principal::btn_end_Click);
+			// 
+			// btn_nouveau
+			// 
 			this->btn_nouveau->Location = System::Drawing::Point(238, 25);
 			this->btn_nouveau->Name = L"btn_nouveau";
 			this->btn_nouveau->Size = System::Drawing::Size(80, 36);
 			this->btn_nouveau->TabIndex = 12;
 			this->btn_nouveau->Text = L"Nouveau";
 			this->btn_nouveau->UseVisualStyleBackColor = true;
-			this->btn_nouveau->Click += gcnew System::EventHandler(this, &MyForm::btn_nouveau_Click);
-			// // btn_modifier// 
+			this->btn_nouveau->Click += gcnew System::EventHandler(this, &FRM_Principal::btn_nouveau_Click);
+			// 
+			// btn_modifier
+			// 
 			this->btn_modifier->Location = System::Drawing::Point(238, 79);
 			this->btn_modifier->Name = L"btn_modifier";
 			this->btn_modifier->Size = System::Drawing::Size(80, 36);
 			this->btn_modifier->TabIndex = 13;
 			this->btn_modifier->Text = L"Modifier";
 			this->btn_modifier->UseVisualStyleBackColor = true;
-			this->btn_modifier->Click += gcnew System::EventHandler(this, &MyForm::btn_modifier_Click);
-			// // btn_sup// 
+			this->btn_modifier->Click += gcnew System::EventHandler(this, &FRM_Principal::btn_modifier_Click);
+			// 
+			// btn_sup
+			// 
 			this->btn_sup->Location = System::Drawing::Point(238, 133);
 			this->btn_sup->Name = L"btn_sup";
 			this->btn_sup->Size = System::Drawing::Size(80, 36);
 			this->btn_sup->TabIndex = 14;
 			this->btn_sup->Text = L"Supprimer";
 			this->btn_sup->UseVisualStyleBackColor = true;
-			this->btn_sup->Click += gcnew System::EventHandler(this, &MyForm::btn_sup_Click);
-			// // btn_enregistrer// 
+			this->btn_sup->Click += gcnew System::EventHandler(this, &FRM_Principal::btn_sup_Click);
+			// 
+			// btn_enregistrer
+			// 
+			this->btn_enregistrer->BackColor = System::Drawing::SystemColors::Control;
 			this->btn_enregistrer->Location = System::Drawing::Point(326, 25);
 			this->btn_enregistrer->Name = L"btn_enregistrer";
 			this->btn_enregistrer->Size = System::Drawing::Size(98, 144);
 			this->btn_enregistrer->TabIndex = 15;
 			this->btn_enregistrer->Text = L"ENREGISTRER";
-			this->btn_enregistrer->UseVisualStyleBackColor = true;
-			this->btn_enregistrer->Click += gcnew System::EventHandler(this, &MyForm::btn_enregistrer_Click);
-			// // MyForm// 
+			this->btn_enregistrer->UseVisualStyleBackColor = false;
+			this->btn_enregistrer->Click += gcnew System::EventHandler(this, &FRM_Principal::btn_enregistrer_Click);
+			// 
+			// dataGridView1
+			// 
+			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView1->Location = System::Drawing::Point(454, 25);
+			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->Size = System::Drawing::Size(370, 168);
+			this->dataGridView1->TabIndex = 16;
+			// 
+			// btn_refresh
+			// 
+			this->btn_refresh->Location = System::Drawing::Point(454, 200);
+			this->btn_refresh->Name = L"btn_refresh";
+			this->btn_refresh->Size = System::Drawing::Size(370, 46);
+			this->btn_refresh->TabIndex = 17;
+			this->btn_refresh->Text = L"actualiser";
+			this->btn_refresh->UseVisualStyleBackColor = true;
+			this->btn_refresh->Click += gcnew System::EventHandler(this, &FRM_Principal::btn_refresh_Click);
+			// 
+			// comboBox1
+			// 
+			this->comboBox1->FormattingEnabled = true;
+			this->comboBox1->Location = System::Drawing::Point(579, 1);
+			this->comboBox1->Name = L"comboBox1";
+			this->comboBox1->Size = System::Drawing::Size(121, 21);
+			this->comboBox1->TabIndex = 18;
+			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &FRM_Principal::comboBox1_SelectedIndexChanged);
+			// 
+			// FRM_Principal
+			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(439, 261);
+			this->ClientSize = System::Drawing::Size(833, 254);
+			this->Controls->Add(this->comboBox1);
+			this->Controls->Add(this->btn_refresh);
+			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->btn_enregistrer);
 			this->Controls->Add(this->btn_sup);
 			this->Controls->Add(this->btn_modifier);
@@ -229,22 +289,24 @@ namespace Test2 {
 			this->Controls->Add(this->lbl_nom);
 			this->Controls->Add(this->txt_idPersonne);
 			this->Controls->Add(this->lbl_id);
-			this->Name = L"MyForm";
-			this->Text = L"A2 POO Corbeille 6";
-			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
+			this->Name = L"FRM_Principal";
+			this->Text = L"ERP GESTION";
+			this->Load += gcnew System::EventHandler(this, &FRM_Principal::FRM_Principal_Load);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
+			this->FillCombo();
 		}
 #pragma endregion
-private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e)
-{
-	this->index = 0;
-	this->mode = "RIEN";
-	this->ds = gcnew Data::DataSet();
-	this->processusPersonnes = gcnew NS_Svc::CL_svc_gestionPersonnes();
-	this->loadData(this->index);
-	this->txt_message->Text = "Data chargées";
-}
+	private: System::Void FRM_Principal_Load(System::Object^ sender, System::EventArgs^ e)
+	{
+		this->index = 0;
+		this->mode = "RIEN";
+		this->ds = gcnew Data::DataSet();
+		this->processusPersonnes = gcnew NS_Svc::CL_svc_gestionPersonnes();
+		this->loadData(this->index);
+		this->txt_message->Text = "Data chargées";
+	}
 	private: void loadData(int index)
 	{
 		this->ds->Clear();
@@ -253,12 +315,26 @@ private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e)
 		this->txt_nom->Text = Convert::ToString(this->ds->Tables["liste"]->Rows[this->index]->ItemArray[1]);
 		this->txt_prenom->Text = Convert::ToString(this->ds->Tables["liste"]->Rows[this->index]->ItemArray[2]);
 	}
+
+	private: void Actualiser() {
+		this->dt = this->processusPersonnes->TablePersonnes();
+		BindingSource^ bs = gcnew BindingSource();
+		bs->DataSource = this->dt;
+		dataGridView1->DataSource = bs;
+		this->txt_message->Text += "\nupdate réussi";
+	}
+
+	private:void FillCombo() {
+		comboBox1->Items->Add("Personne");
+	}
+
 	private: System::Void btn_first_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->index = 0;
 		this->loadData(this->index);
 		this->txt_message->Text = "Enregistrement n° : " + (this->index + 1);
 	}
+
 	private: System::Void btn_previous_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		if (this->index > 0)
@@ -291,14 +367,16 @@ private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->mode = "maj";
 		this->txt_message->Text = "Veuillez modifier les information de la nouvelle courante et enregistrer.";
-	}private: System::Void btn_sup_Click(System::Object^ sender, System::EventArgs^ e)
+	}
+	private: System::Void btn_sup_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 
 		this->mode = "sup";
 
 		this->txt_message->Text = "Veuillez confirmer la suppression de la personne en cours en enregistrant.";
 
-	}private: System::Void btn_enregistrer_Click(System::Object^ sender, System::EventArgs^ e)
+	}
+	private: System::Void btn_enregistrer_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		if (this->mode == "nouv")
 		{
@@ -313,9 +391,21 @@ private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e)
 		else if (this->mode == "sup")
 		{
 			this->processusPersonnes->supprimer(Convert::ToInt32(this->txt_idPersonne->Text));
-		}this->index = 0;
+		}
+		this->index = 0;
 		this->loadData(this->index);
+		Actualiser();
 		this->txt_message->Text += "Traitement terminé.";
 	}
+
+	private: System::Void btn_refresh_Click(System::Object^ sender, System::EventArgs^ e) {
+		Actualiser();
+	}
+
+	private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+
+		Actualiser();
+	}
 	};
+
 }
