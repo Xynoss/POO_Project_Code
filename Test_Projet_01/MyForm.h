@@ -54,6 +54,7 @@ namespace A2POOCorb6
 		private: String^ mode;
 		private: System::Windows::Forms::DataGridView^ dataGridView1;
 		private: System::Windows::Forms::Button^ btn_refresh;
+	private: System::Windows::Forms::ComboBox^ comboBox1;
 	private:
 			/// <summary>
 			/// Variable nécessaire au concepteur.
@@ -85,6 +86,7 @@ namespace A2POOCorb6
 				this->btn_enregistrer = (gcnew System::Windows::Forms::Button());
 				this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 				this->btn_refresh = (gcnew System::Windows::Forms::Button());
+				this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 				(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 				this->SuspendLayout();
 				// 
@@ -243,7 +245,6 @@ namespace A2POOCorb6
 				this->dataGridView1->Name = L"dataGridView1";
 				this->dataGridView1->Size = System::Drawing::Size(370, 168);
 				this->dataGridView1->TabIndex = 16;
-				this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &FRM_Principal::dataGridView1_CellContentClick);
 				// 
 				// btn_refresh
 				// 
@@ -255,11 +256,21 @@ namespace A2POOCorb6
 				this->btn_refresh->UseVisualStyleBackColor = true;
 				this->btn_refresh->Click += gcnew System::EventHandler(this, &FRM_Principal::btn_refresh_Click);
 				// 
+				// comboBox1
+				// 
+				this->comboBox1->FormattingEnabled = true;
+				this->comboBox1->Location = System::Drawing::Point(579, 1);
+				this->comboBox1->Name = L"comboBox1";
+				this->comboBox1->Size = System::Drawing::Size(121, 21);
+				this->comboBox1->TabIndex = 18;
+				this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &FRM_Principal::comboBox1_SelectedIndexChanged);
+				// 
 				// FRM_Principal
 				// 
 				this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 				this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				this->ClientSize = System::Drawing::Size(833, 254);
+				this->Controls->Add(this->comboBox1);
 				this->Controls->Add(this->btn_refresh);
 				this->Controls->Add(this->dataGridView1);
 				this->Controls->Add(this->btn_enregistrer);
@@ -279,12 +290,12 @@ namespace A2POOCorb6
 				this->Controls->Add(this->txt_idPersonne);
 				this->Controls->Add(this->lbl_id);
 				this->Name = L"FRM_Principal";
-				this->Text = L"A2 POO Corbeille 6";
+				this->Text = L"ERP GESTION";
 				this->Load += gcnew System::EventHandler(this, &FRM_Principal::FRM_Principal_Load);
 				(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 				this->ResumeLayout(false);
 				this->PerformLayout();
-
+				this->FillCombo();
 			}
 #pragma endregion
 		private: System::Void FRM_Principal_Load(System::Object ^ sender, System::EventArgs ^ e)
@@ -311,6 +322,10 @@ namespace A2POOCorb6
 			bs->DataSource = this->dt;
 			dataGridView1->DataSource = bs;
 			this->txt_message->Text += "\nupdate réussi";
+		}
+
+		private:void FillCombo() {
+			comboBox1->Items->Add("Personne");
 		}
 
 		private: System::Void btn_first_Click(System::Object ^ sender, System::EventArgs ^ e)
@@ -387,11 +402,10 @@ namespace A2POOCorb6
 		Actualiser();
 	}
 	
-	private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-		
-	}
+	private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 
-	
+		Actualiser();
+	}
 };
 
 }
