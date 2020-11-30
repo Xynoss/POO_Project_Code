@@ -9,22 +9,22 @@ namespace NS_Composants {
 
 	String^ CL_map_TBCLIENT::SELECT(void)
 	{
-		return "SELECT * " + "FROM test_ws.tb_client;";
+		return "SELECT * " + "FROM projet_01.client;";
 	}
 
 	String^ CL_map_TBCLIENT::INSERT(void)
 	{
-		return "INSERT INTO tb_client " + "(nom, prenom,NaissanceClient) " + "VALUES('" + this->getNom() + "', '" + this->getPrenom() + "','" + this->getDateNaissance() + "');SELECT @@IDENTITY;";
+		return "INSERT INTO client " + "(NomClient, PrenomClient,NaissanceClient) " + "VALUES('" + this->getNom() + "', '" + this->getPrenom() + "','" + this->getDateNaissance() + "');SELECT @@IDENTITY;";
 	}
 
 	String^ CL_map_TBCLIENT::UPDATE(void)
 	{
-		return "UPDATE tb_client " + "SET nom = '" + this->getNom() + "', prenom = '" + this->getPrenom() + "', NaissanceClient = '" + this->getDateNaissance() + "'  " + "WHERE(idtb_client = " + this->getID() + "); ";
+		return "UPDATE client " + "SET NomClient = '" + this->getNom() + "', PrenomClient = '" + this->getPrenom() + "', NaissanceClient = '" + this->getDateNaissance() + "'  " + "WHERE(ID_Client = " + this->getID() + "); ";
 	}
 
 	String^ CL_map_TBCLIENT::DELETE(void)
 	{
-		return "DELETE FROM tb_client " + "WHERE( idtb_client = " + this->getID() + ");";
+		return "DELETE FROM client " + "WHERE( idtb_client = " + this->getID() + ");";
 	}
 
 	void CL_map_TBCLIENT::setID(int id_TBCLIENT)

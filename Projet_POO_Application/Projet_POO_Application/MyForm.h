@@ -1,5 +1,8 @@
 ﻿#pragma once
+#include "CL_svc_gestionClient.h"
 #include "CL_svc_gestionPersonnes.h"
+#include "CL_svc_General.h"
+
 namespace A2POOCorb6
 {
 	using namespace System;
@@ -48,13 +51,14 @@ namespace A2POOCorb6
 		private: System::Windows::Forms::Button^ btn_sup;
 		private: System::Windows::Forms::Button^ btn_enregistrer;
 		private: NS_Svc::CL_svc_gestionPersonnes^ processusPersonnes;
+		private: NS_Svc::CL_svc_gestionClient^ processusClients;
 		private: Data::DataSet^ ds;
 		private: Data::DataTable^ dt;
 		private: int index;
 		private: String^ mode;
 		private: System::Windows::Forms::DataGridView^ dataGridView1;
 		private: System::Windows::Forms::Button^ btn_refresh;
-		private: System::Windows::Forms::ComboBox^ comboBox1;
+		private: System::Windows::Forms::ComboBox^ SelecterTable;
 		private: System::Windows::Forms::TextBox^ txt_DateNaissance;
 		private: System::Windows::Forms::Label^ lbl_DateNaissance;
 		private:
@@ -88,7 +92,7 @@ namespace A2POOCorb6
 			this->btn_enregistrer = (gcnew System::Windows::Forms::Button());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->btn_refresh = (gcnew System::Windows::Forms::Button());
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->SelecterTable = (gcnew System::Windows::Forms::ComboBox());
 			this->txt_DateNaissance = (gcnew System::Windows::Forms::TextBox());
 			this->lbl_DateNaissance = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
@@ -256,18 +260,18 @@ namespace A2POOCorb6
 			this->btn_refresh->Name = L"btn_refresh";
 			this->btn_refresh->Size = System::Drawing::Size(370, 46);
 			this->btn_refresh->TabIndex = 17;
-			this->btn_refresh->Text = L"actualiser";
+			this->btn_refresh->Text = L"ActualiserClients";
 			this->btn_refresh->UseVisualStyleBackColor = true;
 			this->btn_refresh->Click += gcnew System::EventHandler(this, &FRM_Principal::btn_refresh_Click);
 			// 
-			// comboBox1
+			// SelecterTable
 			// 
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Location = System::Drawing::Point(579, 1);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(121, 21);
-			this->comboBox1->TabIndex = 18;
-			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &FRM_Principal::comboBox1_SelectedIndexChanged);
+			this->SelecterTable->FormattingEnabled = true;
+			this->SelecterTable->Location = System::Drawing::Point(579, 1);
+			this->SelecterTable->Name = L"SelecterTable";
+			this->SelecterTable->Size = System::Drawing::Size(121, 21);
+			this->SelecterTable->TabIndex = 18;
+			this->SelecterTable->SelectedIndexChanged += gcnew System::EventHandler(this, &FRM_Principal::SelecterTable_SelectedIndexChanged);
 			// 
 			// textBox1
 			// 
@@ -292,7 +296,7 @@ namespace A2POOCorb6
 			this->ClientSize = System::Drawing::Size(833, 345);
 			this->Controls->Add(this->lbl_DateNaissance);
 			this->Controls->Add(this->txt_DateNaissance);
-			this->Controls->Add(this->comboBox1);
+			this->Controls->Add(this->SelecterTable);
 			this->Controls->Add(this->btn_refresh);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->btn_enregistrer);
@@ -325,22 +329,23 @@ namespace A2POOCorb6
 		this->index = 0;
 		this->mode = "RIEN";
 		this->ds = gcnew Data::DataSet();
-		this->processusPersonnes = gcnew NS_Svc::CL_svc_gestionPersonnes();
-		this->loadData(this->index);
+		this->processusClients = gcnew NS_Svc::CL_svc_gestionClient();
+		this->loadDataClient(this->index);
 		this->txt_message->Text = "Data chargées";
 	}
-	private: void loadData(int index)
+	private: void loadDataClient(int index)
 	{
 		this->ds->Clear();
-		this->ds = this->processusPersonnes->listeClient("liste");
+		this->ds = this->processusClients->listeClient("liste");
 		this->txt_idPersonne->Text = Convert::ToString(this->ds->Tables["liste"]->Rows[this->index]->ItemArray[0]);
 		this->txt_nom->Text = Convert::ToString(this->ds->Tables["liste"]->Rows[this->index]->ItemArray[1]);
 		this->txt_prenom->Text = Convert::ToString(this->ds->Tables["liste"]->Rows[this->index]->ItemArray[2]);
+		this->txt_DateNaissance->Text = Convert::ToString(this->ds->Tables["liste"]->Rows[this->index]->ItemArray[3]);
 	}
 
-	private: void Actualiser() {
-		//this->FillCombo();
-		this->dt = this->processusPersonnes->TableClient();
+	private: void ActualiserClients() {
+		this->FillCombo();
+		this->dt = this->processusClients->TableClient();
 		BindingSource^ bs = gcnew BindingSource();
 		bs->DataSource = this->dt;
 		dataGridView1->DataSource = bs;
@@ -348,13 +353,16 @@ namespace A2POOCorb6
 	}
 
 	private:void FillCombo() {
-		comboBox1->Items->Add("Personne");
+		SelecterTable->Items->Add("Clients");
+		SelecterTable->Items->Add("Personnels");
+		SelecterTable->Items->Add("Commandes");
+		SelecterTable->Items->Add("Stock");
 	}
 
 	private: System::Void btn_first_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->index = 0;
-		this->loadData(this->index);
+		this->loadDataClient(this->index);
 		this->txt_message->Text = "Enregistrement né : " + (this->index + 1);
 	}
 
@@ -363,7 +371,7 @@ namespace A2POOCorb6
 		if (this->index > 0)
 		{
 			this->index--;
-			this->loadData(this->index);
+			this->loadDataClient(this->index);
 			this->txt_message->Text = "Enregistrement né : " + (this->index + 1);
 		}
 	}private: System::Void btn_next_Click(System::Object^ sender, System::EventArgs^ e)
@@ -371,13 +379,13 @@ namespace A2POOCorb6
 		if (this->index < this->ds->Tables["liste"]->Rows->Count - 1)
 		{
 			this->index++;
-			this->loadData(this->index);
+			this->loadDataClient(this->index);
 			this->txt_message->Text = "Enregistrement né : " + (this->index + 1);
 		}
 	}private: System::Void btn_end_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->index = this->ds->Tables["liste"]->Rows->Count - 1;
-		this->loadData(this->index);
+		this->loadDataClient(this->index);
 		this->txt_message->Text = "Enregistrement né : " + (this->index + 1);
 	}private: System::Void btn_nouveau_Click(System::Object^ sender, System::EventArgs^ e)
 	{
@@ -404,30 +412,36 @@ namespace A2POOCorb6
 		if (this->mode == "nouv")
 		{
 			int Id;
-			Id = this->processusPersonnes->ajouter(this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text);
+			Id = this->processusClients->ajouter(this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text);
 			this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
 		}
 		else if (this->mode == "maj")
 		{
-			this->processusPersonnes->modifier(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text);
+			this->processusClients->modifier(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text);
 		}
 		else if (this->mode == "sup")
 		{
 			this->processusPersonnes->supprimer(Convert::ToInt32(this->txt_idPersonne->Text));
 		}
 		this->index = 0;
-		this->loadData(this->index);
-		Actualiser();
+		this->loadDataClient(this->index);
+		ActualiserClients();
 		this->txt_message->Text += "Traitement terminé.";
 	}
 
 	private: System::Void btn_refresh_Click(System::Object^ sender, System::EventArgs^ e) {
-		Actualiser();
+		ActualiserClients();
 	}
 
-	private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-
-		Actualiser();
+	private: System::Void SelecterTable_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+		
+		if (this->SelecterTable->SelectedText == "Clients") {
+			ActualiserClients();
+		}
+		else if (this->SelecterTable->SelectedText == "Personnels") {
+			
+		}
+		
 	}
 };
 

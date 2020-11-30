@@ -5,47 +5,45 @@ namespace NS_Svc
 	{
 
 		this->cad = gcnew NS_Composants::CL_CAD();
-		this->client = gcnew NS_Composants::CL_map_TBCLIENT();
+		this->personne = gcnew NS_Composants::CL_map_TBPERSONNE();
 		this->ds = gcnew Data::DataSet();
 		this->dt = gcnew Data::DataTable();
 	}
 
-	DataSet^ CL_svc_gestionPersonnes::listeClient(String^ dataTableName)
+	DataSet^ CL_svc_gestionPersonnes::listePersonnes(String^ dataTableName)
 	{
 		this->ds->Clear();
-		this->ds = this->cad->getRows(this->client->SELECT(), dataTableName);
+		this->ds = this->cad->getRows(this->personne->SELECT(), dataTableName);
 		return this->ds;
 	}
 
-	DataTable^ CL_svc_gestionPersonnes::TableClient()
+	DataTable^ CL_svc_gestionPersonnes::TablePersonnes()
 	{
 		this->dt->Clear();
-		this->dt = this->cad->getRows(this->client->SELECT());
+		this->dt = this->cad->getRows(this->personne->SELECT());
 		return this->dt;
 	}
 
-	int CL_svc_gestionPersonnes::ajouter(String^ nom, String^ prenom, String^ date)
+	int CL_svc_gestionPersonnes::ajouter(String^ nom, String^ prenom)
 	{
-		int id_client;
-		this->client->setNom(nom);
-		this->client->setPrenom(prenom);
-		this->client->setDateNaissance(date);
-		id_client = this->cad->actionRowsID(this->client->INSERT());
-		return id_client;
+		int id_personne;
+		this->personne->setNom(nom);
+		this->personne->setPrenom(prenom);
+		id_personne = this->cad->actionRowsID(this->personne->INSERT());
+		return id_personne;
 	}
 
-	void CL_svc_gestionPersonnes::modifier(int id_client, String^ nom, String^ prenom, String^ date)
+	void CL_svc_gestionPersonnes::modifier(int id_personne, String^ nom, String^ prenom)
 	{
-		this->client->setID(id_client);
-		this->client->setNom(nom);
-		this->client->setPrenom(prenom);
-		this->client->setDateNaissance(date);
-		this->cad->actionRows(this->client->UPDATE());
+		this->personne->setID(id_personne);
+		this->personne->setNom(nom);
+		this->personne->setPrenom(prenom);
+		this->cad->actionRows(this->personne->UPDATE());
 	}
 
-	void CL_svc_gestionPersonnes::supprimer(int id_client)
+	void CL_svc_gestionPersonnes::supprimer(int id_personne)
 	{
-		this->client->setID(id_client);
-		this->cad->actionRows(this->client->DELETE());
+		this->personne->setID(id_personne);
+		this->cad->actionRows(this->personne->DELETE());
 	}
 }

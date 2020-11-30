@@ -1,8 +1,7 @@
 #pragma once
 
-#include "CL_CAD.h"
 #include "CL_map_TBPERSONNE.h"
-#include "CL_map_TBCLIENT.h"
+#include "CL_svc_General.h"
 
 using namespace System::Data;
 using namespace MySql::Data::MySqlClient;
@@ -11,20 +10,16 @@ using namespace System;
 
 namespace NS_Svc
 {
-	ref class CL_svc_gestionPersonnes
+	ref class CL_svc_gestionPersonnes : public NS_Svc::CL_svc_General
 	{
 	private:
-		NS_Composants::CL_CAD^ cad;
 		NS_Composants::CL_map_TBPERSONNE^ personne;
-		NS_Composants::CL_map_TBCLIENT^ client;
-		DataSet^ ds;
-		DataTable^ dt;
 	public:
 		CL_svc_gestionPersonnes(void);
-		DataSet^ listeClient(String^);
-		DataTable^ TableClient();
-		int ajouter(String^, String^, String^);
-		void modifier(int, String^, String^, String^);
+		DataSet^ listePersonnes(String^);
+		DataTable^ TablePersonnes();
+		int ajouter(String^, String^);
+		void modifier(int, String^, String^);
 		void supprimer(int);
 	};
 }
