@@ -20,7 +20,7 @@ DataTable^ NS_Svc::CL_svc_gestionPersonnel::TablePersonnel()
 int NS_Svc::CL_svc_gestionPersonnel::ajouter(int IDSup, String^ nom, String^ prenom, String^ adresse, String^ date)
 {
     int ID_personnel;
-    //voir pour la clé étrangère
+    this->Personnel->setIDSup(IDSup);
     this->Personnel->setNomPersonnel(nom);
     this->Personnel->setPrenomPersonnel(prenom);
     this->Personnel->setAdressePersonnel(adresse);

@@ -28,9 +28,6 @@ namespace NS_Composants{
 		String^ getPrenomPersonnel(void);
 		String^ getAdressePersonnel(void);
 		String^ getDateDembauche(void);
-
-
-
 	};
 }
 
