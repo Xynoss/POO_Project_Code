@@ -4,7 +4,7 @@ namespace NS_Composants
 	CL_CAD::CL_CAD(void)
 	{
 		this->rq_sql = "RIEN";
-		this->cnx = "server = localhost;" + "Initial Catalog = test;" + "Persist Security Info = True;" + "User ID = root;" + "Password = root";
+		this->cnx = "server = localhost;" + "Initial Catalog = Test;" + "Persist Security Info = True;" + "User ID = root;" + "Password = ";
 		this->CNX = gcnew MySqlConnection(this->cnx);
 		this->CMD = gcnew MySqlCommand(this->rq_sql, this->CNX);
 		this->CMD->CommandType = CommandType::Text;

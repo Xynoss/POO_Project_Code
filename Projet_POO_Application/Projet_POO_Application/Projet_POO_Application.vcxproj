@@ -124,17 +124,26 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CL_CAD.cpp" />
+    <ClCompile Include="CL_map_Personnel.cpp" />
     <ClCompile Include="CL_map_TBPERSONNE.cpp" />
+    <ClCompile Include="CL_svc_gestionPersonnel.cpp" />
     <ClCompile Include="CL_svc_gestionPersonnes.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CL_CAD.h" />
+    <ClInclude Include="CL_map_Personnel.h" />
     <ClInclude Include="CL_map_TBPERSONNE.h" />
+    <ClInclude Include="CL_svc_gestionPersonnel.h" />
     <ClInclude Include="CL_svc_gestionPersonnes.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MyForm.resx">
+      <DependentUpon>MyForm.h</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
