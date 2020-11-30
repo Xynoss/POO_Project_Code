@@ -16,8 +16,9 @@ namespace NS_Svc {
 		DataTable^ DT;
 	public:
 		CL_svc_gestionPersonnel(void);
+		DataSet^ ListePersonnel(String^);
 		DataTable^ TablePersonnel();
-		int ajouter(int, String^, String^, String^, String^);
+		int ajouter(String^, String^, String^, String^, int);
 		void modifier(int, int, String^, String^, String^, String^);
 		void supprimer(int);
 	};

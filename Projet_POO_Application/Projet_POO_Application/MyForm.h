@@ -377,10 +377,10 @@ namespace A2POOCorb6
 	private: void loadData(int index)
 	{
 		this->ds->Clear();
-		/*this->ds = this->processusPersonnes->listePersonnes("liste");
+		this->ds = this->processusPersonnel->ListePersonnel("liste");
 		this->txt_idPersonne->Text = Convert::ToString(this->ds->Tables["liste"]->Rows[this->index]->ItemArray[0]);
 		this->txt_nom->Text = Convert::ToString(this->ds->Tables["liste"]->Rows[this->index]->ItemArray[1]);
-		this->txt_prenom->Text = Convert::ToString(this->ds->Tables["liste"]->Rows[this->index]->ItemArray[2]);*/
+		this->txt_prenom->Text = Convert::ToString(this->ds->Tables["liste"]->Rows[this->index]->ItemArray[2]);
 	}
 
 	private: void Actualiser() {
@@ -451,7 +451,7 @@ namespace A2POOCorb6
 		if (this->mode == "nouv")
 		{
 			int Id;
-			Id = this->processusPersonnel->ajouter(Convert::ToInt32(this->textBox1->Text), this->txt_nom->Text, this->txt_prenom->Text, this->textBox2->Text, this->textBox3->Text);
+			Id = this->processusPersonnel->ajouter(this->txt_prenom->Text, this->textBox2->Text, this->textBox3->Text, this->txt_nom->Text, Convert::ToInt32(this->textBox1->Text));
 			this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
 		}
 		else if (this->mode == "maj")

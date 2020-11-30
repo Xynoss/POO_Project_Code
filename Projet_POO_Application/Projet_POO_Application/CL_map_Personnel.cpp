@@ -17,7 +17,7 @@ String^ NS_Composants::CL_map_Personnel::SELECT(void)
 
 String^ NS_Composants::CL_map_Personnel::INSERT(void)
 {
-    return "INSERT INTO Personnel " + "(ID_Personnel, PrenomPersonnel, AdressePersonnel, DateDembauche, NomPersonnel, ID_Personnel_Supervise) " + "VALUES('" + this->getID() + "', '" + this->getPrenomPersonnel() + "', '" + this->getAdressePersonnel() + "', '" + this->getDateDembauche() + "', '" + this->getNomPersonnel() +  "', '" + this->getIDSup() + "');SELECT @@IDENTITY;";
+    return "INSERT INTO Personnel " + "(PrenomPersonnel, AdressePersonnel, DateDembauche, NomPersonnel, ID_personnel_supervise) " + "VALUES('" + this->getPrenomPersonnel() + "', '" + this->getAdressePersonnel() + "', '" + this->getDateDembauche() + "', '" + this->getNomPersonnel() +  "', '" + this->getIDSup() + "');SELECT @@IDENTITY;";
 }
 
 String^ NS_Composants::CL_map_Personnel::UPDATE(void)

@@ -8,6 +8,15 @@ NS_Svc::CL_svc_gestionPersonnel::CL_svc_gestionPersonnel(void)
     this->DT = gcnew Data::DataTable();
 }
 
+DataSet^ NS_Svc::CL_svc_gestionPersonnel::ListePersonnel(String^ dataTableName)
+{
+    this->DS->Clear();
+    this->DS = this->cad->getRows(this->Personnel->SELECT(), dataTableName);
+    return this->DS;
+}
+
+
+
 DataTable^ NS_Svc::CL_svc_gestionPersonnel::TablePersonnel()
 {
     this->DT->Clear();
@@ -15,7 +24,7 @@ DataTable^ NS_Svc::CL_svc_gestionPersonnel::TablePersonnel()
     return this->DT;
 }
 
-int NS_Svc::CL_svc_gestionPersonnel::ajouter(int IDSup, String^ nom, String^ prenom, String^ adresse, String^ date)
+int NS_Svc::CL_svc_gestionPersonnel::ajouter(String^ nom, String^ prenom, String^ adresse, String^ date, int IDSup)
 {
     int ID_personnel;
     this->Personnel->setPrenomPersonnel(prenom);
