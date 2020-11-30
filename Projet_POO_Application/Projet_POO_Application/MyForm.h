@@ -453,9 +453,17 @@ namespace A2POOCorb6
 	{
 		if (this->mode == "nouv")
 		{
-			int Id;
-			Id = this->processusPersonnel->ajouter(this->txt_nom->Text, this->txt_prenom->Text, this->textAdresse->Text, this->textDate->Text,  Convert::ToInt32(this->textIDSup->Text));
-			this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
+			if (this->textIDSup->Text != "") {
+				int Id;
+				Id = this->processusPersonnel->ajouter(this->txt_nom->Text, this->txt_prenom->Text, this->textAdresse->Text, this->textDate->Text, Convert::ToInt32(this->textIDSup->Text));
+				this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
+			}
+			else {
+				int Id;
+				Id = this->processusPersonnel->ajouterSSup(this->txt_nom->Text, this->txt_prenom->Text, this->textAdresse->Text, this->textDate->Text);
+				this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
+			}
+
 		}
 		else if (this->mode == "maj")
 		{

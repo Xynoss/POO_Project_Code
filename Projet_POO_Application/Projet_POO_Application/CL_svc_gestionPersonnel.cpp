@@ -36,6 +36,17 @@ int NS_Svc::CL_svc_gestionPersonnel::ajouter(String^ nom, String^ prenom, String
     return ID_personnel;
 }
 
+int NS_Svc::CL_svc_gestionPersonnel::ajouterSSup(String^ nom, String^ prenom, String^ adresse, String^ date)
+{
+    int ID_personnel;
+    this->Personnel->setPrenomPersonnel(prenom);
+    this->Personnel->setAdressePersonnel(adresse);
+    this->Personnel->setDateDembauche(date);
+    this->Personnel->setNomPersonnel(nom);
+    ID_personnel = this->cad->actionRowsID(this->Personnel->INSERTSSup());
+    return ID_personnel;
+}
+
 void NS_Svc::CL_svc_gestionPersonnel::modifier(int id_personnel, int idsup, String^ nom, String^ prenom, String^ adresse, String^ date)
 {
     this->Personnel->setID(id_personnel);

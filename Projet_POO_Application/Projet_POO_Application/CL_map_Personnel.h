@@ -14,6 +14,7 @@ namespace NS_Composants{
 		CL_map_Personnel(void);
 		String^ SELECT(void);
 		String^ INSERT(void);
+		String^ INSERTSSup(void);
 		String^ UPDATE(void);
 		String^ DELETE(void);
 		void setID(int);
