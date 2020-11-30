@@ -2,9 +2,8 @@
 
 NS_Composants::CL_map_Personnel::CL_map_Personnel(void)
 {
-    throw gcnew System::NotImplementedException();
     this->ID_personnel = -1;
-    this->ID_Superieur = -1;
+    this->ID_personnel_supervise = -1;
     this->NomPersonnel = "RIEN";
     this->PrenomPersonnel = "RIEN";
     this->AdressePersonnel = "RIEN";
@@ -13,31 +12,26 @@ NS_Composants::CL_map_Personnel::CL_map_Personnel(void)
 
 String^ NS_Composants::CL_map_Personnel::SELECT(void)
 {
-    throw gcnew System::NotImplementedException();
-    return "SELECT  ID_personnel, ID_Superieur, NomPersonnel, PreNomPersonnelPersonnel, AdressePersonnel, DateDembauche " + "FROM Personnel;";
+    return "SELECT  ID_personnel, PrenomPersonnel, AdressePersonnel, DateDembauche, NomPersonnel, ID_personnel_supervise " + "FROM Personnel;";
 }
 
 String^ NS_Composants::CL_map_Personnel::INSERT(void)
 {
-    throw gcnew System::NotImplementedException();
     return "INSERT INTO Personnel " + "(ID_Personnel, PrenomPersonnel, AdressePersonnel, DateDembauche, NomPersonnel, ID_Personnel_Supervise) " + "VALUES('" + this->getID() + "', '" + this->getPrenomPersonnel() + "', '" + this->getAdressePersonnel() + "', '" + this->getDateDembauche() + "', '" + this->getNomPersonnel() +  "', '" + this->getIDSup() + "');SELECT @@IDENTITY;";
 }
 
 String^ NS_Composants::CL_map_Personnel::UPDATE(void)
 {
-    throw gcnew System::NotImplementedException();
-    return "UPDATE Personnel " + "SET ID_Superieur = '" + this->getIDSup() + "', NomPersonnel = '" + this->getNomPersonnel() + "' " + "', PreNomPersonnelPersonnel = '" + this->getPrenomPersonnel() + "' " + "', AdressePersonnel = '" + this->getAdressePersonnel() + "' " + "', DateDembauche = '" + this->getDateDembauche() + "' " + "WHERE( ID_personnel = " + this->getID() + ");";
+    return "UPDATE Personnel " + "SET ID_personnel_supervise = '" + this->getIDSup() + "', NomPersonnel = '" + this->getNomPersonnel() + "' " + "', PreNomPersonnelPersonnel = '" + this->getPrenomPersonnel() + "' " + "', AdressePersonnel = '" + this->getAdressePersonnel() + "' " + "', DateDembauche = '" + this->getDateDembauche() + "' " "', ID_personnel_supervise = '" + this->getIDSup() + "' " + "WHERE( ID_personnel = " + this->getID() + ");";
 }
 
 String^ NS_Composants::CL_map_Personnel::DELETE(void)
 {
-    throw gcnew System::NotImplementedException();
     return "DELETE FROM Personnel " + "WHERE( ID_Personnel = " + this->getID() + ");";
 }
 
 void NS_Composants::CL_map_Personnel::setID(int)
 {
-    throw gcnew System::NotImplementedException();
     if (ID_personnel > 0)
     {
         this->ID_personnel = ID_personnel;
@@ -46,15 +40,14 @@ void NS_Composants::CL_map_Personnel::setID(int)
 
 void NS_Composants::CL_map_Personnel::setIDSup(int)
 {
-    if (ID_Superieur > 0)
+    if (ID_personnel_supervise > 0)
     {
-        this->ID_Superieur = ID_Superieur;
+        this->ID_personnel_supervise = ID_personnel_supervise;
     }
 }
 
 void NS_Composants::CL_map_Personnel::setPrenomPersonnel(String^)
 {
-    throw gcnew System::NotImplementedException();
     if (PrenomPersonnel != "")
     {
         this->PrenomPersonnel = PrenomPersonnel;
@@ -63,7 +56,6 @@ void NS_Composants::CL_map_Personnel::setPrenomPersonnel(String^)
 
 void NS_Composants::CL_map_Personnel::setNomPersonnel(String^)
 {
-    throw gcnew System::NotImplementedException();
     if (NomPersonnel != "")
     {
         this->NomPersonnel = NomPersonnel;
@@ -72,7 +64,6 @@ void NS_Composants::CL_map_Personnel::setNomPersonnel(String^)
 
 void NS_Composants::CL_map_Personnel::setAdressePersonnel(String^)
 {
-    throw gcnew System::NotImplementedException();
     if (AdressePersonnel != "")
     {
         this->AdressePersonnel = AdressePersonnel;
@@ -81,7 +72,6 @@ void NS_Composants::CL_map_Personnel::setAdressePersonnel(String^)
 
 void NS_Composants::CL_map_Personnel::setDateDembauche(String^)
 {
-    throw gcnew System::NotImplementedException();
     if (DateDembauche != "")
     {
         this->DateDembauche = DateDembauche;
@@ -90,35 +80,30 @@ void NS_Composants::CL_map_Personnel::setDateDembauche(String^)
 
 int NS_Composants::CL_map_Personnel::getID()
 {
-    throw gcnew System::NotImplementedException();
     return this->ID_personnel;
 }
 
 int NS_Composants::CL_map_Personnel::getIDSup()
 {
-    return this->ID_Superieur;
+    return this->ID_personnel_supervise;
 }
 
 String^ NS_Composants::CL_map_Personnel::getNomPersonnel(void)
 {
-    throw gcnew System::NotImplementedException();
     return this->NomPersonnel;
 }
 
 String^ NS_Composants::CL_map_Personnel::getPrenomPersonnel(void)
 {
-    throw gcnew System::NotImplementedException();
     return this->PrenomPersonnel;
 }
 
 String^ NS_Composants::CL_map_Personnel::getAdressePersonnel(void)
 {
-    throw gcnew System::NotImplementedException();
     return this->AdressePersonnel;
 }
 
 String^ NS_Composants::CL_map_Personnel::getDateDembauche(void)
 {
-    throw gcnew System::NotImplementedException();
     return this->DateDembauche;
 }

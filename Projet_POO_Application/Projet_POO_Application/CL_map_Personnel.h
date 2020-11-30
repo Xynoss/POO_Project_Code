@@ -5,7 +5,7 @@ namespace NS_Composants{
 	{
 	private:
 		int ID_personnel;
-		int ID_Superieur;
+		int ID_personnel_supervise;
 		String^ PrenomPersonnel;
 		String^ NomPersonnel;
 		String^ AdressePersonnel;

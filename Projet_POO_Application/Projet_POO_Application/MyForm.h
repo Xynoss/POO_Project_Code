@@ -1,5 +1,6 @@
 ﻿#pragma once
-#include "CL_svc_gestionPersonnes.h"
+//#include "CL_svc_gestionPersonnes.h"
+#include "CL_svc_gestionPersonnel.h"
 namespace A2POOCorb6
 {
 	using namespace System;
@@ -47,7 +48,7 @@ namespace A2POOCorb6
 	private: System::Windows::Forms::Button^ btn_modifier;
 	private: System::Windows::Forms::Button^ btn_sup;
 	private: System::Windows::Forms::Button^ btn_enregistrer;
-	private: NS_Svc::CL_svc_gestionPersonnes^ processusPersonnes;
+	private: NS_Svc::CL_svc_gestionPersonnel^ processusPersonnel;
 	private: Data::DataSet^ ds;
 	private: Data::DataTable^ dt;
 	private: int index;
@@ -55,6 +56,12 @@ namespace A2POOCorb6
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::Button^ btn_refresh;
 	private: System::Windows::Forms::ComboBox^ comboBox1;
+	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::TextBox^ textBox2;
+	private: System::Windows::Forms::TextBox^ textBox3;
+	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ label3;
 	private:
 		/// <summary>
 		/// Variable nécessaire au concepteur.
@@ -87,6 +94,12 @@ namespace A2POOCorb6
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->btn_refresh = (gcnew System::Windows::Forms::Button());
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -142,7 +155,7 @@ namespace A2POOCorb6
 			// lbl_message
 			// 
 			this->lbl_message->AutoSize = true;
-			this->lbl_message->Location = System::Drawing::Point(9, 180);
+			this->lbl_message->Location = System::Drawing::Point(9, 324);
 			this->lbl_message->Name = L"lbl_message";
 			this->lbl_message->Size = System::Drawing::Size(50, 13);
 			this->lbl_message->TabIndex = 6;
@@ -150,7 +163,7 @@ namespace A2POOCorb6
 			// 
 			// txt_message
 			// 
-			this->txt_message->Location = System::Drawing::Point(12, 196);
+			this->txt_message->Location = System::Drawing::Point(12, 339);
 			this->txt_message->Multiline = true;
 			this->txt_message->Name = L"txt_message";
 			this->txt_message->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
@@ -159,7 +172,7 @@ namespace A2POOCorb6
 			// 
 			// btn_first
 			// 
-			this->btn_first->Location = System::Drawing::Point(12, 146);
+			this->btn_first->Location = System::Drawing::Point(12, 298);
 			this->btn_first->Name = L"btn_first";
 			this->btn_first->Size = System::Drawing::Size(46, 23);
 			this->btn_first->TabIndex = 8;
@@ -169,7 +182,7 @@ namespace A2POOCorb6
 			// 
 			// btn_previous
 			// 
-			this->btn_previous->Location = System::Drawing::Point(64, 146);
+			this->btn_previous->Location = System::Drawing::Point(64, 298);
 			this->btn_previous->Name = L"btn_previous";
 			this->btn_previous->Size = System::Drawing::Size(46, 23);
 			this->btn_previous->TabIndex = 9;
@@ -179,7 +192,7 @@ namespace A2POOCorb6
 			// 
 			// btn_next
 			// 
-			this->btn_next->Location = System::Drawing::Point(116, 146);
+			this->btn_next->Location = System::Drawing::Point(116, 298);
 			this->btn_next->Name = L"btn_next";
 			this->btn_next->Size = System::Drawing::Size(46, 23);
 			this->btn_next->TabIndex = 10;
@@ -189,7 +202,7 @@ namespace A2POOCorb6
 			// 
 			// btn_end
 			// 
-			this->btn_end->Location = System::Drawing::Point(168, 146);
+			this->btn_end->Location = System::Drawing::Point(168, 298);
 			this->btn_end->Name = L"btn_end";
 			this->btn_end->Size = System::Drawing::Size(46, 23);
 			this->btn_end->TabIndex = 11;
@@ -241,14 +254,14 @@ namespace A2POOCorb6
 			// dataGridView1
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Location = System::Drawing::Point(454, 25);
+			this->dataGridView1->Location = System::Drawing::Point(579, 51);
 			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->Size = System::Drawing::Size(370, 168);
+			this->dataGridView1->Size = System::Drawing::Size(570, 286);
 			this->dataGridView1->TabIndex = 16;
 			// 
 			// btn_refresh
 			// 
-			this->btn_refresh->Location = System::Drawing::Point(454, 200);
+			this->btn_refresh->Location = System::Drawing::Point(682, 343);
 			this->btn_refresh->Name = L"btn_refresh";
 			this->btn_refresh->Size = System::Drawing::Size(370, 46);
 			this->btn_refresh->TabIndex = 17;
@@ -265,11 +278,65 @@ namespace A2POOCorb6
 			this->comboBox1->TabIndex = 18;
 			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &FRM_Principal::comboBox1_SelectedIndexChanged);
 			// 
+			// textAdresse
+			// 
+			this->textBox1->Location = System::Drawing::Point(12, 149);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(202, 20);
+			this->textBox1->TabIndex = 19;
+			// 
+			// textDate
+			// 
+			this->textBox2->Location = System::Drawing::Point(12, 187);
+			this->textBox2->Name = L"textBox2";
+			this->textBox2->Size = System::Drawing::Size(202, 20);
+			this->textBox2->TabIndex = 20;
+			// 
+			// textIDSup
+			// 
+			this->textBox3->Location = System::Drawing::Point(12, 225);
+			this->textBox3->Name = L"textBox3";
+			this->textBox3->Size = System::Drawing::Size(202, 20);
+			this->textBox3->TabIndex = 21;
+			// 
+			// label_Adresse
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(12, 133);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(35, 13);
+			this->label1->TabIndex = 22;
+			this->label1->Text = L"Adresse";
+			// 
+			// label_Date
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(12, 172);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(35, 13);
+			this->label2->TabIndex = 23;
+			this->label2->Text = L"Date d'embauche";
+			// 
+			// label_IDSup
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(12, 210);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(35, 13);
+			this->label3->TabIndex = 24;
+			this->label3->Text = L"Identifiant superieur";
+			// 
 			// FRM_Principal
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(833, 254);
+			this->ClientSize = System::Drawing::Size(1258, 584);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->label1);
+			this->Controls->Add(this->textBox3);
+			this->Controls->Add(this->textBox2);
+			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->comboBox1);
 			this->Controls->Add(this->btn_refresh);
 			this->Controls->Add(this->dataGridView1);
@@ -295,7 +362,7 @@ namespace A2POOCorb6
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
-			this->FillCombo();
+
 		}
 #pragma endregion
 	private: System::Void FRM_Principal_Load(System::Object^ sender, System::EventArgs^ e)
@@ -303,21 +370,21 @@ namespace A2POOCorb6
 		this->index = 0;
 		this->mode = "RIEN";
 		this->ds = gcnew Data::DataSet();
-		this->processusPersonnes = gcnew NS_Svc::CL_svc_gestionPersonnes();
+		this->processusPersonnel = gcnew NS_Svc::CL_svc_gestionPersonnel();
 		this->loadData(this->index);
 		this->txt_message->Text = "Data chargées";
 	}
 	private: void loadData(int index)
 	{
 		this->ds->Clear();
-		this->ds = this->processusPersonnes->listePersonnes("liste");
+		/*this->ds = this->processusPersonnes->listePersonnes("liste");
 		this->txt_idPersonne->Text = Convert::ToString(this->ds->Tables["liste"]->Rows[this->index]->ItemArray[0]);
 		this->txt_nom->Text = Convert::ToString(this->ds->Tables["liste"]->Rows[this->index]->ItemArray[1]);
-		this->txt_prenom->Text = Convert::ToString(this->ds->Tables["liste"]->Rows[this->index]->ItemArray[2]);
+		this->txt_prenom->Text = Convert::ToString(this->ds->Tables["liste"]->Rows[this->index]->ItemArray[2]);*/
 	}
 
 	private: void Actualiser() {
-		this->dt = this->processusPersonnes->TablePersonnes();
+		this->dt = this->processusPersonnel->TablePersonnel();
 		BindingSource^ bs = gcnew BindingSource();
 		bs->DataSource = this->dt;
 		dataGridView1->DataSource = bs;
@@ -361,6 +428,9 @@ namespace A2POOCorb6
 		this->txt_idPersonne->Clear();
 		this->txt_nom->Clear();
 		this->txt_prenom->Clear();
+		this->textBox1->Clear();
+		this->textBox2->Clear();
+		this->textBox3->Clear();
 		this->mode = "nouv";
 		this->txt_message->Text = "Veuillez saisir les information de la nouvelle personne et enregistrer";
 	}private: System::Void btn_modifier_Click(System::Object^ sender, System::EventArgs^ e)
@@ -381,16 +451,16 @@ namespace A2POOCorb6
 		if (this->mode == "nouv")
 		{
 			int Id;
-			Id = this->processusPersonnes->ajouter(this->txt_nom->Text, this->txt_prenom->Text);
+			Id = this->processusPersonnel->ajouter(Convert::ToInt32(this->textBox1->Text), this->txt_nom->Text, this->txt_prenom->Text, this->textBox2->Text, this->textBox3->Text);
 			this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
 		}
 		else if (this->mode == "maj")
 		{
-			this->processusPersonnes->modifier(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text, this->txt_prenom->Text);
+			this->processusPersonnel->modifier(Convert::ToInt32(this->txt_idPersonne->Text), Convert::ToInt32(this->textBox1->Text), this->txt_nom->Text, this->txt_prenom->Text, this->textBox2->Text, this->textBox3->Text);
 		}
 		else if (this->mode == "sup")
 		{
-			this->processusPersonnes->supprimer(Convert::ToInt32(this->txt_idPersonne->Text));
+			this->processusPersonnel->supprimer(Convert::ToInt32(this->txt_idPersonne->Text));
 		}
 		this->index = 0;
 		this->loadData(this->index);
