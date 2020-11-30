@@ -2,6 +2,7 @@
 
 #include "CL_CAD.h"
 #include "CL_map_TBPERSONNE.h"
+#include "CL_map_TBCLIENT.h"
 
 using namespace System::Data;
 using namespace MySql::Data::MySqlClient;
@@ -15,14 +16,15 @@ namespace NS_Svc
 	private:
 		NS_Composants::CL_CAD^ cad;
 		NS_Composants::CL_map_TBPERSONNE^ personne;
+		NS_Composants::CL_map_TBCLIENT^ client;
 		DataSet^ ds;
 		DataTable^ dt;
 	public:
 		CL_svc_gestionPersonnes(void);
-		DataSet^ listePersonnes(String^);
-		DataTable^ TablePersonnes();
-		int ajouter(String^, String^);
-		void modifier(int, String^, String^);
+		DataSet^ listeClient(String^);
+		DataTable^ TableClient();
+		int ajouter(String^, String^, String^);
+		void modifier(int, String^, String^, String^);
 		void supprimer(int);
 	};
 }
