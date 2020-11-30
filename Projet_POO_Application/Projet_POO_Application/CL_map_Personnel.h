@@ -22,8 +22,8 @@ namespace NS_Composants{
 		void setNomPersonnel(String^);
 		void setAdressePersonnel(String^);
 		void setDateDembauche(String^);
-		int getID();
-		int getIDSup();
+		int getID(void);
+		int getIDSup(void);
 		String^ getNomPersonnel(void);
 		String^ getPrenomPersonnel(void);
 		String^ getAdressePersonnel(void);

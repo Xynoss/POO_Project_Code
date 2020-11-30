@@ -56,9 +56,9 @@ namespace A2POOCorb6
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::Button^ btn_refresh;
 	private: System::Windows::Forms::ComboBox^ comboBox1;
-	private: System::Windows::Forms::TextBox^ textBox1;
-	private: System::Windows::Forms::TextBox^ textBox2;
-	private: System::Windows::Forms::TextBox^ textBox3;
+	private: System::Windows::Forms::TextBox^ textAdresse;
+	private: System::Windows::Forms::TextBox^ textDate;
+	private: System::Windows::Forms::TextBox^ textIDSup;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
@@ -94,9 +94,9 @@ namespace A2POOCorb6
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->btn_refresh = (gcnew System::Windows::Forms::Button());
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
+			this->textAdresse = (gcnew System::Windows::Forms::TextBox());
+			this->textDate = (gcnew System::Windows::Forms::TextBox());
+			this->textIDSup = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
@@ -280,24 +280,24 @@ namespace A2POOCorb6
 			// 
 			// textAdresse
 			// 
-			this->textBox1->Location = System::Drawing::Point(12, 149);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(202, 20);
-			this->textBox1->TabIndex = 19;
+			this->textAdresse->Location = System::Drawing::Point(12, 149);
+			this->textAdresse->Name = L"textAdresse";
+			this->textAdresse->Size = System::Drawing::Size(202, 20);
+			this->textAdresse->TabIndex = 19;
 			// 
 			// textDate
 			// 
-			this->textBox2->Location = System::Drawing::Point(12, 187);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(202, 20);
-			this->textBox2->TabIndex = 20;
+			this->textDate->Location = System::Drawing::Point(12, 187);
+			this->textDate->Name = L"textDate";
+			this->textDate->Size = System::Drawing::Size(202, 20);
+			this->textDate->TabIndex = 20;
 			// 
 			// textIDSup
 			// 
-			this->textBox3->Location = System::Drawing::Point(12, 225);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(202, 20);
-			this->textBox3->TabIndex = 21;
+			this->textIDSup->Location = System::Drawing::Point(12, 225);
+			this->textIDSup->Name = L"textIDSup";
+			this->textIDSup->Size = System::Drawing::Size(202, 20);
+			this->textIDSup->TabIndex = 21;
 			// 
 			// label_Adresse
 			// 
@@ -334,9 +334,9 @@ namespace A2POOCorb6
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
-			this->Controls->Add(this->textBox3);
-			this->Controls->Add(this->textBox2);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->textIDSup);
+			this->Controls->Add(this->textDate);
+			this->Controls->Add(this->textAdresse);
 			this->Controls->Add(this->comboBox1);
 			this->Controls->Add(this->btn_refresh);
 			this->Controls->Add(this->dataGridView1);
@@ -379,8 +379,11 @@ namespace A2POOCorb6
 		this->ds->Clear();
 		this->ds = this->processusPersonnel->ListePersonnel("liste");
 		this->txt_idPersonne->Text = Convert::ToString(this->ds->Tables["liste"]->Rows[this->index]->ItemArray[0]);
-		this->txt_nom->Text = Convert::ToString(this->ds->Tables["liste"]->Rows[this->index]->ItemArray[1]);
-		this->txt_prenom->Text = Convert::ToString(this->ds->Tables["liste"]->Rows[this->index]->ItemArray[2]);
+		this->txt_prenom->Text = Convert::ToString(this->ds->Tables["liste"]->Rows[this->index]->ItemArray[1]);
+		this->textAdresse->Text = Convert::ToString(this->ds->Tables["liste"]->Rows[this->index]->ItemArray[2]);
+		this->textDate->Text = Convert::ToString(this->ds->Tables["liste"]->Rows[this->index]->ItemArray[3]);
+		this->txt_nom->Text = Convert::ToString(this->ds->Tables["liste"]->Rows[this->index]->ItemArray[4]);
+		this->textIDSup->Text = Convert::ToString(this->ds->Tables["liste"]->Rows[this->index]->ItemArray[5]);
 	}
 
 	private: void Actualiser() {
@@ -428,9 +431,9 @@ namespace A2POOCorb6
 		this->txt_idPersonne->Clear();
 		this->txt_nom->Clear();
 		this->txt_prenom->Clear();
-		this->textBox1->Clear();
-		this->textBox2->Clear();
-		this->textBox3->Clear();
+		this->textAdresse->Clear();
+		this->textDate->Clear();
+		this->textIDSup->Clear();
 		this->mode = "nouv";
 		this->txt_message->Text = "Veuillez saisir les information de la nouvelle personne et enregistrer";
 	}private: System::Void btn_modifier_Click(System::Object^ sender, System::EventArgs^ e)
@@ -451,12 +454,12 @@ namespace A2POOCorb6
 		if (this->mode == "nouv")
 		{
 			int Id;
-			Id = this->processusPersonnel->ajouter(this->txt_prenom->Text, this->textBox2->Text, this->textBox3->Text, this->txt_nom->Text, Convert::ToInt32(this->textBox1->Text));
+			Id = this->processusPersonnel->ajouter(this->txt_nom->Text, this->txt_prenom->Text, this->textAdresse->Text, this->textDate->Text,  Convert::ToInt32(this->textIDSup->Text));
 			this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
 		}
 		else if (this->mode == "maj")
 		{
-			this->processusPersonnel->modifier(Convert::ToInt32(this->txt_idPersonne->Text), Convert::ToInt32(this->textBox1->Text), this->txt_nom->Text, this->txt_prenom->Text, this->textBox2->Text, this->textBox3->Text);
+			this->processusPersonnel->modifier(Convert::ToInt32(this->txt_idPersonne->Text), Convert::ToInt32(this->textIDSup->Text), this->txt_nom->Text, this->txt_prenom->Text, this->textAdresse->Text, this->textDate->Text);
 		}
 		else if (this->mode == "sup")
 		{

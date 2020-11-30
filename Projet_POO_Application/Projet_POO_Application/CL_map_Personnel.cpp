@@ -30,7 +30,7 @@ String^ NS_Composants::CL_map_Personnel::DELETE(void)
     return "DELETE FROM Personnel " + "WHERE( ID_Personnel = " + this->getID() + ");";
 }
 
-void NS_Composants::CL_map_Personnel::setID(int)
+void NS_Composants::CL_map_Personnel::setID(int ID_personnel)
 {
     if (ID_personnel > 0)
     {
@@ -38,7 +38,7 @@ void NS_Composants::CL_map_Personnel::setID(int)
     }
 }
 
-void NS_Composants::CL_map_Personnel::setIDSup(int)
+void NS_Composants::CL_map_Personnel::setIDSup(int ID_personnel_supervise)
 {
     if (ID_personnel_supervise > 0)
     {
@@ -46,7 +46,7 @@ void NS_Composants::CL_map_Personnel::setIDSup(int)
     }
 }
 
-void NS_Composants::CL_map_Personnel::setPrenomPersonnel(String^)
+void NS_Composants::CL_map_Personnel::setPrenomPersonnel(String^ PrenomPersonnel)
 {
     if (PrenomPersonnel != "")
     {
@@ -54,7 +54,7 @@ void NS_Composants::CL_map_Personnel::setPrenomPersonnel(String^)
     }
 }
 
-void NS_Composants::CL_map_Personnel::setNomPersonnel(String^)
+void NS_Composants::CL_map_Personnel::setNomPersonnel(String^ NomPersonnel)
 {
     if (NomPersonnel != "")
     {
@@ -62,7 +62,7 @@ void NS_Composants::CL_map_Personnel::setNomPersonnel(String^)
     }
 }
 
-void NS_Composants::CL_map_Personnel::setAdressePersonnel(String^)
+void NS_Composants::CL_map_Personnel::setAdressePersonnel(String^ AdressePersonnel)
 {
     if (AdressePersonnel != "")
     {
@@ -70,7 +70,7 @@ void NS_Composants::CL_map_Personnel::setAdressePersonnel(String^)
     }
 }
 
-void NS_Composants::CL_map_Personnel::setDateDembauche(String^)
+void NS_Composants::CL_map_Personnel::setDateDembauche(String^ DateDembauche)
 {
     if (DateDembauche != "")
     {
@@ -78,12 +78,12 @@ void NS_Composants::CL_map_Personnel::setDateDembauche(String^)
     }
 }
 
-int NS_Composants::CL_map_Personnel::getID()
+int NS_Composants::CL_map_Personnel::getID(void)
 {
     return this->ID_personnel;
 }
 
-int NS_Composants::CL_map_Personnel::getIDSup()
+int NS_Composants::CL_map_Personnel::getIDSup(void)
 {
     return this->ID_personnel_supervise;
 }
