@@ -26,7 +26,8 @@ namespace NS_Composants {
 
 	String^ CL_map_TBCLIENT::UPDATE(void)
 	{
-		return "UPDATE client " + "SET NomClient = '" + this->getNom() + "', PrenomClient = '" + this->getPrenom() + "', NaissanceClient = '" + this->getDateNaissance() + "'  " + "WHERE(ID_Client = " + this->getID() + "); ";
+		return "UPDATE client " + "SET NomClient = '" + this->getNom() + "', PrenomClient = '" + this->getPrenom() + "', NaissanceClient = '" + this->getDateNaissance() + "'  " + "WHERE(ID_Client = " + this->getID() + ");" +
+			"UPDATE region SET  AdresseClient = '" + this->getAdresse() + "', Ville = '" + this->getVille() + "', code_postal = '" + this->getcodePostal() + "' WHERE region.ID_region = appartient.ID_region AND client.ID_Client = appartient.ID_Client; ";
 	}
 
 	String^ CL_map_TBCLIENT::DELETE(void)

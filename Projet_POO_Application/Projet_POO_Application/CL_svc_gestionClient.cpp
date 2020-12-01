@@ -49,6 +49,7 @@ namespace NS_Svc
 		this->client->setcodePostal(codepostal);
 		this->client->setTypeAdresse(typeadresse);
 		this->cad->actionRows(this->client->UPDATE());
+		//this->cad->actionRows(this->client->UPDATEA(id_client, ));
 	}
 
 	void CL_svc_gestionClient::supprimer(int id_client)
