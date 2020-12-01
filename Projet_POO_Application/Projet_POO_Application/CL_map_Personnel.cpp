@@ -27,7 +27,12 @@ String^ NS_Composants::CL_map_Personnel::INSERTSSup(void)
 
 String^ NS_Composants::CL_map_Personnel::UPDATE(void)
 {
-    return "UPDATE Personnel " + "SET ID_personnel_supervise = '" + this->getIDSup() + "', NomPersonnel = '" + this->getNomPersonnel() + "' " + "', PreNomPersonnelPersonnel = '" + this->getPrenomPersonnel() + "' " + "', AdressePersonnel = '" + this->getAdressePersonnel() + "' " + "', DateDembauche = '" + this->getDateDembauche() + "' " "', ID_personnel_supervise = '" + this->getIDSup() + "' " + "WHERE( ID_personnel = " + this->getID() + ");";
+    return "UPDATE Personnel " + "SET NomPersonnel = '" + this->getNomPersonnel() + "', PrenomPersonnel = '" + this->getPrenomPersonnel() + "', AdressePersonnel = '" + this->getAdressePersonnel() + "', DateDembauche = '" + this->getDateDembauche() + "', ID_personnel_supervise = '" + this->getIDSup() + "' WHERE( ID_personnel = " + this->getID() + ");";
+}
+
+String^ NS_Composants::CL_map_Personnel::UPDATESSup(void)
+{
+    return "UPDATE Personnel " + "SET NomPersonnel = '" + this->getNomPersonnel() + "', PrenomPersonnel = '" + this->getPrenomPersonnel() + "', AdressePersonnel = '" + this->getAdressePersonnel() + "', DateDembauche = '" + this->getDateDembauche() + "' WHERE( ID_personnel = " + this->getID() + ");";
 }
 
 String^ NS_Composants::CL_map_Personnel::DELETE(void)

@@ -463,15 +463,24 @@ namespace A2POOCorb6
 				Id = this->processusPersonnel->ajouterSSup(this->txt_nom->Text, this->txt_prenom->Text, this->textAdresse->Text, this->textDate->Text);
 				this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
 			}
+			this->mode = "RIEN";
 
 		}
 		else if (this->mode == "maj")
 		{
-			this->processusPersonnel->modifier(Convert::ToInt32(this->txt_idPersonne->Text), Convert::ToInt32(this->textIDSup->Text), this->txt_nom->Text, this->txt_prenom->Text, this->textAdresse->Text, this->textDate->Text);
+			if (this->textIDSup->Text != "") {
+				this->processusPersonnel->modifier(Convert::ToInt32(this->txt_idPersonne->Text), Convert::ToInt32(this->textIDSup->Text), this->txt_nom->Text, this->txt_prenom->Text, this->textAdresse->Text, this->textDate->Text);
+			}
+			else {
+				this->processusPersonnel->modifierSSup(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text, this->txt_prenom->Text, this->textAdresse->Text, this->textDate->Text);
+			}
+			this->mode = "RIEN";
+			
 		}
 		else if (this->mode == "sup")
 		{
 			this->processusPersonnel->supprimer(Convert::ToInt32(this->txt_idPersonne->Text));
+			this->mode = "RIEN";
 		}
 		this->index = 0;
 		this->loadData(this->index);
