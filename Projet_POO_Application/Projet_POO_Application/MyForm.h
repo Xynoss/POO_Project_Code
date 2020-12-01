@@ -689,12 +689,12 @@ namespace A2POOCorb6
             {
                 if (this->txt_Ville->Text != "") {
                     int Id;
-                    Id = this->processusPersonnel->ajouter(this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text, Convert::ToInt32(this->txt_Ville->Text));
+                    Id = this->processusPersonnel->ajouter(this->txt_Adresse->Text, this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, Convert::ToInt32(this->txt_Ville->Text));
                     this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
                 }
                 else {
                     int Id;
-                    Id = this->processusPersonnel->ajouterSSup(this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text);
+                    Id = this->processusPersonnel->ajouterSSup(this->txt_Adresse->Text, this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text);
                     this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
                 }
                 this->mode = "RIEN";
@@ -703,10 +703,10 @@ namespace A2POOCorb6
             else if (this->mode == "maj")
             {
                 if (this->txt_Ville->Text != "") {
-                    this->processusPersonnel->modifier(Convert::ToInt32(this->txt_idPersonne->Text), Convert::ToInt32(this->txt_Ville->Text), this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text);
+                    this->processusPersonnel->modifier(Convert::ToInt32(this->txt_idPersonne->Text), Convert::ToInt32(this->txt_Ville->Text), this->txt_Adresse->Text, this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text);
                 }
                 else {
-                    this->processusPersonnel->modifierSSup(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text);
+                    this->processusPersonnel->modifierSSup(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_Adresse->Text, this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text);
                 }
                 this->mode = "RIEN";
 
