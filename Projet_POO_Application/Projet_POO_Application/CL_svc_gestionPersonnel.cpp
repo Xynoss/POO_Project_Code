@@ -16,7 +16,6 @@ DataSet^ NS_Svc::CL_svc_gestionPersonnel::ListePersonnel(String^ dataTableName)
 }
 
 
-
 DataTable^ NS_Svc::CL_svc_gestionPersonnel::TablePersonnel()
 {
     this->DT->Clear();
