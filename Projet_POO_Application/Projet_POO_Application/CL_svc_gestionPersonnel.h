@@ -21,6 +21,7 @@ namespace NS_Svc {
 		int ajouter(String^, String^, String^, String^, int);
 		int ajouterSSup(String^, String^, String^, String^);
 		void modifier(int, int, String^, String^, String^, String^);
+		void modifierSSup(int, String^, String^, String^, String^);
 		void supprimer(int);
 	};
 }

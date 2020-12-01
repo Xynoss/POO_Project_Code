@@ -17,8 +17,9 @@ namespace NS_Composants
 	public:
 		CL_map_TBCLIENT(void);
 		String^ SELECT(void);
-		String^ INSERT(void);
-		String^ INSERTA(String^ , String^);
+		String^ INSERTCLIENT(void);
+		String^ INSERTREGION(void);
+		String^ INSERTAPPARTIENT(int , int);
 		String^ UPDATE(void);
 		String^ DELETE(void);
 		void setID(int);

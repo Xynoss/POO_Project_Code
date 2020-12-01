@@ -13,26 +13,41 @@ namespace NS_Composants {
 	}
 
 
-	String^ CL_map_TBCLIENT::INSERT(void)
+	String^ CL_map_TBCLIENT::INSERTCLIENT(void)
 	{
-		return "INSERT INTO client(`NomClient`, `PrenomClient`, `NaissanceClient`) VALUES('" + this->getNom() + "','" + this->getPrenom() + "','" + this->getDateNaissance() + "'); SELECT @@IDENTITY; "+
-			"INSERT INTO region(`AdresseClient`,`Ville`,`code_postal`) VALUES('" + this->getAdresse() + "', '" + this->getVille() + "', '" + this->getcodePostal() + "'); SELECT @@IDENTITY; ";
+		return "INSERT INTO client(`NomClient`, `PrenomClient`, `NaissanceClient`) VALUES('" + this->getNom() + "','" + this->getPrenom() + "','" + this->getDateNaissance() + "'); SELECT @@IDENTITY; ";
 	}
 
-	String^ CL_map_TBCLIENT::INSERTA(String^ idclient, String^ idregion)
+	String^ CL_map_TBCLIENT::INSERTREGION(void)
+	{
+		return "INSERT INTO region(`AdresseClient`,`Ville`,`code_postal`) VALUES('" + this->getAdresse() + "', '" + this->getVille() + "', '" + this->getcodePostal() + "'); SELECT @@IDENTITY; ";
+	}
+
+	String^ CL_map_TBCLIENT::INSERTAPPARTIENT(int idclient, int idregion)
 	{
 		return "INSERT INTO appartient(`ID_client`,`ID_region`,`Type_adresse`) VALUES('" + idclient + "','" + idregion + "','" + this->getTypeAdresse() + "');";
 	}
 
 	String^ CL_map_TBCLIENT::UPDATE(void)
 	{
-		return "UPDATE client " + "SET NomClient = '" + this->getNom() + "', PrenomClient = '" + this->getPrenom() + "', NaissanceClient = '" + this->getDateNaissance() + "'  " + "WHERE(ID_Client = " + this->getID() + ");" +
-			"UPDATE region SET  AdresseClient = '" + this->getAdresse() + "', Ville = '" + this->getVille() + "', code_postal = '" + this->getcodePostal() + "' WHERE region.ID_region = appartient.ID_region AND client.ID_Client = appartient.ID_Client; ";
+		return "UPDATE `region` " +
+			"INNER JOIN `appartient` ON `region`.`ID_region` = `appartient`.`ID_region`" +
+			"INNER JOIN `client` ON `appartient`.`ID_Client` = `client`.`ID_Client`" +
+			"SET" +
+			"`client`.`NomClient` = '" + this->getNom() + "'," +
+			"`client`.`PrenomClient` = '" + this->getPrenom() + "'," +
+			"`client`.`NaissanceClient` = '" + this->getDateNaissance() + "'," +
+			"`region`.`AdresseClient` = '" + this->getAdresse() + "'," +
+			"`region`.`Ville` = '" + this->getVille() +"'," +
+			"`region`.`code_postal` = '"+ this->getcodePostal() +"'"+
+			"WHERE"+
+			"`client`.`ID_Client` = "+ this->getID() +";";
 	}
 
 	String^ CL_map_TBCLIENT::DELETE(void)
 	{
-		return "DELETE FROM client " + "WHERE( idtb_client = " + this->getID() + ");";
+		return "DELETE FROM appartient WHERE ID_Client = " + this->getID() + ";"+
+			"DELETE FROM client WHERE ID_Client = "+ this->getID() +"; ";
 	}
 
 	void CL_map_TBCLIENT::setID(int id_TBCLIENT)

@@ -16,6 +16,7 @@ namespace NS_Composants {
 		String^ INSERT(void);
 		String^ INSERTSSup(void);
 		String^ UPDATE(void);
+		String^ UPDATESSup(void);
 		String^ DELETE(void);
 		void setID(int);
 		void setIDSup(int);

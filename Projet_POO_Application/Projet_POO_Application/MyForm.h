@@ -362,7 +362,6 @@ namespace A2POOCorb6
             this->radioButtonPersonnel->TabIndex = 1;
             this->radioButtonPersonnel->Text = L"Personnel";
             this->radioButtonPersonnel->UseVisualStyleBackColor = true;
-            this->radioButtonPersonnel->CheckedChanged += gcnew System::EventHandler(this, &FRM_Principal::radioButtonPersonnel_CheckedChanged);
             // 
             // radioButtonClient
             // 
@@ -375,7 +374,6 @@ namespace A2POOCorb6
             this->radioButtonClient->TabStop = true;
             this->radioButtonClient->Text = L"Clients";
             this->radioButtonClient->UseVisualStyleBackColor = true;
-            this->radioButtonClient->CheckedChanged += gcnew System::EventHandler(this, &FRM_Principal::Clients_CheckedChanged);
             // 
             // lbl_CodePostal
             // 
@@ -476,7 +474,7 @@ namespace A2POOCorb6
             this->Controls->Add(this->txt_idPersonne);
             this->Controls->Add(this->lbl_id);
             this->Name = L"FRM_Principal";
-            this->Text = L"ERP GESTION";
+            this->Text = L"D";
             this->Load += gcnew System::EventHandler(this, &FRM_Principal::FRM_Principal_Load);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
             this->groupTable->ResumeLayout(false);
@@ -496,6 +494,7 @@ namespace A2POOCorb6
         this->processusClients = gcnew NS_Svc::CL_svc_gestionClient();
         this->processusPersonnel = gcnew NS_Svc::CL_svc_gestionPersonnel();
         this->loadData(this->index);
+        this->Actualiser();
         this->txt_message->Text = "Data chargées";
     }
     private: void loadData(int index)
@@ -520,6 +519,9 @@ namespace A2POOCorb6
             this->txt_idPersonne->Text = Convert::ToString(this->dsPersonnel->Tables["liste"]->Rows[this->index]->ItemArray[0]);
             this->txt_nom->Text = Convert::ToString(this->dsPersonnel->Tables["liste"]->Rows[this->index]->ItemArray[1]);
             this->txt_prenom->Text = Convert::ToString(this->dsPersonnel->Tables["liste"]->Rows[this->index]->ItemArray[2]);
+            this->txt_DateNaissance->Text = Convert::ToString(this->dsPersonnel->Tables["liste"]->Rows[this->index]->ItemArray[3]); 
+            this->txt_Adresse->Text = Convert::ToString(this->dsPersonnel->Tables["liste"]->Rows[this->index]->ItemArray[4]);
+            this->txt_Ville->Text = Convert::ToString(this->dsPersonnel->Tables["liste"]->Rows[this->index]->ItemArray[5]);
         }
         else if (this->radioButtonCommande->Checked) {
             this->txt_message->Text = "les commandes. c'est les commandes !";
@@ -533,19 +535,39 @@ namespace A2POOCorb6
 
     private: void Actualiser() {
         if (this->radioButtonClient->Checked) {
+            this->index = 0;
             this->dtClient = this->processusClients->TableClient();
             BindingSource^ bs = gcnew BindingSource();
             bs->DataSource = this->dtClient;
             dataGridView1->DataSource = bs;
             loadData(this->index);
+            this->lbl_id->Text = "ID Client :";
+            this->lbl_nom->Text = "Nom :";
+            this->lbl_prenom->Text = "Prenom :";
+            this->lbl_DateNaissance->Text = "DateNaissance :";
+            this->lbl_Adresse->Text = "Adresse :";
+            this->lbl_Ville->Text = "Ville :";
+            this->lbl_CodePostal->Text = "Code Postal :";
+            this->lbl_TypeAdresse->Text = "Type de l'adresse :";
             this->txt_message->Text = "update réussi Clients";
         }
         else if (this->radioButtonPersonnel->Checked) {
+            this->index = 0;
             this->dtPersonnel = this->processusPersonnel->TablePersonnel();
             BindingSource^ bs = gcnew BindingSource();
             bs->DataSource = this->dtPersonnel;
             dataGridView1->DataSource = bs;
             loadData(this->index);
+            this->lbl_id->Text = "ID Personnel :";
+            this->lbl_nom->Text = "Prenom :";
+            this->lbl_prenom->Text = "Adresse :";
+            this->lbl_DateNaissance->Text = "Date d'embauche :";
+            this->lbl_Adresse->Text = "Nom :";
+            this->lbl_Ville->Text = "Identificateur du superviseur :";
+            this->lbl_CodePostal->Text = "";
+            this->txt_CodePostal->ReadOnly = true;
+            this->lbl_TypeAdresse->Text = "";
+            this->txt_TypeAdresse->ReadOnly = true;
             this->txt_message->Text = "update réussi personnel";
         }
         else if (this->radioButtonCommande->Checked) {
@@ -577,17 +599,34 @@ namespace A2POOCorb6
 
     private: System::Void btn_next_Click(System::Object^ sender, System::EventArgs^ e)
     {
-        if (this->index < this->dsClient->Tables["liste"]->Rows->Count - 1)
+        if (this->radioButtonClient->Checked)
         {
-            this->index++;
-            this->loadData(this->index);
-            this->txt_message->Text = "Enregistrement né : " + (this->index + 1);
+            if (this->index < this->dsClient->Tables["liste"]->Rows->Count - 1) {
+                this->index++;
+                this->loadData(this->index);
+                this->txt_message->Text = "Enregistrement né : " + (this->index + 1);
+            } 
+        }
+        else if (this->radioButtonPersonnel->Checked)
+        {
+            if (this->index < this->dsPersonnel->Tables["liste"]->Rows->Count - 1) {
+                this->index++;
+                this->loadData(this->index);
+                this->txt_message->Text = "Enregistrement né : " + (this->index + 1);
+            }
+            
         }
     }
 
     private: System::Void btn_end_Click(System::Object^ sender, System::EventArgs^ e)
     {
-        this->index = this->dsClient->Tables["liste"]->Rows->Count - 1;
+        if (this->radioButtonClient->Checked) {
+            this->index = this->dsClient->Tables["liste"]->Rows->Count - 1;
+        }
+        else if (this->radioButtonPersonnel->Checked) {
+            this->index = this->dsPersonnel->Tables["liste"]->Rows->Count - 1;
+        }
+        
         this->loadData(this->index);
         this->txt_message->Text = "Enregistrement né : " + (this->index + 1);
     }
@@ -598,6 +637,10 @@ namespace A2POOCorb6
         this->txt_nom->Clear();
         this->txt_prenom->Clear();
         this->txt_DateNaissance->Clear();
+        this->txt_Adresse->Clear();
+        this->txt_Ville->Clear();
+        this->txt_CodePostal->Clear();
+        this->txt_TypeAdresse->Clear();
         this->mode = "nouv";
         this->txt_message->Text = "Veuillez saisir les information de la nouvelle personne et enregistrer";
     }
@@ -618,37 +661,72 @@ namespace A2POOCorb6
     }
     private: System::Void btn_enregistrer_Click(System::Object^ sender, System::EventArgs^ e)
     {
-        if (this->mode == "nouv")
-        {
-            int Id;
-            Id = this->processusClients->ajouter(this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text, this->txt_Ville->Text, this->txt_CodePostal->Text, this->txt_TypeAdresse->Text);
-            this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
+        if (this->radioButtonClient->Checked) {
+            if (this->mode == "nouv")
+            {
+                int Id;
+                Id = this->processusClients->ajouter(this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text, this->txt_Ville->Text, this->txt_CodePostal->Text, this->txt_TypeAdresse->Text);
+                this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
+                this->mode = "RIEN";
+            }
+            else if (this->mode == "maj")
+            {
+                this->processusClients->modifier(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text, this->txt_Ville->Text, this->txt_CodePostal->Text, this->txt_TypeAdresse->Text);
+                this->mode = "RIEN";
+            }
+            else if (this->mode == "sup")
+            {
+                this->processusClients->supprimer(Convert::ToInt32(this->txt_idPersonne->Text));
+                this->mode = "RIEN";
+            }
+            this->index = 0;
+            this->loadData(this->index);
+            Actualiser();
+            this->txt_message->Text += "Traitement terminé.";
         }
-        else if (this->mode == "maj")
-        {
-            this->processusClients->modifier(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text, this->txt_Ville->Text, this->txt_CodePostal->Text, this->txt_TypeAdresse->Text);
+        else if (this->radioButtonPersonnel->Checked) {
+            if (this->mode == "nouv")
+            {
+                if (this->txt_Ville->Text != "") {
+                    int Id;
+                    Id = this->processusPersonnel->ajouter(this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text, Convert::ToInt32(this->txt_Ville->Text));
+                    this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
+                }
+                else {
+                    int Id;
+                    Id = this->processusPersonnel->ajouterSSup(this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text);
+                    this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
+                }
+                this->mode = "RIEN";
+
+            }
+            else if (this->mode == "maj")
+            {
+                if (this->txt_Ville->Text != "") {
+                    this->processusPersonnel->modifier(Convert::ToInt32(this->txt_idPersonne->Text), Convert::ToInt32(this->txt_Ville->Text), this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text);
+                }
+                else {
+                    this->processusPersonnel->modifierSSup(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text);
+                }
+                this->mode = "RIEN";
+
+            }
+            else if (this->mode == "sup")
+            {
+                this->processusPersonnel->supprimer(Convert::ToInt32(this->txt_idPersonne->Text));
+                this->mode = "RIEN";
+            }
+            this->index = 0;
+            this->loadData(this->index);
+            Actualiser();
+            this->txt_message->Text += "Traitement terminé.";
         }
-        else if (this->mode == "sup")
-        {
-            this->processusClients->supprimer(Convert::ToInt32(this->txt_idPersonne->Text));
-        }
-        this->index = 0;
-        this->loadData(this->index);
-        Actualiser();
-        this->txt_message->Text += "Traitement terminé.";
+        
     }
 
     private: System::Void btn_refresh_Click(System::Object^ sender, System::EventArgs^ e) {
         Actualiser();
 
-    }
-
-    private: System::Void Clients_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-        SelectedTable = "Clients";
-    }
-
-    private: System::Void radioButtonPersonnel_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-        SelectedTable = "personnel";
     }
     };
 

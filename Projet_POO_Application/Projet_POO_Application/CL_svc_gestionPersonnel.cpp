@@ -58,6 +58,16 @@ void NS_Svc::CL_svc_gestionPersonnel::modifier(int id_personnel, int idsup, Stri
     this->cad->actionRows(this->Personnel->UPDATE());
 }
 
+void NS_Svc::CL_svc_gestionPersonnel::modifierSSup(int id_personnel, String^ nom, String^ prenom, String^ adresse, String^ date)
+{
+    this->Personnel->setID(id_personnel);
+    this->Personnel->setNomPersonnel(nom);
+    this->Personnel->setPrenomPersonnel(prenom);
+    this->Personnel->setAdressePersonnel(adresse);
+    this->Personnel->setDateDembauche(date);
+    this->cad->actionRows(this->Personnel->UPDATESSup());
+}
+
 void NS_Svc::CL_svc_gestionPersonnel::supprimer(int id_personnel)
 {
     this->Personnel->setID(id_personnel);

@@ -27,6 +27,7 @@ namespace NS_Svc
 	int CL_svc_gestionClient::ajouter(String^ nom, String^ prenom, String^ date, String^ adresse, String^ ville, String^ codepostal, String^ typeadresse)
 	{
 		int id_client;
+		int id_region;
 		this->client->setNom(nom);
 		this->client->setPrenom(prenom);
 		this->client->setDateNaissance(date);
@@ -34,7 +35,9 @@ namespace NS_Svc
 		this->client->setVille(ville);
 		this->client->setcodePostal(codepostal);
 		this->client->setTypeAdresse(typeadresse);
-		id_client = this->cad->actionRowsID(this->client->INSERT());
+		id_client = this->cad->actionRowsID(this->client->INSERTCLIENT());
+		id_region = this->cad->actionRowsID(this->client->INSERTREGION());
+		this->cad->actionRowsID(this->client->INSERTAPPARTIENT(id_client,id_region));
 		return id_client;
 	}
 
