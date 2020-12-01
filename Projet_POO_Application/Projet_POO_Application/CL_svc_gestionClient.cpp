@@ -24,22 +24,30 @@ namespace NS_Svc
 		return this->dt;
 	}
 
-	int CL_svc_gestionClient::ajouter(String^ nom, String^ prenom, String^ date)
+	int CL_svc_gestionClient::ajouter(String^ nom, String^ prenom, String^ date, String^ adresse, String^ ville, String^ codepostal, String^ typeadresse)
 	{
 		int id_client;
 		this->client->setNom(nom);
 		this->client->setPrenom(prenom);
 		this->client->setDateNaissance(date);
+		this->client->setAdresse(adresse);
+		this->client->setVille(ville);
+		this->client->setcodePostal(codepostal);
+		this->client->setTypeAdresse(typeadresse);
 		id_client = this->cad->actionRowsID(this->client->INSERT());
 		return id_client;
 	}
 
-	void CL_svc_gestionClient::modifier(int id_client, String^ nom, String^ prenom, String^ date)
+	void CL_svc_gestionClient::modifier(int id_client, String^ nom, String^ prenom, String^ date, String^ adresse, String^ ville, String^ codepostal, String^ typeadresse)
 	{
 		this->client->setID(id_client);
 		this->client->setNom(nom);
 		this->client->setPrenom(prenom);
 		this->client->setDateNaissance(date);
+		this->client->setAdresse(adresse);
+		this->client->setVille(ville);
+		this->client->setcodePostal(codepostal);
+		this->client->setTypeAdresse(typeadresse);
 		this->cad->actionRows(this->client->UPDATE());
 	}
 

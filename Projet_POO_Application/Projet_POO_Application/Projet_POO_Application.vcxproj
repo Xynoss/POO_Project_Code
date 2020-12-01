@@ -129,19 +129,17 @@
   <ItemGroup>
     <ClCompile Include="CL_CAD.cpp" />
     <ClCompile Include="CL_map_TBCLIENT.cpp" />
-    <ClCompile Include="CL_map_TBPERSONNE.cpp" />
-    <ClCompile Include="CL_svc_General.cpp" />
+    <ClCompile Include="CL_map_TBPERSONNEL.cpp" />
     <ClCompile Include="CL_svc_gestionClient.cpp" />
-    <ClCompile Include="CL_svc_gestionPersonnes.cpp" />
+    <ClCompile Include="CL_svc_gestionPersonnel.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CL_CAD.h" />
     <ClInclude Include="CL_map_TBCLIENT.h" />
-    <ClInclude Include="CL_map_TBPERSONNE.h" />
-    <ClInclude Include="CL_svc_General.h" />
+    <ClInclude Include="CL_map_TBPERSONNEL.h" />
     <ClInclude Include="CL_svc_gestionClient.h" />
-    <ClInclude Include="CL_svc_gestionPersonnes.h" />
+    <ClInclude Include="CL_svc_gestionPersonnel.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>

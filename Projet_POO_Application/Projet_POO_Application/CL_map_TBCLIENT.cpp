@@ -9,12 +9,19 @@ namespace NS_Composants {
 
 	String^ CL_map_TBCLIENT::SELECT(void)
 	{
-		return "SELECT * " + "FROM projet_01.client;";
+		return "SELECT `client`.*, `region`.* , `appartient`.`Type_adresse` FROM `client` , `region`, `appartient` WHERE `region`.`ID_region` = `appartient`.`ID_region` AND `client`.`ID_Client` = `appartient`.`ID_Client` ORDER BY `client`.`ID_Client` ASC";
 	}
+
 
 	String^ CL_map_TBCLIENT::INSERT(void)
 	{
-		return "INSERT INTO client " + "(NomClient, PrenomClient,NaissanceClient) " + "VALUES('" + this->getNom() + "', '" + this->getPrenom() + "','" + this->getDateNaissance() + "');SELECT @@IDENTITY;";
+		return "INSERT INTO client(`NomClient`, `PrenomClient`, `NaissanceClient`) VALUES('" + this->getNom() + "','" + this->getPrenom() + "','" + this->getDateNaissance() + "'); SELECT @@IDENTITY; "+
+			"INSERT INTO region(`AdresseClient`,`Ville`,`code_postal`) VALUES('" + this->getAdresse() + "', '" + this->getVille() + "', '" + this->getcodePostal() + "'); SELECT @@IDENTITY; ";
+	}
+
+	String^ CL_map_TBCLIENT::INSERTA(String^ idclient, String^ idregion)
+	{
+		return "INSERT INTO appartient(`ID_client`,`ID_region`,`Type_adresse`) VALUES('" + idclient + "','" + idregion + "','" + this->getTypeAdresse() + "');";
 	}
 
 	String^ CL_map_TBCLIENT::UPDATE(void)
@@ -57,6 +64,34 @@ namespace NS_Composants {
 		}
 	}
 
+	void CL_map_TBCLIENT::setAdresse(String^ A)
+	{
+		if (A != "") {
+			this->AdresseClient = A;
+		}
+	}
+
+	void CL_map_TBCLIENT::setVille(String^ V)
+	{
+		if (V != "") {
+			this->Ville = V;
+		}
+	}
+
+	void CL_map_TBCLIENT::setcodePostal(String^ cp)
+	{
+		if (cp != "") {
+			this->code_postal = cp;
+		}
+	}
+
+	void CL_map_TBCLIENT::setTypeAdresse(String^ tA)
+	{
+		if (tA != "") {
+			this->TypeAdresse = tA;
+		}
+	}
+
 	int CL_map_TBCLIENT::getID(void)
 	{
 		return this->idtb_client;
@@ -75,6 +110,26 @@ namespace NS_Composants {
 	String^ CL_map_TBCLIENT::getDateNaissance(void)
 	{
 		return this->DateNaissance;
+	}
+
+	String^ CL_map_TBCLIENT::getAdresse(void)
+	{
+		return this->AdresseClient;
+	}
+
+	String^ CL_map_TBCLIENT::getVille(void)
+	{
+		return this->Ville;
+	}
+
+	String^ CL_map_TBCLIENT::getcodePostal(void)
+	{
+		return this->code_postal;
+	}
+
+	String^ CL_map_TBCLIENT::getTypeAdresse(void)
+	{
+		return this->TypeAdresse;
 	}
 
 }
