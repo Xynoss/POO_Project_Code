@@ -12,7 +12,7 @@ NS_Composants::CL_map_Stock::CL_map_Stock(void)
 
 String^ NS_Composants::CL_map_Stock::SELECT(void)
 {
-    return "SELECT `stock`.* , `commande`.`QuantiteArticle`, `commande`.`PrixUnitaire` FROM Stock, commande WHERE `stock`.`ID_Article` = `commande`.`ID_Article`";
+    return "SELECT `stock`.* , `commande`.`QuantiteArticle`, `commande`.`PrixUnitaire` FROM Stock, commande WHERE `stock`.`ID_Article` = `commande`.`ID_Article`;";
 }
 
 

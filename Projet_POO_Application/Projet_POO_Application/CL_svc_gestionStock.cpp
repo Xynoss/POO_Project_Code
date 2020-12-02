@@ -28,11 +28,11 @@ DataTable^ NS_Svc::CL_svc_gestionStock::TableStock()
 int NS_Svc::CL_svc_gestionStock::ajouter(String^ NomArticle, String^ NatureArticle, String^ RefArticle, String^ CouleurArticle, int ID_Article, int NombreStock)
 {
     int ID_Article;
-    this->Stock->setNomArticle(nom);
-    this->Stock->setNatureArticle(nature);
-    this->Stock->setRefArticle(reference);
-    this->Stock->setCouleurArticle(couleur);
-    this->Stock->setNombreStock(nombre);
+    this->Stock->setNomArticle(NomArticle);
+    this->Stock->setNatureArticle(NatureArticle);
+    this->Stock->setRefArticle(RefArticle);
+    this->Stock->setCouleurArticle(CouleurArticle);
+    this->Stock->setNombreStock(NombreStock);
     ID_Article= this->cad->actionRowsID(this->Stock->INSERT());
     return ID_Article;
 }
@@ -42,10 +42,10 @@ void NS_Svc::CL_svc_gestionStock::modifier(int ID_Article, int NombreStock, Stri
 {
     this->Stock->setNomArticle(NomArticle);
     this->Stock->setNatureArticle(NatureArticle);
-    this->Stock->setRefArticle(reference);
-    this->Stock->setCouleurArticle(couleur);
+    this->Stock->setRefArticle(RefArticle);
+    this->Stock->setCouleurArticle(CouleurArticle);
     this->Stock->setIDArticle(ID_Article);
-    this->Stock->setNombreStock(nombre);
+    this->Stock->setNombreStock(NombreStock);
     this->cad->actionRows(this->Stock->UPDATE());
 }
 

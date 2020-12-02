@@ -789,7 +789,7 @@ namespace A2POOCorb6
             Actualiser();
             this->txt_message->Text += "Traitement terminé.";
         }
-        else if (this->radioButtonCommande->Checked) {
+        /*else if (this->radioButtonCommande->Checked) {
             if (this->mode == "nouv")
             {
                 int Id;
@@ -811,18 +811,18 @@ namespace A2POOCorb6
             this->loadData(this->index);
             Actualiser();
             this->txt_message->Text += "Traitement terminé.";
-        }
+        }*/
         else if (this->radioButtonStock->Checked) {
             if (this->mode == "nouv")
             {
                 int Id;
-                Id = this->processusStock->ajouter(this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text, this->txt_Ville->Text, this->txt_CodePostal->Text, this->txt_TypeAdresse->Text);
+                Id = this->processusStock->ajouter(this->txt_nom->Text /*nom de l'article*/ , this->txt_prenom->Text /*Nature de l'article*/, this->txt_DateNaissance->Text /*reference de l'article*/, this->txt_Adresse->Text /*couleur de l'article*/, Convert::ToInt16(this->txt_Ville->Text)/*id du Client(inutile à suppr)*/, Convert::ToInt16(this->txt_CodePostal->Text)/*nombre en stock d'article X*/);
                 this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
                 this->mode = "RIEN";
             }
             else if (this->mode == "maj")
             {
-                this->processusStock->modifier(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text, this->txt_Ville->Text, this->txt_CodePostal->Text, this->txt_TypeAdresse->Text);
+                this->processusStock->modifier(Convert::ToInt16(this->txt_idPersonne->Text), Convert::ToInt16(this->txt_CodePostal->Text),this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text);
                 this->mode = "RIEN";
             }
             else if (this->mode == "sup")

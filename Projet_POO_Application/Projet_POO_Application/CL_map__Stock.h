@@ -10,6 +10,8 @@ namespace NS_Composants {
 		String^ NomArticle;
 		String^ RefArtcicle;
 		String^ CouleurArticle;
+		String^ RefArticle;
+		int NombreStock;
 	public:
 		CL_map_Stock(void);
 		String^ SELECT(void);
