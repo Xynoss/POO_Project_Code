@@ -3,87 +3,58 @@
 NS_Composants::CL_map_Stock::CL_map_Stock(void)
 {
     throw gcnew System::NotImplementedException();
-    this->TauxTVA = -1;
-    this->TVA = -1;
-    this->nmbArticle = -1;
-    this->PrixUnitaire = -1;
-    this->SeuilApprovisionnement = -1;
+    this->ID_Article = -1;
+    this->NombreStock = -1;
+    this->CouleurArticle = "RIEN";
     this->NomArticle = "RIEN";
     this->NatureArticle = "RIEN";
-    this->ReferenceArticle = "RIEN";
+    this->RefArticle = "RIEN";
 }
 
 String^ NS_Composants::CL_map_Stock::SELECT(void)
 {
     throw gcnew System::NotImplementedException();
-    return "SELECT  TVA, PrixUnitaire, NomArticle, NatureArticle, ReferenceArticle" + "FROM Stock;";
+    return "SELECT  ID_Article, NombreStock, NomArticle, NatureArticle, RefArticle, CouleurArticle" + "FROM Stock;";
 }
 
-String^ NS_Composants::CL_map_Stock::SELECT_STOCK(void)
-{
-    throw gcnew System::NotImplementedException();
-    return "SELECT  TauxTVA, SeuilApprovisionnement, nmbArticle" + "FROM Stock;";
-}
 
 String^ NS_Composants::CL_map_Stock::INSERT(void)
 {
     throw gcnew System::NotImplementedException();
-    return "INSERT INTO Stock " + "( TVA, PrixUnitaire, NomArticle, NatureArticle, ReferenceArticle ) " + "VALUES('" + this->getTVA() + "', '" + this->getPrixUnitaire() + "', '" + this->getNomArticle() + "', '" + this->getNatureArticle() + "', '" + this->getReferenceArticle() + "';SELECT @@IDENTITY;";
+    return "INSERT INTO Stock " + "( ID_Article, NombreStock, NomArticle, NatureArticle, RefArticle, CouleurArticle ) " + "VALUES('" + this->getIDArticle() + "', '" + this->getNombreStock() + "', '" + this->getNomArticle() + "', '" + this->getNatureArticle() + "', '" + this->getRefArticle() + "', '" + this->getCouleurArticle() + "';SELECT @@IDENTITY;";
 }
 
 String^ NS_Composants::CL_map_Stock::UPDATE(void)
 {
     throw gcnew System::NotImplementedException();
-    return "UPDATE Stock " + "SET NomArticle = '" + this->getNomArticle() + "' " + "', NatureArticle = '" + this->getNatureArticle() + "' " + "', TVA = '" + this->getTVA() + "' " + "', PrixUnitaire = '" + this->getPrixUnitaire() + "', RefrenceArticle = '" + this->getReferenceArticle() + "' " + "WHERE( RefrenceArticle = '" + this->getReferenceArticle() + ");";
+    return "UPDATE Stock " + "SET ID_Article = '" + this->getIDArticle() + "' " + "', NomArticle = '" + this->getNomArticle() + "' " + "', NatureArticle = '" + this->getNatureArticle() + "' " + "', CouleurArticle = '" + this->getCouleurArticle() + "' " + "', NombreStock = '" + this->getNombreStock() + "', RefArticle = '" + this->getRefArticle() + "' " + "WHERE( ID_Article = '" + this->getIDArticle() + ");";
 
 }
 
 String^ NS_Composants::CL_map_Stock::DELETE(void)
 {
     throw gcnew System::NotImplementedException();
-    return "DELETE FROM Stock " + "WHERE( ReferenceArticle = " + this->getReferenceArticle() + ");";
+    return "DELETE FROM Stock " + "WHERE( ID_Article = " + this->getIDArticle() + ");";
 }
 
 
-void NS_Composants::CL_map_Stock::setTauxTVA(int)
+void NS_Composants::CL_map_Stock::setIDArticle(int)
 {
-    if (TauxTVA > 0)
+    if (ID_Article > 0)
     {
-        this->TauxTVA = TauxTVA;
+        this->ID_Article = ID_Article;
     }
 }
 
-void NS_Composants::CL_map_Stock::setTVA(int)
+void NS_Composants::CL_map_Stock::setNombreStock(int)
 {
-    if (TVA > 0)
+    if (NombreStock > 0)
     {
-        this->TVA = TVA;
+        this->NombreStock = NombreStock;
     }
 }
 
-void NS_Composants::CL_map_Stock::setPrixUnitaire(int)
-{
-    if (PrixUnitaire > 0)
-    {
-        this->PrixUnitaire = PrixUnitaire;
-    }
-}
 
-void NS_Composants::CL_map_Stock::setnmbArticle(int)
-{
-    if (nmbArticle > 0)
-    {
-        this->nmbArticle = nmbArticle;
-    }
-}
-
-void NS_Composants::CL_map_Stock::setSeuilApprovisionnement(int)
-{
-    if (SeuilApprovisionnement > 0)
-    {
-        this->SeuilApprovisionnement = SeuilApprovisionnement;
-    }
-}
 void NS_Composants::CL_map_Stock::setNomArticle(String^)
 {
     throw gcnew System::NotImplementedException();
@@ -102,39 +73,32 @@ void NS_Composants::CL_map_Stock::setNatureArticle(String^)
     }
 }
 
-void NS_Composants::CL_map_Stock::setReferenceArticle(String^)
+void NS_Composants::CL_map_Stock::setRefArticle(String^)
 {
     throw gcnew System::NotImplementedException();
-    if (ReferenceArticle != "")
+    if (RefArticle != "")
     {
-        this->ReferenceArticle = ReferenceArticle;
+        this->RefArticle = RefArticle;
     }
 }
 
-
-int NS_Composants::CL_map_Stock::getTauxTVA()
+void NS_Composants::CL_map_Stock::setCouleurArticle(String^)
 {
-    return this->TauxTVA;
+    throw gcnew System::NotImplementedException();
+    if (CouleurArticle != "")
+    {
+        this->CouleurArticle = CouleurArticle;
+    }
 }
 
-int NS_Composants::CL_map_Stock::getTVA()
+int NS_Composants::CL_map_Stock::getNombreStock()
 {
-    return this->TVA;
+    return this->NombreStock;
 }
 
-int NS_Composants::CL_map_Stock::getPrixUnitaire()
+int NS_Composants::CL_map_Stock::getIDArticle()
 {
-    return this->PrixUnitaire;
-}
-
-int NS_Composants::CL_map_Stock::getnmbArticle()
-{
-    return this->nmbArticle;
-}
-
-int NS_Composants::CL_map_Stock::getSeuilApprovisionnement()
-{
-    return this->SeuilApprovisionnement;
+    return this->ID_Article;
 }
 
 
@@ -150,10 +114,16 @@ String^ NS_Composants::CL_map_Stock::getNatureArticle(void)
     return this->NatureArticle;
 }
 
-String^ NS_Composants::CL_map_Stock::getReferenceArticle(void)
+String^ NS_Composants::CL_map_Stock::getRefArticle(void)
 {
     throw gcnew System::NotImplementedException();
-    return this->ReferenceArticle;
+    return this->RefArticle;
+}
+
+String^ NS_Composants::CL_map_Stock::getCouleurArticle(void)
+{
+    throw gcnew System::NotImplementedException();
+    return this->CouleurArticle;
 }
 
 
