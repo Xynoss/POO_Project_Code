@@ -17,50 +17,41 @@ DataSet^ NS_Svc::CL_svc_gestionStock::ListeArticle(String^ dataTableName)
 
 
 
-DataTable^ NS_Svc::CL_svc_gestionStock::TableArticle()
+DataTable^ NS_Svc::CL_svc_gestionStock::TableStock()
 {
     this->DT->Clear();
     this->DT = this->cad->getRows(this->Stock->SELECT());
     return this->DT;
 }
 
-DataTable^ NS_Svc::CL_svc_gestionStock::TableStock()
-{
-    this->DT->Clear();
-    this->DT = this->cad->getRows(this->Stock->SELECT_STOCK());
-    return this->DT;
-}
 
-int NS_Svc::CL_svc_gestionStock::ajouter(String^ NomArticle, String^ NatureArticle, String^ ReferenceArticle, int PrixUnitaire, int TVA)
+int NS_Svc::CL_svc_gestionStock::ajouter(String^ NomArticle, String^ NatureArticle, String^ RefArticle, String^ CouleurArticle, int ID_Article, int NombreStock)
 {
-    int ID_personnel;
+    int ID_Article;
     this->Stock->setNomArticle(nom);
     this->Stock->setNatureArticle(nature);
-    this->Stock->setReferenceArticle(reference);
-    this->Stock->setNomPersonnel(nom);
-    this->Stock->setTVA(TVA);
-    this->Stock->setPrixUnitaire(PrixUnitaire);
-    ID_personnel = this->cad->actionRowsID(this->Stock->INSERT());
-    return ID_personnel;
+    this->Stock->setRefArticle(reference);
+    this->Stock->setCouleurArticle(couleur);
+    this->Stock->setNombreStock(nombre);
+    ID_Article= this->cad->actionRowsID(this->Stock->INSERT());
+    return ID_Article;
 }
 
 
-void NS_Svc::CL_svc_gestionStock::modifier(int PrixUnitaire, int TVA, String^ NomArticle, String^ NatureArticle, String^ ReferenceArticle)
+void NS_Svc::CL_svc_gestionStock::modifier(int ID_Article, int NombreStock, String^ NomArticle, String^ NatureArticle, String^ RefArticle, String^ CouleurArticle)
 {
-    this->Stock->setNomArticle(nom);
-    this->Stock->setNatureArticle(nature);
-    this->Stock->setReferenceArticle(reference);
-    this->Stock->setTVA(TVA);
-    this->Stock->setPrixUnitaire(PrixUnitaire);
+    this->Stock->setNomArticle(NomArticle);
+    this->Stock->setNatureArticle(NatureArticle);
+    this->Stock->setRefArticle(reference);
+    this->Stock->setCouleurArticle(couleur);
+    this->Stock->setIDArticle(ID_Article);
+    this->Stock->setNombreStock(nombre);
     this->cad->actionRows(this->Stock->UPDATE());
 }
 
-void NS_Svc::CL_svc_gestionStock::supprimer(String^)
-{
-    throw gcnew System::NotImplementedException();
-}
 
-void NS_Svc::CL_svc_gestionStock::supprimer(String^ ReferenceArticle)
+void NS_Svc::CL_svc_gestionStock::supprimer(int ID_Article)
 {
-    this->Stock->setReferenceArticle(Reference);
+    this->Stock->setIDArticle(ID_Article);
     this->cad->actionRows(this->Stock->DELETE());
+}
