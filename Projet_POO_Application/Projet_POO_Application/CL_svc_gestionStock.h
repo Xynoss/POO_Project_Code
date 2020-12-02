@@ -18,7 +18,6 @@ namespace NS_Svc {
 		CL_svc_gestionStock(void);
 		DataSet^ ListeArticle(String^);
 		DataTable^ TableStock();
-		DataTable^ TableArticle();
 		int ajouter(String^, String^, String^, int, int);
 		void modifier(int, int, String^, String^, String^);
 		void supprimer(String^);
