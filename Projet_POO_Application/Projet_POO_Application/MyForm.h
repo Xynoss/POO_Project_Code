@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include "CL_svc_gestionClient.h"
 #include "CL_svc_gestionPersonnel.h"
+#include "Svc_commande.h"
+#include "CL_svc_gestionStock.h"
 
 namespace A2POOCorb6
 {
@@ -52,10 +54,16 @@ namespace A2POOCorb6
     private: System::Windows::Forms::Button^ btn_enregistrer;
     private: NS_Svc::CL_svc_gestionPersonnel^ processusPersonnel;
     private: NS_Svc::CL_svc_gestionClient^ processusClients;
+    private: NS_Svc::CL_svc_gestionStock^ processusStock;
+    private: NS_Svc::CL_Svc_commande^ processusCommande;
     private: Data::DataSet^ dsClient;
     private: Data::DataSet^ dsPersonnel;
+    private: Data::DataSet^ dsCommande;
+    private: Data::DataSet^ dsStock;
     private: Data::DataTable^ dtClient;
     private: Data::DataTable^ dtPersonnel;
+    private: Data::DataTable^ dtCommande;
+    private: Data::DataTable^ dtStock;
     private: int index;
     private: String^ mode;
     private: String^ SelectedTable;
@@ -524,10 +532,24 @@ namespace A2POOCorb6
             this->txt_Ville->Text = Convert::ToString(this->dsPersonnel->Tables["liste"]->Rows[this->index]->ItemArray[5]);
         }
         else if (this->radioButtonCommande->Checked) {
-            this->txt_message->Text = "les commandes. c'est les commandes !";
+            this->dsCommande->Clear();
+            this->dsCommande = this->processusCommande->listeCommande("liste");
+            this->txt_idPersonne->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[0]);
+            this->txt_nom->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[1]);
+            this->txt_prenom->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[2]);
+            this->txt_DateNaissance->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[3]);
+            this->txt_Adresse->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[4]);
+            this->txt_Ville->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[5]);
         }
         else if (this->radioButtonStock->Checked) {
-            this->txt_message->Text = "le stock. c'est le stock!";
+            this->dsStock->Clear();
+            this->dsStock = this->processusStock->ListeArticle("liste");
+            this->txt_idPersonne->Text = Convert::ToString(this->dsStock->Tables["liste"]->Rows[this->index]->ItemArray[0]);
+            this->txt_nom->Text = Convert::ToString(this->dsStock->Tables["liste"]->Rows[this->index]->ItemArray[1]);
+            this->txt_prenom->Text = Convert::ToString(this->dsStock->Tables["liste"]->Rows[this->index]->ItemArray[2]);
+            this->txt_DateNaissance->Text = Convert::ToString(this->dsStock->Tables["liste"]->Rows[this->index]->ItemArray[3]);
+            this->txt_Adresse->Text = Convert::ToString(this->dsStock->Tables["liste"]->Rows[this->index]->ItemArray[4]);
+            this->txt_Ville->Text = Convert::ToString(this->dsStock->Tables["liste"]->Rows[this->index]->ItemArray[5]);
         }
 
     }
@@ -571,10 +593,42 @@ namespace A2POOCorb6
             this->txt_message->Text = "update réussi personnel";
         }
         else if (this->radioButtonCommande->Checked) {
-            this->txt_message->Text = "les commandes. c'est les commandes !";
+            this->index = 0;
+            this->dtCommande = this->processusCommande->TableCommande();
+            BindingSource^ bs = gcnew BindingSource();
+            bs->DataSource = this->dtPersonnel;
+            dataGridView1->DataSource = bs;
+            loadData(this->index);
+            this->lbl_id->Text = "ID Personnel :";
+            this->lbl_nom->Text = "Prenom :";
+            this->lbl_prenom->Text = "Adresse :";
+            this->lbl_DateNaissance->Text = "Date d'embauche :";
+            this->lbl_Adresse->Text = "Nom :";
+            this->lbl_Ville->Text = "Identificateur du superviseur :";
+            this->lbl_CodePostal->Text = "";
+            this->txt_CodePostal->ReadOnly = true;
+            this->lbl_TypeAdresse->Text = "";
+            this->txt_TypeAdresse->ReadOnly = true;
+            this->txt_message->Text = "update réussi commande";
         }
         else if (this->radioButtonStock->Checked) {
-            this->txt_message->Text = "le stock. c'est le stock!";
+            this->index = 0;
+            this->dtStock = this->processusStock->TableStock();
+            BindingSource^ bs = gcnew BindingSource();
+            bs->DataSource = this->dtStock;
+            dataGridView1->DataSource = bs;
+            loadData(this->index);
+            this->lbl_id->Text = "ID Personnel :";
+            this->lbl_nom->Text = "Prenom :";
+            this->lbl_prenom->Text = "Adresse :";
+            this->lbl_DateNaissance->Text = "Date d'embauche :";
+            this->lbl_Adresse->Text = "Nom :";
+            this->lbl_Ville->Text = "Identificateur du superviseur :";
+            this->lbl_CodePostal->Text = "";
+            this->txt_CodePostal->ReadOnly = true;
+            this->lbl_TypeAdresse->Text = "";
+            this->txt_TypeAdresse->ReadOnly = true;
+            this->txt_message->Text = "update réussi Stock";
         }
 
     }
@@ -604,7 +658,7 @@ namespace A2POOCorb6
             if (this->index < this->dsClient->Tables["liste"]->Rows->Count - 1) {
                 this->index++;
                 this->loadData(this->index);
-                this->txt_message->Text = "Enregistrement né : " + (this->index + 1);
+                this->txt_message->Text = "Client n° " + (this->index + 1);
             } 
         }
         else if (this->radioButtonPersonnel->Checked)
@@ -612,9 +666,23 @@ namespace A2POOCorb6
             if (this->index < this->dsPersonnel->Tables["liste"]->Rows->Count - 1) {
                 this->index++;
                 this->loadData(this->index);
-                this->txt_message->Text = "Enregistrement né : " + (this->index + 1);
+                this->txt_message->Text = "Personnel n° " + (this->index + 1);
             }
             
+        }
+        else if (this->radioButtonCommande->Checked) {
+            if (this->index < this->dsCommande->Tables["liste"]->Rows->Count - 1) {
+                this->index++;
+                this->loadData(this->index);
+                this->txt_message->Text = "numéro de la commande : " + (this->index + 1);
+            }
+        }
+        else if (this->radioButtonStock->Checked) {
+            if (this->index < this->dsStock->Tables["liste"]->Rows->Count - 1) {
+                this->index++;
+                this->loadData(this->index);
+                this->txt_message->Text = "Article numéro : " + (this->index + 1);
+            }
         }
     }
 
@@ -714,6 +782,52 @@ namespace A2POOCorb6
             else if (this->mode == "sup")
             {
                 this->processusPersonnel->supprimer(Convert::ToInt32(this->txt_idPersonne->Text));
+                this->mode = "RIEN";
+            }
+            this->index = 0;
+            this->loadData(this->index);
+            Actualiser();
+            this->txt_message->Text += "Traitement terminé.";
+        }
+        else if (this->radioButtonCommande->Checked) {
+            if (this->mode == "nouv")
+            {
+                int Id;
+                Id = this->processusCommande->ajouter(this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text, this->txt_Ville->Text, this->txt_CodePostal->Text, this->txt_TypeAdresse->Text);
+                this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
+                this->mode = "RIEN";
+            }
+            else if (this->mode == "maj")
+            {
+                this->processusCommande->modifier(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text, this->txt_Ville->Text, this->txt_CodePostal->Text, this->txt_TypeAdresse->Text);
+                this->mode = "RIEN";
+            }
+            else if (this->mode == "sup")
+            {
+                this->processusCommande->supprimer(Convert::ToInt32(this->txt_idPersonne->Text));
+                this->mode = "RIEN";
+            }
+            this->index = 0;
+            this->loadData(this->index);
+            Actualiser();
+            this->txt_message->Text += "Traitement terminé.";
+        }
+        else if (this->radioButtonStock->Checked) {
+            if (this->mode == "nouv")
+            {
+                int Id;
+                Id = this->processusStock->ajouter(this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text, this->txt_Ville->Text, this->txt_CodePostal->Text, this->txt_TypeAdresse->Text);
+                this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
+                this->mode = "RIEN";
+            }
+            else if (this->mode == "maj")
+            {
+                this->processusStock->modifier(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text, this->txt_Ville->Text, this->txt_CodePostal->Text, this->txt_TypeAdresse->Text);
+                this->mode = "RIEN";
+            }
+            else if (this->mode == "sup")
+            {
+                this->processusStock->supprimer(Convert::ToInt32(this->txt_idPersonne->Text));
                 this->mode = "RIEN";
             }
             this->index = 0;
