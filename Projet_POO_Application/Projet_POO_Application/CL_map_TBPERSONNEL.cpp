@@ -12,7 +12,7 @@ NS_Composants::CL_map_Personnel::CL_map_Personnel(void)
 
 String^ NS_Composants::CL_map_Personnel::SELECT(void)
 {
-    return "SELECT  ID_personnel, PrenomPersonnel, AdressePersonnel, DateDembauche, NomPersonnel, ID_personnel_supervise " + "FROM projet_01.personnel;";
+    return "SELECT  ID_personnel, NomPersonnel, PrenomPersonnel, AdressePersonnel, DateDembauche, ID_personnel_supervise " + "FROM projet_01.personnel;";
 }
 
 String^ NS_Composants::CL_map_Personnel::INSERT(void)

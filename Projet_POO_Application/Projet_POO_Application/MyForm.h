@@ -586,14 +586,16 @@ namespace A2POOCorb6
             dataGridView1->DataSource = bs;
             loadData(this->index);
             this->lbl_id->Text = "ID Personnel :";
-            this->lbl_nom->Text = "Prenom :";
-            this->lbl_prenom->Text = "Adresse :";
-            this->lbl_DateNaissance->Text = "Date d'embauche :";
-            this->lbl_Adresse->Text = "Nom :";
+            this->lbl_nom->Text = "Nom :";
+            this->lbl_prenom->Text = "Prenom :";
+            this->lbl_DateNaissance->Text = "Adresse :";
+            this->lbl_Adresse->Text = "Date d'embauche :";
             this->lbl_Ville->Text = "Identificateur du superviseur :";
             this->lbl_CodePostal->Text = "";
+            this->txt_CodePostal->Text = "";
             this->txt_CodePostal->ReadOnly = true;
             this->lbl_TypeAdresse->Text = "";
+            this->txt_TypeAdresse->Text = "";
             this->txt_TypeAdresse->ReadOnly = true;
             this->txt_message->Text = "update réussi personnel";
         }
@@ -630,6 +632,7 @@ namespace A2POOCorb6
             this->lbl_Adresse->Text = "Couleur de l'article";
             this->lbl_Ville->Text = "Nombre en Stock :";
             this->lbl_CodePostal->Text = "Prix Unitaire";
+            this->txt_CodePostal->ReadOnly = false;
             this->lbl_TypeAdresse->Text = "";
             this->txt_TypeAdresse->Text = "";
             this->txt_TypeAdresse->ReadOnly = true;
@@ -768,7 +771,7 @@ namespace A2POOCorb6
             {
                 if (this->txt_Ville->Text != "") {
                     int Id;
-                    Id = this->processusPersonnel->ajouter(this->txt_Adresse->Text, this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, Convert::ToInt32(this->txt_Ville->Text));
+                    Id = this->processusPersonnel->ajouter(this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text, Convert::ToInt32(this->txt_Ville->Text));
                     this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
                 }
                 else {
@@ -851,7 +854,6 @@ namespace A2POOCorb6
 
     private: System::Void btn_refresh_Click(System::Object^ sender, System::EventArgs^ e) {
         Actualiser();
-
     }
     };
 
