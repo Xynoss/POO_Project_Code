@@ -19,8 +19,9 @@ namespace NS_Svc {
 		Svc_commande(void);
 		DataTable^ TableCommande();
 		DataSet^ listeCommande(String^);
-		String^ ajouter(String^, String^, String^, String^, String^, String^,int, int, int);
-		void modifier(String^, String^, String^, String^, String^, String^,int , int, int);
-		void supprimer(String^);
+		int ajouter(int, int, String^, String^, String^, String^, String^,int, int, int, int,int);
+		void modifier(int, int, String^, String^, String^, String^, String^, int, int, int, int, int);
+		void supprimer(int);
 	};
 }
+
