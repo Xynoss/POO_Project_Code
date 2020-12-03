@@ -8,23 +8,23 @@ NS_Composants::CL_map_Stock::CL_map_Stock(void)
     this->NomArticle = "RIEN";
     this->NatureArticle = "RIEN";
     this->RefArticle = "RIEN";
+    this->PrixUnitaire = "";
 }
 
 String^ NS_Composants::CL_map_Stock::SELECT(void)
 {
-    return "SELECT `stock`.* , `commande`.`PrixUnitaire` FROM Stock, commande WHERE `stock`.`ID_Article` = `commande`.`ID_Article`;";
+    return "SELECT ID_Article, NomArticle, NatureArticle, RefArticle,  CouleurArticle,  NombreStock, PrixUnitaire FROM Stock ;";
 }
 
 
 String^ NS_Composants::CL_map_Stock::INSERT(void)
 {
-    return "INSERT INTO Stock " + "( NombreStock, NomArticle, NatureArticle, RefArticle, CouleurArticle ) " + "VALUES('" + this->getNombreStock() + "', '" + this->getNomArticle() + "', '" + this->getNatureArticle() + "', '" + this->getRefArticle() + "', '" + this->getCouleurArticle() + "';";
+    return "INSERT INTO Stock (RefArticle, NatureArticle, CouleurArticle, NomArticle, NombreStock, PrixUnitaire) VALUES('"+ this->getRefArticle() +"', '"+ this->getNatureArticle() +"', '"+ this->getCouleurArticle() +"', '"+ this->getNomArticle() +"', '"+this->getNombreStock()+"','"+this->getPrixUnitaire()+"');";
 }
 
 String^ NS_Composants::CL_map_Stock::UPDATE(void)
 {
-    return "UPDATE Stock " + "SET  NomArticle = '" + this->getNomArticle() + "' " + "', NatureArticle = '" + this->getNatureArticle() + "' " + "', CouleurArticle = '" + this->getCouleurArticle() + "' " + "', NombreStock = '" + this->getNombreStock() + "', RefArticle = '" + this->getRefArticle() + "' " + "WHERE( ID_Article = '" + this->getIDArticle() + ");";
-
+    return "UPDATE `Stock` SET  NomArticle = '" + this->getNomArticle() + "', NatureArticle = '" + this->getNatureArticle() + "', CouleurArticle = '" + this->getCouleurArticle()+ "', NombreStock = '" + this->getNombreStock() + "', RefArticle = '" + this->getRefArticle() + "', PrixUnitaire = '"+ this->getPrixUnitaire() +"' WHERE( ID_Article = '" + this->getIDArticle() + "');";
 }
 
 String^ NS_Composants::CL_map_Stock::DELETE(void)
@@ -34,52 +34,60 @@ String^ NS_Composants::CL_map_Stock::DELETE(void)
 }
 
 
-void NS_Composants::CL_map_Stock::setIDArticle(int)
+void NS_Composants::CL_map_Stock::setIDArticle(int idA)
 {
-    if (ID_Article > 0)
+    if (idA > 0)
     {
         this->ID_Article = ID_Article;
     }
 }
 
-void NS_Composants::CL_map_Stock::setNombreStock(int)
+void NS_Composants::CL_map_Stock::setNombreStock(int nbS)
 {
-    if (NombreStock > 0)
+    if (nbS > 0)
     {
-        this->NombreStock = NombreStock;
+        this->NombreStock = nbS;
     }
 }
 
 
-void NS_Composants::CL_map_Stock::setNomArticle(String^)
+void NS_Composants::CL_map_Stock::setNomArticle(String^ NomA)
 {
-    if (NomArticle != "")
+    if (NomA != "")
     {
-        this->NomArticle = NomArticle;
+        this->NomArticle = NomA;
     }
 }
 
-void NS_Composants::CL_map_Stock::setNatureArticle(String^)
+void NS_Composants::CL_map_Stock::setNatureArticle(String^ NatA)
 {
-    if (NatureArticle != "")
+    if (NatA != "")
     {
-        this->NatureArticle = NatureArticle;
+        this->NatureArticle = NatA;
     }
 }
 
-void NS_Composants::CL_map_Stock::setRefArticle(String^)
+void NS_Composants::CL_map_Stock::setRefArticle(String^ RefA)
 {
-    if (RefArticle != "")
+    if (RefA != "")
     {
-        this->RefArticle = RefArticle;
+        this->RefArticle = RefA;
     }
 }
 
-void NS_Composants::CL_map_Stock::setCouleurArticle(String^)
+void NS_Composants::CL_map_Stock::setCouleurArticle(String^ CoulA)
 {
-    if (CouleurArticle != "")
+    if (CoulA != "")
     {
-        this->CouleurArticle = CouleurArticle;
+        this->CouleurArticle = CoulA;
+    }
+}
+
+void NS_Composants::CL_map_Stock::setPrixUnitaire(String^ pu)
+{
+    if (pu != "")
+    {
+        this->PrixUnitaire = pu;
     }
 }
 
@@ -118,5 +126,7 @@ String^ NS_Composants::CL_map_Stock::getCouleurArticle(void)
     return this->CouleurArticle;
 }
 
-
-
+String^ NS_Composants::CL_map_Stock::getPrixUnitaire(void)
+{
+    return this->PrixUnitaire;
+}

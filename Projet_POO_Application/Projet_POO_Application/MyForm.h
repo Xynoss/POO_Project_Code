@@ -624,10 +624,10 @@ namespace A2POOCorb6
             dataGridView1->DataSource = bs;
             loadData(this->index);
             this->lbl_id->Text = "ID Article :";
-            this->lbl_nom->Text = "Référence de l'article :";
+            this->lbl_nom->Text = "Nom de l'article :";
             this->lbl_prenom->Text = "Nature de l'aricle :";
-            this->lbl_DateNaissance->Text = "Couleur de l'article :";
-            this->lbl_Adresse->Text = "Nom de l'article :";
+            this->lbl_DateNaissance->Text = "Référence de l'article :";
+            this->lbl_Adresse->Text = "Couleur de l'article";
             this->lbl_Ville->Text = "Nombre en Stock :";
             this->lbl_CodePostal->Text = "Prix Unitaire";
             this->lbl_TypeAdresse->Text = "";
@@ -698,6 +698,12 @@ namespace A2POOCorb6
         }
         else if (this->radioButtonPersonnel->Checked) {
             this->index = this->dsPersonnel->Tables["liste"]->Rows->Count - 1;
+        }
+        else if (this->radioButtonCommande->Checked) {
+            this->index = this->dsCommande->Tables["liste"]->Rows->Count - 1;
+        }
+        else if (this->radioButtonStock->Checked) {
+            this->index = this->dsStock->Tables["liste"]->Rows->Count - 1;
         }
         
         this->loadData(this->index);
@@ -821,13 +827,13 @@ namespace A2POOCorb6
             if (this->mode == "nouv")
             {
                 int Id;
-                Id = this->processusStock->ajouter(this->txt_nom->Text /*nom de l'article*/ , this->txt_prenom->Text /*Nature de l'article*/, this->txt_DateNaissance->Text /*reference de l'article*/, this->txt_Adresse->Text /*couleur de l'article*/, Convert::ToDouble(this->txt_CodePostal->Text)/*nombre en stock d'article X*/);
+                Id = this->processusStock->ajouter(this->txt_nom->Text /*nom de l'article*/ , this->txt_prenom->Text /*Nature de l'article*/, this->txt_DateNaissance->Text /*reference de l'article*/, this->txt_Adresse->Text /*couleur de l'article*/, Convert::ToInt16(this->txt_Ville->Text)/*nombre en stock d'article X*/, this->txt_CodePostal->Text/*prix à l'unité*/);
                 this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
                 this->mode = "RIEN";
             }
             else if (this->mode == "maj")
             {
-                this->processusStock->modifier(Convert::ToInt16(this->txt_idPersonne->Text), Convert::ToInt16(this->txt_CodePostal->Text),this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text);
+                this->processusStock->modifier(Convert::ToInt16(this->txt_idPersonne->Text), this->txt_nom->Text /*nom de l'article*/, this->txt_prenom->Text /*Nature de l'article*/, this->txt_DateNaissance->Text /*reference de l'article*/, this->txt_Adresse->Text /*couleur de l'article*/, Convert::ToInt16(this->txt_Ville->Text)/*nombre en stock d'article X*/, this->txt_CodePostal->Text/*prix à l'unité*/);
                 this->mode = "RIEN";
             }
             else if (this->mode == "sup")

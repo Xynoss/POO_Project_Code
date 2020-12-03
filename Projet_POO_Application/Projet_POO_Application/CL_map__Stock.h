@@ -5,7 +5,7 @@ namespace NS_Composants {
 	{
 	private:
 		int ID_Article;
-		int PrixUnitaire;
+		String^ PrixUnitaire;
 		String^ NatureArticle;
 		String^ NomArticle;
 		String^ RefArtcicle;
@@ -24,11 +24,13 @@ namespace NS_Composants {
 		void setNatureArticle(String^);
 		void setRefArticle(String^);
 		void setCouleurArticle(String^);
+		void setPrixUnitaire(String^);
 		int getIDArticle();
 		int getNombreStock();
 		String^ getNomArticle(void);
 		String^ getRefArticle(void);
 		String^ getNatureArticle(void);
 		String^ getCouleurArticle(void);
+		String^ getPrixUnitaire(void);
 	};
 }

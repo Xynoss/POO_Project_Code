@@ -18,8 +18,8 @@ namespace NS_Svc {
 		CL_svc_gestionStock(void);
 		DataSet^ ListeArticle(String^);
 		DataTable^ TableStock();
-		int ajouter(String^, String^, String^, String^, double);
-		void modifier(int, double, String^, String^, String^, String^);
+		int ajouter(String^, String^, String^, String^,int, String^);
+		void modifier(int, String^, String^, String^, String^, int, String^);
 		void supprimer(int);
 	};
 }
