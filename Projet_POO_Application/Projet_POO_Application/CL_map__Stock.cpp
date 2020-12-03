@@ -18,19 +18,19 @@ String^ NS_Composants::CL_map_Stock::SELECT(void)
 
 String^ NS_Composants::CL_map_Stock::INSERT(void)
 {
-    return "INSERT INTO Stock " + "( NombreStock, NomArticle, NatureArticle, RefArticle, CouleurArticle ) " + "VALUES('" + this->getNombreStock() + "', '" + this->getNomArticle() + "', '" + this->getNatureArticle() + "', '" + this->getRefArticle() + "', '" + this->getCouleurArticle() + "';SELECT @@IDENTITY;";
+    return "INSERT INTO `stock` ( NombreStock, NomArticle, NatureArticle, RefArticle, CouleurArticle ) VALUES('" + this->getNombreStock() + "', '" + this->getNomArticle() + "', '" + this->getNatureArticle() + "', '" + this->getRefArticle() + "', '" + this->getCouleurArticle() + "';SELECT @@IDENTITY;";
 }
 
 String^ NS_Composants::CL_map_Stock::UPDATE(void)
 {
-    return "UPDATE Stock " + "SET  NomArticle = '" + this->getNomArticle() + "' " + "', NatureArticle = '" + this->getNatureArticle() + "' " + "', CouleurArticle = '" + this->getCouleurArticle() + "' " + "', NombreStock = '" + this->getNombreStock() + "', RefArticle = '" + this->getRefArticle() + "' " + "WHERE( ID_Article = '" + this->getIDArticle() + ");";
+    return "UPDATE `Stock` SET  NomArticle = '" + this->getNomArticle() + "' " + "', NatureArticle = '" + this->getNatureArticle() + "' " + "', CouleurArticle = '" + this->getCouleurArticle() + "' " + "', NombreStock = '" + this->getNombreStock() + "', RefArticle = '" + this->getRefArticle() + "' " + "WHERE( ID_Article = '" + this->getIDArticle() + ");";
 
 }
 
 String^ NS_Composants::CL_map_Stock::DELETE(void)
 {
     throw gcnew System::NotImplementedException();
-    return "DELETE FROM Stock " + "WHERE( ID_Article = " + this->getIDArticle() + ");";
+    return "DELETE FROM `stock` WHERE( ID_Article = `ID_Article`);";
 }
 
 
