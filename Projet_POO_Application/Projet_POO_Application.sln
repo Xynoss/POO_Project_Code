@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Projet_POO_Application", "Projet_POO_Application\Projet_POO_Application.vcxproj", "{F8C3ABA1-6552-4387-9471-FC54942646CD}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test séquence Créer Personnel", "Test séquence Créer Personnel\Test séquence Créer Personnel.vcxproj", "{110982E8-99C1-4A36-8096-780D3340F54C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{F8C3ABA1-6552-4387-9471-FC54942646CD}.Release|x64.Build.0 = Release|x64
 		{F8C3ABA1-6552-4387-9471-FC54942646CD}.Release|x86.ActiveCfg = Release|Win32
 		{F8C3ABA1-6552-4387-9471-FC54942646CD}.Release|x86.Build.0 = Release|Win32
+		{110982E8-99C1-4A36-8096-780D3340F54C}.Debug|x64.ActiveCfg = Debug|x64
+		{110982E8-99C1-4A36-8096-780D3340F54C}.Debug|x64.Build.0 = Debug|x64
+		{110982E8-99C1-4A36-8096-780D3340F54C}.Debug|x86.ActiveCfg = Debug|Win32
+		{110982E8-99C1-4A36-8096-780D3340F54C}.Debug|x86.Build.0 = Debug|Win32
+		{110982E8-99C1-4A36-8096-780D3340F54C}.Release|x64.ActiveCfg = Release|x64
+		{110982E8-99C1-4A36-8096-780D3340F54C}.Release|x64.Build.0 = Release|x64
+		{110982E8-99C1-4A36-8096-780D3340F54C}.Release|x86.ActiveCfg = Release|Win32
+		{110982E8-99C1-4A36-8096-780D3340F54C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
