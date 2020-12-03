@@ -12,14 +12,14 @@ namespace NS_Svc {
 	private:
 		NS_Composants::CL_CAD^ cad;
 		NS_Composants::CL_map_Stock^ Stock;
-		DataSet^ DS;
-		DataTable^ DT;
+		DataSet^ ds;
+		DataTable^ dt;
 	public:
 		CL_svc_gestionStock(void);
 		DataSet^ ListeArticle(String^);
 		DataTable^ TableStock();
-		int ajouter(String^, String^, String^, String^, int, int);
-		void modifier(int, int, String^, String^, String^, String^);
+		int ajouter(String^, String^, String^, String^, double);
+		void modifier(int, double, String^, String^, String^, String^);
 		void supprimer(int);
 	};
 }

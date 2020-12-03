@@ -499,8 +499,12 @@ namespace A2POOCorb6
         this->SelectedTable = "personnel";
         this->dsClient = gcnew Data::DataSet();
         this->dsPersonnel = gcnew Data::DataSet();
+        this->dsCommande = gcnew Data::DataSet();
+        this->dsStock = gcnew Data::DataSet();
         this->processusClients = gcnew NS_Svc::CL_svc_gestionClient();
         this->processusPersonnel = gcnew NS_Svc::CL_svc_gestionPersonnel();
+        this->processusCommande = gcnew NS_Svc::CL_Svc_commande();
+        this->processusStock = gcnew NS_Svc::CL_svc_gestionStock();
         this->loadData(this->index);
         this->Actualiser();
         this->txt_message->Text = "Data chargées";
@@ -550,6 +554,7 @@ namespace A2POOCorb6
             this->txt_DateNaissance->Text = Convert::ToString(this->dsStock->Tables["liste"]->Rows[this->index]->ItemArray[3]);
             this->txt_Adresse->Text = Convert::ToString(this->dsStock->Tables["liste"]->Rows[this->index]->ItemArray[4]);
             this->txt_Ville->Text = Convert::ToString(this->dsStock->Tables["liste"]->Rows[this->index]->ItemArray[5]);
+            this->txt_CodePostal->Text = Convert::ToString(this->dsStock->Tables["liste"]->Rows[this->index]->ItemArray[6]);
         }
 
     }
@@ -618,15 +623,15 @@ namespace A2POOCorb6
             bs->DataSource = this->dtStock;
             dataGridView1->DataSource = bs;
             loadData(this->index);
-            this->lbl_id->Text = "ID Personnel :";
-            this->lbl_nom->Text = "Prenom :";
-            this->lbl_prenom->Text = "Adresse :";
-            this->lbl_DateNaissance->Text = "Date d'embauche :";
-            this->lbl_Adresse->Text = "Nom :";
-            this->lbl_Ville->Text = "Identificateur du superviseur :";
-            this->lbl_CodePostal->Text = "";
-            this->txt_CodePostal->ReadOnly = true;
+            this->lbl_id->Text = "ID Article :";
+            this->lbl_nom->Text = "Référence de l'article :";
+            this->lbl_prenom->Text = "Nature de l'aricle :";
+            this->lbl_DateNaissance->Text = "Couleur de l'article :";
+            this->lbl_Adresse->Text = "Nom de l'article :";
+            this->lbl_Ville->Text = "Nombre en Stock :";
+            this->lbl_CodePostal->Text = "Prix Unitaire";
             this->lbl_TypeAdresse->Text = "";
+            this->txt_TypeAdresse->Text = "";
             this->txt_TypeAdresse->ReadOnly = true;
             this->txt_message->Text = "update réussi Stock";
         }
@@ -816,7 +821,7 @@ namespace A2POOCorb6
             if (this->mode == "nouv")
             {
                 int Id;
-                Id = this->processusStock->ajouter(this->txt_nom->Text /*nom de l'article*/ , this->txt_prenom->Text /*Nature de l'article*/, this->txt_DateNaissance->Text /*reference de l'article*/, this->txt_Adresse->Text /*couleur de l'article*/, Convert::ToInt16(this->txt_Ville->Text)/*id du Client(inutile à suppr)*/, Convert::ToInt16(this->txt_CodePostal->Text)/*nombre en stock d'article X*/);
+                Id = this->processusStock->ajouter(this->txt_nom->Text /*nom de l'article*/ , this->txt_prenom->Text /*Nature de l'article*/, this->txt_DateNaissance->Text /*reference de l'article*/, this->txt_Adresse->Text /*couleur de l'article*/, Convert::ToDouble(this->txt_CodePostal->Text)/*nombre en stock d'article X*/);
                 this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
                 this->mode = "RIEN";
             }

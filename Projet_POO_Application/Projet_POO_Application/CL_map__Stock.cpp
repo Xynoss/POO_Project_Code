@@ -12,13 +12,13 @@ NS_Composants::CL_map_Stock::CL_map_Stock(void)
 
 String^ NS_Composants::CL_map_Stock::SELECT(void)
 {
-    return "SELECT `stock`.* , `commande`.`QuantiteArticle`, `commande`.`PrixUnitaire` FROM Stock, commande WHERE `stock`.`ID_Article` = `commande`.`ID_Article`;";
+    return "SELECT `stock`.* , `commande`.`PrixUnitaire` FROM Stock, commande WHERE `stock`.`ID_Article` = `commande`.`ID_Article`;";
 }
 
 
 String^ NS_Composants::CL_map_Stock::INSERT(void)
 {
-    return "INSERT INTO Stock " + "( NombreStock, NomArticle, NatureArticle, RefArticle, CouleurArticle ) " + "VALUES('" + this->getNombreStock() + "', '" + this->getNomArticle() + "', '" + this->getNatureArticle() + "', '" + this->getRefArticle() + "', '" + this->getCouleurArticle() + "';SELECT @@IDENTITY;";
+    return "INSERT INTO Stock " + "( NombreStock, NomArticle, NatureArticle, RefArticle, CouleurArticle ) " + "VALUES('" + this->getNombreStock() + "', '" + this->getNomArticle() + "', '" + this->getNatureArticle() + "', '" + this->getRefArticle() + "', '" + this->getCouleurArticle() + "';";
 }
 
 String^ NS_Composants::CL_map_Stock::UPDATE(void)
@@ -29,7 +29,7 @@ String^ NS_Composants::CL_map_Stock::UPDATE(void)
 
 String^ NS_Composants::CL_map_Stock::DELETE(void)
 {
-    throw gcnew System::NotImplementedException();
+    
     return "DELETE FROM Stock " + "WHERE( ID_Article = " + this->getIDArticle() + ");";
 }
 
@@ -53,7 +53,6 @@ void NS_Composants::CL_map_Stock::setNombreStock(int)
 
 void NS_Composants::CL_map_Stock::setNomArticle(String^)
 {
-    throw gcnew System::NotImplementedException();
     if (NomArticle != "")
     {
         this->NomArticle = NomArticle;
@@ -62,7 +61,6 @@ void NS_Composants::CL_map_Stock::setNomArticle(String^)
 
 void NS_Composants::CL_map_Stock::setNatureArticle(String^)
 {
-    throw gcnew System::NotImplementedException();
     if (NatureArticle != "")
     {
         this->NatureArticle = NatureArticle;
@@ -71,7 +69,6 @@ void NS_Composants::CL_map_Stock::setNatureArticle(String^)
 
 void NS_Composants::CL_map_Stock::setRefArticle(String^)
 {
-    throw gcnew System::NotImplementedException();
     if (RefArticle != "")
     {
         this->RefArticle = RefArticle;
@@ -80,7 +77,6 @@ void NS_Composants::CL_map_Stock::setRefArticle(String^)
 
 void NS_Composants::CL_map_Stock::setCouleurArticle(String^)
 {
-    throw gcnew System::NotImplementedException();
     if (CouleurArticle != "")
     {
         this->CouleurArticle = CouleurArticle;
@@ -100,25 +96,25 @@ int NS_Composants::CL_map_Stock::getIDArticle()
 
 String^ NS_Composants::CL_map_Stock::getNomArticle(void)
 {
-    throw gcnew System::NotImplementedException();
+    
     return this->NomArticle;
 }
 
 String^ NS_Composants::CL_map_Stock::getNatureArticle(void)
 {
-    throw gcnew System::NotImplementedException();
+    
     return this->NatureArticle;
 }
 
 String^ NS_Composants::CL_map_Stock::getRefArticle(void)
 {
-    throw gcnew System::NotImplementedException();
+    
     return this->RefArticle;
 }
 
 String^ NS_Composants::CL_map_Stock::getCouleurArticle(void)
 {
-    throw gcnew System::NotImplementedException();
+    
     return this->CouleurArticle;
 }
 
