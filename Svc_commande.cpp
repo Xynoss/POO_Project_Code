@@ -1,7 +1,4 @@
-#include "Svc_commande.h"
-namespace NS_Svc
-{
-	Svc_commande::Svc_commande(void)
+Svc_commande::Svc_commande(void)
 	{
 
 		this->cad = gcnew NS_Composants::CL_CAD();
@@ -24,38 +21,46 @@ namespace NS_Svc
 		return this->DT;
 	}
 
-	String^ Svc_commande::ajouter(String^Reference, String^ DateCommande, String^ DateLivraison, String^ DatePayement, String^ MoyenPayement, String^ DateSolde, int MontantHT, int MontantTVA, int MontantTTC )
+	int Svc_commande::ajouter(int ID_Article, int ID_Facture, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ RefCommande, int MontantPayment, int Remise, int QuantitéArticle,int MontantTVA,int PrixUnitaire )
 	{
-		this->Commande->setReference(Reference);
-		this->Commande->setDateCommande(DateCommande);
-		this->Commande->setDateLivraison(DateLivraison);
-		this->Commande->setDatePayement(DatePayement);
-		this->Commande->setMoyenPayement(MoyenPayement);
+		
+		this-> Commande-> setID_Article(ID_Article);
+		this->Commande->setID_Facture(ID_Facture);
+		this->Commande-> setDateLivraison(DateLivraison);
+		this->Commande->setDatePaiment(DatePaiment);
+		this->Commande->setMoyenPayment(MoyenPayment);
 		this->Commande->setDateSolde(DateSolde);
-		this->Commande->setMontantHT(MontantHT);
+		this->Commande->setRefCommande(RefCommande);
+		this->Commande->setMontantPayment(MontantPayment);
+		this->Commande->setRemise(Remise);
+		this->Commande->setQuantitéArticle(QuantitéArticle);
 		this->Commande->setMontantTVA(MontantTVA);
-		this->Commande->setMontantTTC(MontantTTC);
-		Reference = this->cad->actionRowsID(this->Commande->INSERT());
-		return Reference;
+		this->Commande->setPrixUnitaire(PrixUnitaire);
+		ID_Facture= this->cad->actionRowsID(this->Commande->INSERT());
+		return ID_Facture;
 	}
 
-	void Svc_commande::modifier(String^ Reference, String^ DateCommande, String^ DateLivraison, String^ DatePayement, String^ MoyenPayement, String^ DateSolde, int MontantHT,int MontantTVA,int MontantTTC)
+	void Svc_commande::modifier(int ID_Article, int ID_Facture, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ RefCommande, int MontantPayment, int Remise, int QuantitéArticle, int MontantTVA, int PrixUnitaire)
 	{
-		this->Commande->setReference(Reference);
-		this->Commande->setDateCommande(DateCommande);
+		this->Commande->setID_Article(ID_Article);
+		this->Commande->setID_Facture(ID_Facture);
 		this->Commande->setDateLivraison(DateLivraison);
-		this->Commande->setDatePayement(DatePayement);
-		this->Commande->setMoyenPayement(MoyenPayement);
+		this->Commande->setDatePaiment(DatePaiment);
+		this->Commande->setMoyenPayment(MoyenPayment);
 		this->Commande->setDateSolde(DateSolde);
-		this->Commande->setMontantHT(MontantHT);
+		this->Commande->setRefCommande(RefCommande);
+		this->Commande->setMontantPayment(MontantPayment);
+		this->Commande->setRemise(Remise);
+		this->Commande->setQuantitéArticle(QuantitéArticle);
 		this->Commande->setMontantTVA(MontantTVA);
-		this->Commande->setMontantTTC(MontantTTC);
+		this->Commande->setPrixUnitaire(PrixUnitaire);
 		this->cad->actionRows(this->Commande->UPDATE());
 	}
 
-	void Svc_commande::supprimer(String^ Reference)
+	void Svc_commande::supprimer(int ID_Facture)
 	{
-		this->Commande->setReference(Reference);
+		this->Commande->setID_Facture(ID_Facture);
 		this->cad->actionRows(this->Commande->DELETE());
 	}
 }
+
