@@ -5,15 +5,18 @@ namespace NS_Composants
 {
 	ref class CL_map_Commande
 	{
-	private:String^ Reference;
-		   String^ DateCommande;
-		   String^ DateLivraison;
-		   String^ DatePayement;
-		   String^ MoyenPayement;
-		   String^ DateSolde;
-		   int MontantHT;
-		   int MontantTVA;
-		   int MontantTTC;
+	private:
+		int ID_Facture;
+		int ID_Client;
+		int ID_Date;
+		String^ RefCommande;
+		String^ DateCommande;
+		String^ DateLivraison;
+		String^ DatePayement;
+		String^ MoyenPayement;
+		String^ DateSolde;
+		int Remise;
+		int MontantTVA;
 	public:
 		CL_map_Commande(void);
 		String^ SELECT(void);
@@ -26,17 +29,19 @@ namespace NS_Composants
 		void setDatePayement(String^);
 		void setMoyenPayement(String^);
 		void setDateSolde(String^);
-		void setMontantHT(int);
+		void setRemise(int);
 		void setMontantTVA(int);
-		void setMontantTTC(int);
-		String^ getReference(void);
+		void setIDClient(int);
+		int getIDFacture(void);
+		int getIDClient(void);
+		int getIDDate(void);
+		String^ getRefCommande(void);
 		String^ getDateCommande(void);
 		String^ getDateLivraison(void);
 		String^ getDatePayement(void);
 		String^ getMoyenPayement(void);
 		String^ getDateSolde(void);
-		int getMontantHT(void);
+		int getRemise(void);
 		int getMontantTVA(void);
-		int getMontantTTC(void);
 	};
 }

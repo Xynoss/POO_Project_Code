@@ -1,6 +1,7 @@
 #pragma once
 #include "CL_CAD.h"
 #include "Commande.h"
+#include "CL_map_TBCLIENT.h"
 
 using namespace System::Data;
 using namespace MySql::Data::MySqlClient;
@@ -12,6 +13,7 @@ namespace NS_Svc {
 	private:
 		NS_Composants::CL_CAD^ cad;
 		NS_Composants::CL_map_Commande^ Commande;
+		NS_Composants::CL_map_TBCLIENT^ ClientClé;
 		DataSet^ DS;
 		DataTable^ DT;
 	public:

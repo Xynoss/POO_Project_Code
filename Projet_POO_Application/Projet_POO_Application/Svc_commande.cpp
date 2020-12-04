@@ -8,6 +8,7 @@ namespace NS_Svc
 
 		this->cad = gcnew NS_Composants::CL_CAD();
 		this->Commande = gcnew NS_Composants::CL_map_Commande();
+		this->ClientClé = gcnew NS_Composants::CL_map_TBCLIENT();
 		this->DS = gcnew Data::DataSet();
 		this->DT = gcnew Data::DataTable();
 	}
@@ -28,17 +29,13 @@ namespace NS_Svc
 
 	String^ CL_Svc_commande::ajouter(String^Reference, String^ DateCommande, String^ DateLivraison, String^ DatePayement, String^ MoyenPayement, String^ DateSolde, int MontantHT, int MontantTVA, int MontantTTC )
 	{
+		int ID;
 		this->Commande->setReference(Reference);
 		this->Commande->setDateCommande(DateCommande);
 		this->Commande->setDateLivraison(DateLivraison);
-		this->Commande->setDatePayement(DatePayement);
-		this->Commande->setMoyenPayement(MoyenPayement);
 		this->Commande->setDateSolde(DateSolde);
-		this->Commande->setMontantHT(MontantHT);
 		this->Commande->setMontantTVA(MontantTVA);
-		this->Commande->setMontantTTC(MontantTTC);
-		int lastID = this->cad->actionRowsID(this->Commande->INSERT());
-		return Convert::ToString(lastID);
+		ID = this->cad->actionRowsID(this->Commande->INSERT());
 	}
 
 	void CL_Svc_commande::modifier(String^ Reference, String^ DateCommande, String^ DateLivraison, String^ DatePayement, String^ MoyenPayement, String^ DateSolde, int MontantHT,int MontantTVA,int MontantTTC)
@@ -46,12 +43,8 @@ namespace NS_Svc
 		this->Commande->setReference(Reference);
 		this->Commande->setDateCommande(DateCommande);
 		this->Commande->setDateLivraison(DateLivraison);
-		this->Commande->setDatePayement(DatePayement);
-		this->Commande->setMoyenPayement(MoyenPayement);
 		this->Commande->setDateSolde(DateSolde);
-		this->Commande->setMontantHT(MontantHT);
 		this->Commande->setMontantTVA(MontantTVA);
-		this->Commande->setMontantTTC(MontantTTC);
 		this->cad->actionRows(this->Commande->UPDATE());
 	}
 
