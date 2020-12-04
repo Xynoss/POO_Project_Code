@@ -42,7 +42,7 @@ namespace NS_Svc
 		return ID;
 	}
 
-	void Svc_commande::modifier(int ID_Facture, String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, String^ MontantTVA)
+	void Svc_commande::modifier(int ID_Facture, String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, String^ MontantTVA, int Client)
 	{
 		this->Commande->setIDfacture(ID_Facture);
 		this->Commande->setReference(RefCommande);

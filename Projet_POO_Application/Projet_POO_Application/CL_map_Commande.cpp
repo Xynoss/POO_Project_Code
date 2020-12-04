@@ -33,12 +33,15 @@ namespace NS_Composants
 	String^ CL_map_Commande::UPDATE(void)
 	{
 		return "UPDATE facture SET RefCommande = '"+this->getRefCommande()+"', MontantTVA = '"+ this->getMontantTVA()+"', DateLivraison = '"+ this->getDateLivraison()+"', DateSolde = '"+this->getDateSolde()+"', Remise = '"+this->getRemise()+"', ID_Client = '"+ this->getIDClient() +"', MontantHT = '"+ this->getMontantHT() +"', MontantTTC = '"+ this->getMontantTTC() + "'WHERE(Reference = " + this->getIDFacture() + "); "+
-			"UPDATE Commande SET ID_Article = '" + this->getIDClient() + "',  QuantiteArticle = '" + this->getQuantitéArticle() + "' WHERE(Reference = " + this->getIDFacture() + ");";
+			"UPDATE Commande SET ID_Article = '" + this->getIDClient() + "',  QuantiteArticle = '" + this->getQuantitéArticle() + "' WHERE(Reference = " + this->getIDFacture() + ");"+
+			"UPDATE `date` SET `DatePaiment` = '"+this->getDatePayement()+"',`MontantPayment`='"+this->getMontantPayment()+"',`MoyenPayment`='"+this->getMoyenPayement()+"';";
 	}
 
 	String^ CL_map_Commande::DELETE(void)
 	{
-		return "DELETE FROM Commande " + "WHERE(Reference = " + this->getIDFacture() + ");";
+		return "DELETE FROM date WHERE(ID_Facture = '" + this->getIDFacture() +"');"+
+			"DELETE FROM Commande " + "WHERE(ID_Facture = " + this->getIDFacture() + ");"+
+			"DELETE FROM facture WHERE (ID_Facture ='"+ this->getIDFacture()+"');";
 	}
 
 	void CL_map_Commande::setIDfacture(int idfac)

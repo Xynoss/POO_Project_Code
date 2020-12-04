@@ -19,7 +19,7 @@ namespace NS_Svc {
 		DataTable^ TableCommande();
 		DataSet^ listeCommande(String^);
 		int ajouter(String^, String^, String^, String^, String^, String^, String^, String^, int);
-		void modifier(int, String^, String^, String^, String^, String^, String^, String^, String^);
+		void modifier(int, String^, String^, String^, String^, String^, String^, String^, String^, int);
 		void supprimer(int);
 	};
 }

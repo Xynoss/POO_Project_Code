@@ -786,6 +786,27 @@ namespace A2POOCorb6
             this->lbl_Ville->Text = "Ville :";
             this->lbl_CodePostal->Text = "Code Postal :";
             this->lbl_TypeAdresse->Text = "Type de l'adresse :";
+            this->label9->Text = "";
+            this->textBox9->Text = "";
+            this->textBox9->ReadOnly = true;
+            this->label10->Text = "";
+            this->textBox10->Text = "";
+            this->textBox10->ReadOnly = true;
+            this->label11->Text = "";
+            this->textBox11->Text = "";
+            this->textBox11->ReadOnly = true;
+            this->label12->Text = "";
+            this->textBox12->Text = "";
+            this->textBox12->ReadOnly = true;
+            this->label13->Text = "";
+            this->textBox13->Text = "";
+            this->textBox13->ReadOnly = true;
+            this->label14->Text = "";
+            this->textBox14->Text = "";
+            this->textBox14->ReadOnly = true;
+            this->label15->Text = "";
+            this->textBox15->Text = "";
+            this->textBox15->ReadOnly = true;
             this->txt_message->Text = "update réussi Clients";
         }
         else if (this->radioButtonPersonnel->Checked) {
@@ -807,6 +828,27 @@ namespace A2POOCorb6
             this->lbl_TypeAdresse->Text = "";
             this->txt_TypeAdresse->Text = "";
             this->txt_TypeAdresse->ReadOnly = true;
+            this->label9->Text = "";
+            this->textBox9->Text = "";
+            this->textBox9->ReadOnly = true;
+            this->label10->Text = "";
+            this->textBox10->Text = "";
+            this->textBox10->ReadOnly = true;
+            this->label11->Text = "";
+            this->textBox11->Text = "";
+            this->textBox11->ReadOnly = true;
+            this->label12->Text = "";
+            this->textBox12->Text = "";
+            this->textBox12->ReadOnly = true;
+            this->label13->Text = "";
+            this->textBox13->Text = "";
+            this->textBox13->ReadOnly = true;
+            this->label14->Text = "";
+            this->textBox14->Text = "";
+            this->textBox14->ReadOnly = true;
+            this->label15->Text = "";
+            this->textBox15->Text = "";
+            this->textBox15->ReadOnly = true;
             this->txt_message->Text = "update réussi personnel";
         }
         else if (this->radioButtonCommande->Checked) {
@@ -817,8 +859,8 @@ namespace A2POOCorb6
             dataGridView1->DataSource = bs;
             loadData(this->index);
             this->lbl_id->Text = "ID Facture :";
-            this->lbl_nom->Text = "Nom du client :";
-            this->lbl_prenom->Text = "Reference de la commande :";
+            this->lbl_nom->Text = "Reference de la commande :";
+            this->lbl_prenom->Text = "Nom du client :";
             this->lbl_DateNaissance->Text = "Montant de la TVA :";
             this->lbl_Adresse->Text = "Date de livraison :";
             this->lbl_Ville->Text = "remise :";
@@ -833,6 +875,13 @@ namespace A2POOCorb6
             this->label13->Text = "Date du paiement :";
             this->label14->Text = "Montant réglé :";
             this->label15->Text = "Moyen de paiement :";
+            this->textBox9->ReadOnly = false;
+            this->textBox10->ReadOnly = false;
+            this->textBox11->ReadOnly = false;
+            this->textBox12->ReadOnly = false;
+            this->textBox13->ReadOnly = false;
+            this->textBox14->ReadOnly = false;
+            this->textBox15->ReadOnly = false;
             this->txt_message->Text = "update réussi commande";
         }
         else if (this->radioButtonStock->Checked) {
@@ -853,6 +902,27 @@ namespace A2POOCorb6
             this->lbl_TypeAdresse->Text = "";
             this->txt_TypeAdresse->Text = "";
             this->txt_TypeAdresse->ReadOnly = true;
+            this->label9->Text = "";
+            this->textBox9->Text = "";
+            this->textBox9->ReadOnly = true;
+            this->label10->Text = "";
+            this->textBox10->Text = "";
+            this->textBox10->ReadOnly = true;
+            this->label11->Text = "";
+            this->textBox11->Text = "";
+            this->textBox11->ReadOnly = true;
+            this->label12->Text = "";
+            this->textBox12->Text = "";
+            this->textBox12->ReadOnly = true;
+            this->label13->Text = "";
+            this->textBox13->Text = "";
+            this->textBox13->ReadOnly = true;
+            this->label14->Text = "";
+            this->textBox14->Text = "";
+            this->textBox14->ReadOnly = true;
+            this->label15->Text = "";
+            this->textBox15->Text = "";
+            this->textBox15->ReadOnly = true;
             this->txt_message->Text = "update réussi Stock";
         }
 
@@ -940,6 +1010,13 @@ namespace A2POOCorb6
         this->txt_Ville->Clear();
         this->txt_CodePostal->Clear();
         this->txt_TypeAdresse->Clear();
+        this->textBox9->Clear();
+        this->textBox10->Clear();
+        this->textBox11->Clear();
+        this->textBox12->Clear();
+        this->textBox13->Clear();
+        this->textBox14->Clear();
+        this->textBox15->Clear();
         this->mode = "nouv";
         this->txt_message->Text = "Veuillez saisir les information de la nouvelle personne et enregistrer";
     }
@@ -1020,17 +1097,17 @@ namespace A2POOCorb6
             Actualiser();
             this->txt_message->Text += "Traitement terminé.";
         }
-        /*else if (this->radioButtonCommande->Checked) {
+        else if (this->radioButtonCommande->Checked) {
             if (this->mode == "nouv")
             {
                 int Id;
-                Id = this->processusCommande->ajouter(this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text, this->txt_Ville->Text, this->txt_CodePostal->Text, this->txt_TypeAdresse->Text);
+                Id = this->processusCommande->ajouter(this->txt_nom->Text/*Reference*/, this->txt_Adresse->Text/*Date de livraison*/, this->textBox13->Text/*Date Paiement*/, this->textBox15->Text/*Moyen de paiement*/, this->txt_CodePostal->Text/*Date de solde*/, this->textBox14->Text/*montant paiement*/, this->txt_Ville->Text/*Remise*/,this->txt_DateNaissance->Text/*Montant TVA*/,Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/);
                 this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
                 this->mode = "RIEN";
             }
             else if (this->mode == "maj")
             {
-                this->processusCommande->modifier(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text, this->txt_prenom->Text, this->txt_DateNaissance->Text, this->txt_Adresse->Text, this->txt_Ville->Text, this->txt_CodePostal->Text, this->txt_TypeAdresse->Text);
+                this->processusCommande->modifier(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text/*Reference*/, this->txt_Adresse->Text/*Date de livraison*/, this->textBox13->Text/*Date Paiement*/, this->textBox15->Text/*Moyen de paiement*/, this->txt_CodePostal->Text/*Date de solde*/, this->textBox14->Text/*montant paiement*/, this->txt_Ville->Text/*Remise*/, this->txt_DateNaissance->Text/*Montant TVA*/, Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/);
                 this->mode = "RIEN";
             }
             else if (this->mode == "sup")
@@ -1042,7 +1119,7 @@ namespace A2POOCorb6
             this->loadData(this->index);
             Actualiser();
             this->txt_message->Text += "Traitement terminé.";
-        }*/
+        }
         else if (this->radioButtonStock->Checked) {
             if (this->mode == "nouv")
             {
