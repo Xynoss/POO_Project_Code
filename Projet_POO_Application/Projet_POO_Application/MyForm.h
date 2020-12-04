@@ -193,7 +193,7 @@ namespace A2POOCorb6
             // lbl_id
             // 
             this->lbl_id->AutoSize = true;
-            this->lbl_id->Location = System::Drawing::Point(43, 146);
+            this->lbl_id->Location = System::Drawing::Point(10, 146);
             this->lbl_id->Name = L"lbl_id";
             this->lbl_id->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->lbl_id->Size = System::Drawing::Size(47, 13);
@@ -212,7 +212,7 @@ namespace A2POOCorb6
             // lbl_nom
             // 
             this->lbl_nom->AutoSize = true;
-            this->lbl_nom->Location = System::Drawing::Point(61, 169);
+            this->lbl_nom->Location = System::Drawing::Point(10, 172);
             this->lbl_nom->Name = L"lbl_nom";
             this->lbl_nom->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->lbl_nom->Size = System::Drawing::Size(29, 13);
@@ -230,7 +230,7 @@ namespace A2POOCorb6
             // lbl_prenom
             // 
             this->lbl_prenom->AutoSize = true;
-            this->lbl_prenom->Location = System::Drawing::Point(47, 198);
+            this->lbl_prenom->Location = System::Drawing::Point(10, 195);
             this->lbl_prenom->Name = L"lbl_prenom";
             this->lbl_prenom->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->lbl_prenom->Size = System::Drawing::Size(43, 13);
@@ -373,7 +373,7 @@ namespace A2POOCorb6
             // lbl_DateNaissance
             // 
             this->lbl_DateNaissance->AutoSize = true;
-            this->lbl_DateNaissance->Location = System::Drawing::Point(10, 224);
+            this->lbl_DateNaissance->Location = System::Drawing::Point(10, 221);
             this->lbl_DateNaissance->Name = L"lbl_DateNaissance";
             this->lbl_DateNaissance->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->lbl_DateNaissance->Size = System::Drawing::Size(80, 13);
@@ -439,7 +439,7 @@ namespace A2POOCorb6
             // lbl_CodePostal
             // 
             this->lbl_CodePostal->AutoSize = true;
-            this->lbl_CodePostal->Location = System::Drawing::Point(26, 302);
+            this->lbl_CodePostal->Location = System::Drawing::Point(10, 299);
             this->lbl_CodePostal->Name = L"lbl_CodePostal";
             this->lbl_CodePostal->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->lbl_CodePostal->Size = System::Drawing::Size(64, 13);
@@ -464,7 +464,7 @@ namespace A2POOCorb6
             // lbl_Ville
             // 
             this->lbl_Ville->AutoSize = true;
-            this->lbl_Ville->Location = System::Drawing::Point(64, 276);
+            this->lbl_Ville->Location = System::Drawing::Point(10, 273);
             this->lbl_Ville->Name = L"lbl_Ville";
             this->lbl_Ville->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->lbl_Ville->Size = System::Drawing::Size(26, 13);
@@ -482,7 +482,7 @@ namespace A2POOCorb6
             // lbl_Adresse
             // 
             this->lbl_Adresse->AutoSize = true;
-            this->lbl_Adresse->Location = System::Drawing::Point(45, 250);
+            this->lbl_Adresse->Location = System::Drawing::Point(10, 247);
             this->lbl_Adresse->Name = L"lbl_Adresse";
             this->lbl_Adresse->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->lbl_Adresse->Size = System::Drawing::Size(45, 13);
@@ -493,7 +493,7 @@ namespace A2POOCorb6
             // lbl_TypeAdresse
             // 
             this->lbl_TypeAdresse->AutoSize = true;
-            this->lbl_TypeAdresse->Location = System::Drawing::Point(10, 328);
+            this->lbl_TypeAdresse->Location = System::Drawing::Point(10, 325);
             this->lbl_TypeAdresse->Name = L"lbl_TypeAdresse";
             this->lbl_TypeAdresse->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->lbl_TypeAdresse->Size = System::Drawing::Size(80, 13);
@@ -560,7 +560,7 @@ namespace A2POOCorb6
             // label9
             // 
             this->label9->AutoSize = true;
-            this->label9->Location = System::Drawing::Point(55, 354);
+            this->label9->Location = System::Drawing::Point(10, 351);
             this->label9->Name = L"label9";
             this->label9->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->label9->Size = System::Drawing::Size(35, 13);
@@ -571,7 +571,7 @@ namespace A2POOCorb6
             // label10
             // 
             this->label10->AutoSize = true;
-            this->label10->Location = System::Drawing::Point(55, 380);
+            this->label10->Location = System::Drawing::Point(10, 377);
             this->label10->Name = L"label10";
             this->label10->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->label10->Size = System::Drawing::Size(35, 13);
@@ -582,7 +582,7 @@ namespace A2POOCorb6
             // label11
             // 
             this->label11->AutoSize = true;
-            this->label11->Location = System::Drawing::Point(55, 406);
+            this->label11->Location = System::Drawing::Point(10, 403);
             this->label11->Name = L"label11";
             this->label11->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->label11->Size = System::Drawing::Size(35, 13);
@@ -593,7 +593,7 @@ namespace A2POOCorb6
             // label12
             // 
             this->label12->AutoSize = true;
-            this->label12->Location = System::Drawing::Point(55, 432);
+            this->label12->Location = System::Drawing::Point(10, 429);
             this->label12->Name = L"label12";
             this->label12->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->label12->Size = System::Drawing::Size(35, 13);
@@ -604,7 +604,7 @@ namespace A2POOCorb6
             // label13
             // 
             this->label13->AutoSize = true;
-            this->label13->Location = System::Drawing::Point(55, 458);
+            this->label13->Location = System::Drawing::Point(10, 455);
             this->label13->Name = L"label13";
             this->label13->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->label13->Size = System::Drawing::Size(35, 13);
@@ -615,7 +615,7 @@ namespace A2POOCorb6
             // label14
             // 
             this->label14->AutoSize = true;
-            this->label14->Location = System::Drawing::Point(55, 484);
+            this->label14->Location = System::Drawing::Point(10, 481);
             this->label14->Name = L"label14";
             this->label14->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->label14->Size = System::Drawing::Size(35, 13);
@@ -626,7 +626,7 @@ namespace A2POOCorb6
             // label15
             // 
             this->label15->AutoSize = true;
-            this->label15->Location = System::Drawing::Point(49, 510);
+            this->label15->Location = System::Drawing::Point(10, 507);
             this->label15->Name = L"label15";
             this->label15->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->label15->Size = System::Drawing::Size(41, 13);
