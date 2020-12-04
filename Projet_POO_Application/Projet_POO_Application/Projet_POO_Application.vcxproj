@@ -132,11 +132,11 @@
     <ClCompile Include="CL_map_TBPERSONNEL.cpp" />
     <ClCompile Include="CL_map__Stock.cpp" />
     <ClCompile Include="CL_svc_gestionClient.cpp" />
+    <ClCompile Include="CL_svc_gestionCommande.cpp" />
     <ClCompile Include="CL_svc_gestionPersonnel.cpp" />
     <ClCompile Include="CL_svc_gestionStock.cpp" />
     <ClCompile Include="CL_map_Commande.cpp" />
     <ClCompile Include="MyForm.cpp" />
-    <ClCompile Include="CL_svc_gestionCommande.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CL_CAD.h" />
@@ -144,13 +144,13 @@
     <ClInclude Include="CL_map_TBPERSONNEL.h" />
     <ClInclude Include="CL_map__Stock.h" />
     <ClInclude Include="CL_svc_gestionClient.h" />
+    <ClInclude Include="CL_svc_gestionCommande.h" />
     <ClInclude Include="CL_svc_gestionPersonnel.h" />
     <ClInclude Include="CL_svc_gestionStock.h" />
     <ClInclude Include="CL_map_Commande.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="CL_svc_gestionCommande.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">

@@ -25,29 +25,30 @@ namespace NS_Svc
 		return this->DT;
 	}
 
-	int Svc_commande::ajouter(String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, int MontantPayment, int Remise, int MontantTVA, int Client)
+	int Svc_commande::ajouter(String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, String^ MontantTVA, int Client)
 	{
 		int ID;
-		this->Commande->setRefCommande(RefCommande);
+		this->Commande->setReference(RefCommande);
 		this->Commande->setDateLivraison(DateLivraison);
 		this->Commande->setDateSolde(DateSolde);
 		this->Commande->setRemise(Remise);
 		this->Commande->setMontantTVA(MontantTVA);
-		this->Commande->setDatePaiment(DatePaiment);
-		this->Commande->setMoyenPayment(MoyenPayment);
+		this->Commande->setDatePayement(DatePaiment);
+		this->Commande->setMoyenPayement(MoyenPayment);
 		this->Commande->setMontantPayment(MontantPayment);
 		this->Commande->setIDClient(Client);
 		ID = this->cad->actionRowsID(this->Commande->INSERT());
+		this->cad->actionRowsID(this->Commande->INSERTDATE());
 		return ID;
 	}
 
-	void Svc_commande::modifier(int ID_Facture, String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, int MontantPayment, int Remise, int MontantTVA)
+	void Svc_commande::modifier(int ID_Facture, String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, String^ MontantTVA)
 	{
-		this->Commande->setID_Facture(ID_Facture);
-		this->Commande->setRefCommande(RefCommande);
+		this->Commande->setIDfacture(ID_Facture);
+		this->Commande->setReference(RefCommande);
 		this->Commande->setDateLivraison(DateLivraison);
-		this->Commande->setDatePaiment(DatePaiment);
-		this->Commande->setMoyenPayment(MoyenPayment);
+		this->Commande->setDatePayement(DatePaiment);
+		this->Commande->setMoyenPayement(MoyenPayment);
 		this->Commande->setDateSolde(DateSolde);
 		this->Commande->setMontantPayment(MontantPayment);
 		this->Commande->setRemise(Remise);
@@ -57,7 +58,7 @@ namespace NS_Svc
 
 	void Svc_commande::supprimer(int ID_Facture)
 	{
-		this->Commande->setIDFacture(ID_Facture);
+		//this->Commande->setIDFacture(ID_Facture);
 		this->cad->actionRows(this->Commande->DELETE());
 	}
 }

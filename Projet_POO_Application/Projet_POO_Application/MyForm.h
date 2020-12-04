@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "CL_svc_gestionClient.h"
 #include "CL_svc_gestionPersonnel.h"
-#include "Svc_commande.h"
+#include "CL_svc_gestionCommande.h"
 #include "CL_svc_gestionStock.h"
 
 namespace A2POOCorb6
@@ -55,7 +55,7 @@ namespace A2POOCorb6
     private: NS_Svc::CL_svc_gestionPersonnel^ processusPersonnel;
     private: NS_Svc::CL_svc_gestionClient^ processusClients;
     private: NS_Svc::CL_svc_gestionStock^ processusStock;
-    private: NS_Svc::CL_Svc_commande^ processusCommande;
+    private: NS_Svc::Svc_commande^ processusCommande;
     private: Data::DataSet^ dsClient;
     private: Data::DataSet^ dsPersonnel;
     private: Data::DataSet^ dsCommande;
@@ -91,6 +91,35 @@ namespace A2POOCorb6
     private: System::Windows::Forms::Label^ lbl_Adresse;
     private: System::Windows::Forms::Label^ lbl_TypeAdresse;
     private: System::Windows::Forms::TextBox^ txt_TypeAdresse;
+    private: System::Windows::Forms::TextBox^ textBox9;
+
+    private: System::Windows::Forms::TextBox^ textBox10;
+
+    private: System::Windows::Forms::TextBox^ textBox11;
+
+    private: System::Windows::Forms::TextBox^ textBox12;
+
+    private: System::Windows::Forms::TextBox^ textBox13;
+
+    private: System::Windows::Forms::TextBox^ textBox14;
+
+    private: System::Windows::Forms::TextBox^ textBox15;
+
+    private: System::Windows::Forms::Label^ label9;
+
+    private: System::Windows::Forms::Label^ label10;
+
+    private: System::Windows::Forms::Label^ label11;
+
+    private: System::Windows::Forms::Label^ label12;
+
+    private: System::Windows::Forms::Label^ label13;
+
+    private: System::Windows::Forms::Label^ label14;
+
+    private: System::Windows::Forms::Label^ label15;
+
+
 
 
 
@@ -142,6 +171,20 @@ namespace A2POOCorb6
             this->lbl_Adresse = (gcnew System::Windows::Forms::Label());
             this->lbl_TypeAdresse = (gcnew System::Windows::Forms::Label());
             this->txt_TypeAdresse = (gcnew System::Windows::Forms::TextBox());
+            this->textBox9 = (gcnew System::Windows::Forms::TextBox());
+            this->textBox10 = (gcnew System::Windows::Forms::TextBox());
+            this->textBox11 = (gcnew System::Windows::Forms::TextBox());
+            this->textBox12 = (gcnew System::Windows::Forms::TextBox());
+            this->textBox13 = (gcnew System::Windows::Forms::TextBox());
+            this->textBox14 = (gcnew System::Windows::Forms::TextBox());
+            this->textBox15 = (gcnew System::Windows::Forms::TextBox());
+            this->label9 = (gcnew System::Windows::Forms::Label());
+            this->label10 = (gcnew System::Windows::Forms::Label());
+            this->label11 = (gcnew System::Windows::Forms::Label());
+            this->label12 = (gcnew System::Windows::Forms::Label());
+            this->label13 = (gcnew System::Windows::Forms::Label());
+            this->label14 = (gcnew System::Windows::Forms::Label());
+            this->label15 = (gcnew System::Windows::Forms::Label());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
             this->groupTable->SuspendLayout();
             this->SuspendLayout();
@@ -149,56 +192,59 @@ namespace A2POOCorb6
             // lbl_id
             // 
             this->lbl_id->AutoSize = true;
-            this->lbl_id->Location = System::Drawing::Point(12, 141);
+            this->lbl_id->Location = System::Drawing::Point(130, 150);
             this->lbl_id->Name = L"lbl_id";
             this->lbl_id->Size = System::Drawing::Size(47, 13);
             this->lbl_id->TabIndex = 0;
             this->lbl_id->Text = L"ID Client";
+            this->lbl_id->TextAlign = System::Drawing::ContentAlignment::TopRight;
             // 
             // txt_idPersonne
             // 
-            this->txt_idPersonne->Location = System::Drawing::Point(12, 157);
+            this->txt_idPersonne->Location = System::Drawing::Point(183, 143);
             this->txt_idPersonne->Name = L"txt_idPersonne";
             this->txt_idPersonne->ReadOnly = true;
-            this->txt_idPersonne->Size = System::Drawing::Size(313, 20);
+            this->txt_idPersonne->Size = System::Drawing::Size(266, 20);
             this->txt_idPersonne->TabIndex = 1;
             // 
             // lbl_nom
             // 
             this->lbl_nom->AutoSize = true;
-            this->lbl_nom->Location = System::Drawing::Point(12, 183);
+            this->lbl_nom->Location = System::Drawing::Point(148, 176);
             this->lbl_nom->Name = L"lbl_nom";
             this->lbl_nom->Size = System::Drawing::Size(29, 13);
             this->lbl_nom->TabIndex = 2;
             this->lbl_nom->Text = L"Nom";
+            this->lbl_nom->TextAlign = System::Drawing::ContentAlignment::TopRight;
             // 
             // txt_nom
             // 
-            this->txt_nom->Location = System::Drawing::Point(12, 199);
+            this->txt_nom->Location = System::Drawing::Point(183, 169);
             this->txt_nom->Name = L"txt_nom";
-            this->txt_nom->Size = System::Drawing::Size(313, 20);
+            this->txt_nom->Size = System::Drawing::Size(266, 20);
             this->txt_nom->TabIndex = 3;
             // 
             // lbl_prenom
             // 
             this->lbl_prenom->AutoSize = true;
-            this->lbl_prenom->Location = System::Drawing::Point(12, 225);
+            this->lbl_prenom->Location = System::Drawing::Point(134, 198);
             this->lbl_prenom->Name = L"lbl_prenom";
             this->lbl_prenom->Size = System::Drawing::Size(43, 13);
             this->lbl_prenom->TabIndex = 4;
             this->lbl_prenom->Text = L"Prénom";
+            this->lbl_prenom->TextAlign = System::Drawing::ContentAlignment::TopRight;
             // 
             // txt_prenom
             // 
-            this->txt_prenom->Location = System::Drawing::Point(12, 241);
+            this->txt_prenom->Location = System::Drawing::Point(183, 195);
             this->txt_prenom->Name = L"txt_prenom";
-            this->txt_prenom->Size = System::Drawing::Size(313, 20);
+            this->txt_prenom->Size = System::Drawing::Size(266, 20);
             this->txt_prenom->TabIndex = 5;
             // 
             // lbl_message
             // 
             this->lbl_message->AutoSize = true;
-            this->lbl_message->Location = System::Drawing::Point(5, 567);
+            this->lbl_message->Location = System::Drawing::Point(9, 807);
             this->lbl_message->Name = L"lbl_message";
             this->lbl_message->Size = System::Drawing::Size(50, 13);
             this->lbl_message->TabIndex = 6;
@@ -206,16 +252,16 @@ namespace A2POOCorb6
             // 
             // txt_message
             // 
-            this->txt_message->Location = System::Drawing::Point(12, 583);
+            this->txt_message->Location = System::Drawing::Point(8, 823);
             this->txt_message->Multiline = true;
             this->txt_message->Name = L"txt_message";
             this->txt_message->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
-            this->txt_message->Size = System::Drawing::Size(1254, 68);
+            this->txt_message->Size = System::Drawing::Size(1841, 68);
             this->txt_message->TabIndex = 7;
             // 
             // btn_first
             // 
-            this->btn_first->Location = System::Drawing::Point(154, 502);
+            this->btn_first->Location = System::Drawing::Point(223, 533);
             this->btn_first->Name = L"btn_first";
             this->btn_first->Size = System::Drawing::Size(46, 23);
             this->btn_first->TabIndex = 8;
@@ -225,7 +271,7 @@ namespace A2POOCorb6
             // 
             // btn_previous
             // 
-            this->btn_previous->Location = System::Drawing::Point(206, 502);
+            this->btn_previous->Location = System::Drawing::Point(275, 533);
             this->btn_previous->Name = L"btn_previous";
             this->btn_previous->Size = System::Drawing::Size(46, 23);
             this->btn_previous->TabIndex = 9;
@@ -235,7 +281,7 @@ namespace A2POOCorb6
             // 
             // btn_next
             // 
-            this->btn_next->Location = System::Drawing::Point(258, 502);
+            this->btn_next->Location = System::Drawing::Point(327, 533);
             this->btn_next->Name = L"btn_next";
             this->btn_next->Size = System::Drawing::Size(46, 23);
             this->btn_next->TabIndex = 10;
@@ -245,7 +291,7 @@ namespace A2POOCorb6
             // 
             // btn_end
             // 
-            this->btn_end->Location = System::Drawing::Point(310, 502);
+            this->btn_end->Location = System::Drawing::Point(379, 533);
             this->btn_end->Name = L"btn_end";
             this->btn_end->Size = System::Drawing::Size(46, 23);
             this->btn_end->TabIndex = 11;
@@ -255,7 +301,7 @@ namespace A2POOCorb6
             // 
             // btn_nouveau
             // 
-            this->btn_nouveau->Location = System::Drawing::Point(67, 531);
+            this->btn_nouveau->Location = System::Drawing::Point(25, 604);
             this->btn_nouveau->Name = L"btn_nouveau";
             this->btn_nouveau->Size = System::Drawing::Size(123, 46);
             this->btn_nouveau->TabIndex = 12;
@@ -265,7 +311,7 @@ namespace A2POOCorb6
             // 
             // btn_modifier
             // 
-            this->btn_modifier->Location = System::Drawing::Point(196, 531);
+            this->btn_modifier->Location = System::Drawing::Point(154, 604);
             this->btn_modifier->Name = L"btn_modifier";
             this->btn_modifier->Size = System::Drawing::Size(123, 46);
             this->btn_modifier->TabIndex = 13;
@@ -275,7 +321,7 @@ namespace A2POOCorb6
             // 
             // btn_sup
             // 
-            this->btn_sup->Location = System::Drawing::Point(325, 531);
+            this->btn_sup->Location = System::Drawing::Point(283, 604);
             this->btn_sup->Name = L"btn_sup";
             this->btn_sup->Size = System::Drawing::Size(123, 46);
             this->btn_sup->TabIndex = 14;
@@ -286,9 +332,9 @@ namespace A2POOCorb6
             // btn_enregistrer
             // 
             this->btn_enregistrer->BackColor = System::Drawing::SystemColors::Control;
-            this->btn_enregistrer->Location = System::Drawing::Point(454, 531);
+            this->btn_enregistrer->Location = System::Drawing::Point(25, 656);
             this->btn_enregistrer->Name = L"btn_enregistrer";
-            this->btn_enregistrer->Size = System::Drawing::Size(393, 46);
+            this->btn_enregistrer->Size = System::Drawing::Size(381, 46);
             this->btn_enregistrer->TabIndex = 15;
             this->btn_enregistrer->Text = L"ENREGISTRER";
             this->btn_enregistrer->UseVisualStyleBackColor = false;
@@ -296,17 +342,18 @@ namespace A2POOCorb6
             // 
             // dataGridView1
             // 
+            this->dataGridView1->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
             this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
             this->dataGridView1->Location = System::Drawing::Point(454, 12);
             this->dataGridView1->Name = L"dataGridView1";
-            this->dataGridView1->Size = System::Drawing::Size(812, 513);
+            this->dataGridView1->Size = System::Drawing::Size(1395, 805);
             this->dataGridView1->TabIndex = 16;
             // 
             // btn_refresh
             // 
-            this->btn_refresh->Location = System::Drawing::Point(853, 531);
+            this->btn_refresh->Location = System::Drawing::Point(25, 708);
             this->btn_refresh->Name = L"btn_refresh";
-            this->btn_refresh->Size = System::Drawing::Size(413, 46);
+            this->btn_refresh->Size = System::Drawing::Size(381, 46);
             this->btn_refresh->TabIndex = 17;
             this->btn_refresh->Text = L"Actualiser";
             this->btn_refresh->UseVisualStyleBackColor = true;
@@ -314,19 +361,20 @@ namespace A2POOCorb6
             // 
             // txt_DateNaissance
             // 
-            this->txt_DateNaissance->Location = System::Drawing::Point(12, 288);
+            this->txt_DateNaissance->Location = System::Drawing::Point(183, 221);
             this->txt_DateNaissance->Name = L"txt_DateNaissance";
-            this->txt_DateNaissance->Size = System::Drawing::Size(313, 20);
+            this->txt_DateNaissance->Size = System::Drawing::Size(266, 20);
             this->txt_DateNaissance->TabIndex = 19;
             // 
             // lbl_DateNaissance
             // 
             this->lbl_DateNaissance->AutoSize = true;
-            this->lbl_DateNaissance->Location = System::Drawing::Point(12, 272);
+            this->lbl_DateNaissance->Location = System::Drawing::Point(97, 224);
             this->lbl_DateNaissance->Name = L"lbl_DateNaissance";
-            this->lbl_DateNaissance->Size = System::Drawing::Size(157, 13);
+            this->lbl_DateNaissance->Size = System::Drawing::Size(80, 13);
             this->lbl_DateNaissance->TabIndex = 20;
-            this->lbl_DateNaissance->Text = L"DateNaissance (YYYY-MM-DD)";
+            this->lbl_DateNaissance->Text = L"DateNaissance";
+            this->lbl_DateNaissance->TextAlign = System::Drawing::ContentAlignment::TopRight;
             // 
             // groupTable
             // 
@@ -386,100 +434,237 @@ namespace A2POOCorb6
             // lbl_CodePostal
             // 
             this->lbl_CodePostal->AutoSize = true;
-            this->lbl_CodePostal->Location = System::Drawing::Point(12, 407);
+            this->lbl_CodePostal->Location = System::Drawing::Point(113, 302);
             this->lbl_CodePostal->Name = L"lbl_CodePostal";
             this->lbl_CodePostal->Size = System::Drawing::Size(64, 13);
             this->lbl_CodePostal->TabIndex = 27;
             this->lbl_CodePostal->Text = L"Code Postal";
+            this->lbl_CodePostal->TextAlign = System::Drawing::ContentAlignment::TopRight;
             // 
             // txt_CodePostal
             // 
-            this->txt_CodePostal->Location = System::Drawing::Point(12, 423);
+            this->txt_CodePostal->Location = System::Drawing::Point(183, 299);
             this->txt_CodePostal->Name = L"txt_CodePostal";
-            this->txt_CodePostal->Size = System::Drawing::Size(313, 20);
+            this->txt_CodePostal->Size = System::Drawing::Size(265, 20);
             this->txt_CodePostal->TabIndex = 26;
             // 
             // txt_Ville
             // 
-            this->txt_Ville->Location = System::Drawing::Point(12, 376);
+            this->txt_Ville->Location = System::Drawing::Point(183, 273);
             this->txt_Ville->Name = L"txt_Ville";
-            this->txt_Ville->Size = System::Drawing::Size(313, 20);
+            this->txt_Ville->Size = System::Drawing::Size(266, 20);
             this->txt_Ville->TabIndex = 25;
             // 
             // lbl_Ville
             // 
             this->lbl_Ville->AutoSize = true;
-            this->lbl_Ville->Location = System::Drawing::Point(12, 360);
+            this->lbl_Ville->Location = System::Drawing::Point(151, 276);
             this->lbl_Ville->Name = L"lbl_Ville";
             this->lbl_Ville->Size = System::Drawing::Size(26, 13);
             this->lbl_Ville->TabIndex = 24;
             this->lbl_Ville->Text = L"Ville";
+            this->lbl_Ville->TextAlign = System::Drawing::ContentAlignment::TopRight;
             // 
             // txt_Adresse
             // 
-            this->txt_Adresse->Location = System::Drawing::Point(12, 334);
+            this->txt_Adresse->Location = System::Drawing::Point(183, 247);
             this->txt_Adresse->Name = L"txt_Adresse";
-            this->txt_Adresse->Size = System::Drawing::Size(313, 20);
+            this->txt_Adresse->Size = System::Drawing::Size(266, 20);
             this->txt_Adresse->TabIndex = 23;
             // 
             // lbl_Adresse
             // 
             this->lbl_Adresse->AutoSize = true;
-            this->lbl_Adresse->Location = System::Drawing::Point(12, 318);
+            this->lbl_Adresse->Location = System::Drawing::Point(132, 250);
             this->lbl_Adresse->Name = L"lbl_Adresse";
             this->lbl_Adresse->Size = System::Drawing::Size(45, 13);
             this->lbl_Adresse->TabIndex = 22;
             this->lbl_Adresse->Text = L"Adresse";
+            this->lbl_Adresse->TextAlign = System::Drawing::ContentAlignment::TopRight;
             // 
             // lbl_TypeAdresse
             // 
             this->lbl_TypeAdresse->AutoSize = true;
-            this->lbl_TypeAdresse->Location = System::Drawing::Point(12, 451);
+            this->lbl_TypeAdresse->Location = System::Drawing::Point(97, 328);
             this->lbl_TypeAdresse->Name = L"lbl_TypeAdresse";
             this->lbl_TypeAdresse->Size = System::Drawing::Size(80, 13);
             this->lbl_TypeAdresse->TabIndex = 29;
             this->lbl_TypeAdresse->Text = L"Type d\'Adresse";
+            this->lbl_TypeAdresse->TextAlign = System::Drawing::ContentAlignment::TopRight;
             // 
             // txt_TypeAdresse
             // 
-            this->txt_TypeAdresse->Location = System::Drawing::Point(12, 467);
+            this->txt_TypeAdresse->Location = System::Drawing::Point(183, 325);
             this->txt_TypeAdresse->Name = L"txt_TypeAdresse";
-            this->txt_TypeAdresse->Size = System::Drawing::Size(313, 20);
+            this->txt_TypeAdresse->Size = System::Drawing::Size(265, 20);
             this->txt_TypeAdresse->TabIndex = 28;
+            // 
+            // textBox9
+            // 
+            this->textBox9->Location = System::Drawing::Point(183, 351);
+            this->textBox9->Name = L"textBox9";
+            this->textBox9->Size = System::Drawing::Size(265, 20);
+            this->textBox9->TabIndex = 30;
+            // 
+            // textBox10
+            // 
+            this->textBox10->Location = System::Drawing::Point(183, 377);
+            this->textBox10->Name = L"textBox10";
+            this->textBox10->Size = System::Drawing::Size(265, 20);
+            this->textBox10->TabIndex = 31;
+            // 
+            // textBox11
+            // 
+            this->textBox11->Location = System::Drawing::Point(183, 403);
+            this->textBox11->Name = L"textBox11";
+            this->textBox11->Size = System::Drawing::Size(265, 20);
+            this->textBox11->TabIndex = 32;
+            // 
+            // textBox12
+            // 
+            this->textBox12->Location = System::Drawing::Point(183, 429);
+            this->textBox12->Name = L"textBox12";
+            this->textBox12->Size = System::Drawing::Size(265, 20);
+            this->textBox12->TabIndex = 33;
+            // 
+            // textBox13
+            // 
+            this->textBox13->Location = System::Drawing::Point(183, 455);
+            this->textBox13->Name = L"textBox13";
+            this->textBox13->Size = System::Drawing::Size(265, 20);
+            this->textBox13->TabIndex = 34;
+            // 
+            // textBox14
+            // 
+            this->textBox14->Location = System::Drawing::Point(183, 481);
+            this->textBox14->Name = L"textBox14";
+            this->textBox14->Size = System::Drawing::Size(265, 20);
+            this->textBox14->TabIndex = 35;
+            // 
+            // textBox15
+            // 
+            this->textBox15->Location = System::Drawing::Point(183, 507);
+            this->textBox15->Name = L"textBox15";
+            this->textBox15->Size = System::Drawing::Size(265, 20);
+            this->textBox15->TabIndex = 36;
+            // 
+            // label9
+            // 
+            this->label9->AutoSize = true;
+            this->label9->Location = System::Drawing::Point(142, 354);
+            this->label9->Name = L"label9";
+            this->label9->Size = System::Drawing::Size(35, 13);
+            this->label9->TabIndex = 37;
+            this->label9->Text = L"label1";
+            this->label9->TextAlign = System::Drawing::ContentAlignment::TopRight;
+            // 
+            // label10
+            // 
+            this->label10->AutoSize = true;
+            this->label10->Location = System::Drawing::Point(142, 380);
+            this->label10->Name = L"label10";
+            this->label10->Size = System::Drawing::Size(35, 13);
+            this->label10->TabIndex = 38;
+            this->label10->Text = L"label2";
+            this->label10->TextAlign = System::Drawing::ContentAlignment::TopRight;
+            // 
+            // label11
+            // 
+            this->label11->AutoSize = true;
+            this->label11->Location = System::Drawing::Point(142, 406);
+            this->label11->Name = L"label11";
+            this->label11->Size = System::Drawing::Size(35, 13);
+            this->label11->TabIndex = 39;
+            this->label11->Text = L"label3";
+            this->label11->TextAlign = System::Drawing::ContentAlignment::TopRight;
+            // 
+            // label12
+            // 
+            this->label12->AutoSize = true;
+            this->label12->Location = System::Drawing::Point(142, 432);
+            this->label12->Name = L"label12";
+            this->label12->Size = System::Drawing::Size(35, 13);
+            this->label12->TabIndex = 40;
+            this->label12->Text = L"label4";
+            this->label12->TextAlign = System::Drawing::ContentAlignment::TopRight;
+            // 
+            // label13
+            // 
+            this->label13->AutoSize = true;
+            this->label13->Location = System::Drawing::Point(142, 458);
+            this->label13->Name = L"label13";
+            this->label13->Size = System::Drawing::Size(35, 13);
+            this->label13->TabIndex = 41;
+            this->label13->Text = L"label5";
+            this->label13->TextAlign = System::Drawing::ContentAlignment::TopRight;
+            // 
+            // label14
+            // 
+            this->label14->AutoSize = true;
+            this->label14->Location = System::Drawing::Point(142, 484);
+            this->label14->Name = L"label14";
+            this->label14->Size = System::Drawing::Size(35, 13);
+            this->label14->TabIndex = 42;
+            this->label14->Text = L"label6";
+            this->label14->TextAlign = System::Drawing::ContentAlignment::TopRight;
+            // 
+            // label15
+            // 
+            this->label15->AutoSize = true;
+            this->label15->Location = System::Drawing::Point(142, 510);
+            this->label15->Name = L"label15";
+            this->label15->Size = System::Drawing::Size(41, 13);
+            this->label15->TabIndex = 43;
+            this->label15->Text = L"label15";
+            this->label15->TextAlign = System::Drawing::ContentAlignment::TopRight;
             // 
             // FRM_Principal
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-            this->ClientSize = System::Drawing::Size(1278, 663);
-            this->Controls->Add(this->lbl_TypeAdresse);
-            this->Controls->Add(this->txt_TypeAdresse);
-            this->Controls->Add(this->lbl_CodePostal);
+            this->ClientSize = System::Drawing::Size(1852, 896);
+            this->Controls->Add(this->label15);
+            this->Controls->Add(this->label14);
+            this->Controls->Add(this->label13);
+            this->Controls->Add(this->label12);
+            this->Controls->Add(this->label11);
+            this->Controls->Add(this->label10);
+            this->Controls->Add(this->label9);
             this->Controls->Add(this->txt_CodePostal);
-            this->Controls->Add(this->txt_Ville);
+            this->Controls->Add(this->textBox15);
+            this->Controls->Add(this->txt_idPersonne);
+            this->Controls->Add(this->lbl_TypeAdresse);
+            this->Controls->Add(this->textBox14);
+            this->Controls->Add(this->lbl_CodePostal);
+            this->Controls->Add(this->txt_nom);
             this->Controls->Add(this->lbl_Ville);
-            this->Controls->Add(this->txt_Adresse);
+            this->Controls->Add(this->textBox13);
             this->Controls->Add(this->lbl_Adresse);
+            this->Controls->Add(this->txt_prenom);
             this->Controls->Add(this->groupTable);
+            this->Controls->Add(this->textBox12);
             this->Controls->Add(this->lbl_DateNaissance);
             this->Controls->Add(this->txt_DateNaissance);
             this->Controls->Add(this->btn_refresh);
+            this->Controls->Add(this->textBox11);
             this->Controls->Add(this->dataGridView1);
+            this->Controls->Add(this->txt_Adresse);
             this->Controls->Add(this->btn_enregistrer);
+            this->Controls->Add(this->textBox10);
             this->Controls->Add(this->btn_sup);
+            this->Controls->Add(this->txt_Ville);
             this->Controls->Add(this->btn_modifier);
+            this->Controls->Add(this->textBox9);
             this->Controls->Add(this->btn_nouveau);
+            this->Controls->Add(this->txt_TypeAdresse);
             this->Controls->Add(this->btn_end);
             this->Controls->Add(this->btn_next);
             this->Controls->Add(this->btn_previous);
             this->Controls->Add(this->btn_first);
             this->Controls->Add(this->txt_message);
             this->Controls->Add(this->lbl_message);
-            this->Controls->Add(this->txt_prenom);
             this->Controls->Add(this->lbl_prenom);
-            this->Controls->Add(this->txt_nom);
             this->Controls->Add(this->lbl_nom);
-            this->Controls->Add(this->txt_idPersonne);
             this->Controls->Add(this->lbl_id);
             this->Name = L"FRM_Principal";
             this->Text = L"D";
@@ -503,7 +688,7 @@ namespace A2POOCorb6
         this->dsStock = gcnew Data::DataSet();
         this->processusClients = gcnew NS_Svc::CL_svc_gestionClient();
         this->processusPersonnel = gcnew NS_Svc::CL_svc_gestionPersonnel();
-        this->processusCommande = gcnew NS_Svc::CL_Svc_commande();
+        this->processusCommande = gcnew NS_Svc::Svc_commande();
         this->processusStock = gcnew NS_Svc::CL_svc_gestionStock();
         this->loadData(this->index);
         this->Actualiser();
@@ -544,6 +729,15 @@ namespace A2POOCorb6
             this->txt_DateNaissance->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[3]);
             this->txt_Adresse->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[4]);
             this->txt_Ville->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[5]);
+            this->txt_CodePostal->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[6]);
+            this->txt_TypeAdresse->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[7]);
+            this->textBox9->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[8]);
+            this->textBox10->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[9]);
+            this->textBox11->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[10]);
+            this->textBox12->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[11]);
+            this->textBox13->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[12]);
+            this->textBox14->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[13]);
+            this->textBox15->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[14]);
         }
         else if (this->radioButtonStock->Checked) {
             this->dsStock->Clear();
@@ -603,19 +797,26 @@ namespace A2POOCorb6
             this->index = 0;
             this->dtCommande = this->processusCommande->TableCommande();
             BindingSource^ bs = gcnew BindingSource();
-            bs->DataSource = this->dtPersonnel;
+            bs->DataSource = this->dtCommande;
             dataGridView1->DataSource = bs;
             loadData(this->index);
-            this->lbl_id->Text = "ID Personnel :";
-            this->lbl_nom->Text = "Prenom :";
-            this->lbl_prenom->Text = "Adresse :";
-            this->lbl_DateNaissance->Text = "Date d'embauche :";
-            this->lbl_Adresse->Text = "Nom :";
-            this->lbl_Ville->Text = "Identificateur du superviseur :";
-            this->lbl_CodePostal->Text = "";
-            this->txt_CodePostal->ReadOnly = true;
-            this->lbl_TypeAdresse->Text = "";
-            this->txt_TypeAdresse->ReadOnly = true;
+            this->lbl_id->Text = "ID Facture :";
+            this->lbl_nom->Text = "Nom du client :";
+            this->lbl_prenom->Text = "Reference de la commande :";
+            this->lbl_DateNaissance->Text = "Montant de la TVA :";
+            this->lbl_Adresse->Text = "Date de livraison :";
+            this->lbl_Ville->Text = "remise :";
+            this->lbl_CodePostal->Text = "Date limite du solde :";
+            this->txt_CodePostal->ReadOnly = false;
+            this->lbl_TypeAdresse->Text = "Montant total HT";
+            this->txt_TypeAdresse->ReadOnly = false;
+            this->label9->Text = "Montant total TTC :";
+            this->label10->Text = "Quantité d'article :";
+            this->label11->Text = "prix à l'unité :";
+            this->label12->Text = "ID date :";
+            this->label13->Text = "Date du paiement :";
+            this->label14->Text = "Montant réglé :";
+            this->label15->Text = "Moyen de paiement :";
             this->txt_message->Text = "update réussi commande";
         }
         else if (this->radioButtonStock->Checked) {
@@ -855,6 +1056,6 @@ namespace A2POOCorb6
     private: System::Void btn_refresh_Click(System::Object^ sender, System::EventArgs^ e) {
         Actualiser();
     }
-    };
+};
 
 }

@@ -18,8 +18,8 @@ namespace NS_Svc {
 		Svc_commande(void);
 		DataTable^ TableCommande();
 		DataSet^ listeCommande(String^);
-		int ajouter(String^, String^, String^, String^, String^, int, int, int, int);
-		void modifier(int, String^, String^, String^, String^, String^, int, int, int);
+		int ajouter(String^, String^, String^, String^, String^, String^, String^, String^, int);
+		void modifier(int, String^, String^, String^, String^, String^, String^, String^, String^);
 		void supprimer(int);
 	};
 }
