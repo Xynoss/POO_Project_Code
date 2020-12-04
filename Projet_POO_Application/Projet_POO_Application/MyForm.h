@@ -125,6 +125,7 @@ namespace A2POOCorb6
 
 
 
+
     private:
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -192,12 +193,13 @@ namespace A2POOCorb6
             // lbl_id
             // 
             this->lbl_id->AutoSize = true;
-            this->lbl_id->Location = System::Drawing::Point(130, 150);
+            this->lbl_id->Location = System::Drawing::Point(43, 146);
             this->lbl_id->Name = L"lbl_id";
+            this->lbl_id->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->lbl_id->Size = System::Drawing::Size(47, 13);
             this->lbl_id->TabIndex = 0;
             this->lbl_id->Text = L"ID Client";
-            this->lbl_id->TextAlign = System::Drawing::ContentAlignment::TopRight;
+            this->lbl_id->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
             // 
             // txt_idPersonne
             // 
@@ -210,12 +212,13 @@ namespace A2POOCorb6
             // lbl_nom
             // 
             this->lbl_nom->AutoSize = true;
-            this->lbl_nom->Location = System::Drawing::Point(148, 176);
+            this->lbl_nom->Location = System::Drawing::Point(61, 169);
             this->lbl_nom->Name = L"lbl_nom";
+            this->lbl_nom->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->lbl_nom->Size = System::Drawing::Size(29, 13);
             this->lbl_nom->TabIndex = 2;
             this->lbl_nom->Text = L"Nom";
-            this->lbl_nom->TextAlign = System::Drawing::ContentAlignment::TopRight;
+            this->lbl_nom->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
             // 
             // txt_nom
             // 
@@ -227,12 +230,13 @@ namespace A2POOCorb6
             // lbl_prenom
             // 
             this->lbl_prenom->AutoSize = true;
-            this->lbl_prenom->Location = System::Drawing::Point(134, 198);
+            this->lbl_prenom->Location = System::Drawing::Point(47, 198);
             this->lbl_prenom->Name = L"lbl_prenom";
+            this->lbl_prenom->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->lbl_prenom->Size = System::Drawing::Size(43, 13);
             this->lbl_prenom->TabIndex = 4;
             this->lbl_prenom->Text = L"Prénom";
-            this->lbl_prenom->TextAlign = System::Drawing::ContentAlignment::TopRight;
+            this->lbl_prenom->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
             // 
             // txt_prenom
             // 
@@ -369,12 +373,13 @@ namespace A2POOCorb6
             // lbl_DateNaissance
             // 
             this->lbl_DateNaissance->AutoSize = true;
-            this->lbl_DateNaissance->Location = System::Drawing::Point(97, 224);
+            this->lbl_DateNaissance->Location = System::Drawing::Point(10, 224);
             this->lbl_DateNaissance->Name = L"lbl_DateNaissance";
+            this->lbl_DateNaissance->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->lbl_DateNaissance->Size = System::Drawing::Size(80, 13);
             this->lbl_DateNaissance->TabIndex = 20;
             this->lbl_DateNaissance->Text = L"DateNaissance";
-            this->lbl_DateNaissance->TextAlign = System::Drawing::ContentAlignment::TopRight;
+            this->lbl_DateNaissance->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
             // 
             // groupTable
             // 
@@ -384,7 +389,7 @@ namespace A2POOCorb6
             this->groupTable->Controls->Add(this->radioButtonClient);
             this->groupTable->Location = System::Drawing::Point(12, 12);
             this->groupTable->Name = L"groupTable";
-            this->groupTable->Size = System::Drawing::Size(436, 123);
+            this->groupTable->Size = System::Drawing::Size(436, 112);
             this->groupTable->TabIndex = 21;
             this->groupTable->TabStop = false;
             this->groupTable->Text = L"Tables";
@@ -434,12 +439,13 @@ namespace A2POOCorb6
             // lbl_CodePostal
             // 
             this->lbl_CodePostal->AutoSize = true;
-            this->lbl_CodePostal->Location = System::Drawing::Point(113, 302);
+            this->lbl_CodePostal->Location = System::Drawing::Point(26, 302);
             this->lbl_CodePostal->Name = L"lbl_CodePostal";
+            this->lbl_CodePostal->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->lbl_CodePostal->Size = System::Drawing::Size(64, 13);
             this->lbl_CodePostal->TabIndex = 27;
             this->lbl_CodePostal->Text = L"Code Postal";
-            this->lbl_CodePostal->TextAlign = System::Drawing::ContentAlignment::TopRight;
+            this->lbl_CodePostal->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
             // 
             // txt_CodePostal
             // 
@@ -458,12 +464,13 @@ namespace A2POOCorb6
             // lbl_Ville
             // 
             this->lbl_Ville->AutoSize = true;
-            this->lbl_Ville->Location = System::Drawing::Point(151, 276);
+            this->lbl_Ville->Location = System::Drawing::Point(64, 276);
             this->lbl_Ville->Name = L"lbl_Ville";
+            this->lbl_Ville->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->lbl_Ville->Size = System::Drawing::Size(26, 13);
             this->lbl_Ville->TabIndex = 24;
             this->lbl_Ville->Text = L"Ville";
-            this->lbl_Ville->TextAlign = System::Drawing::ContentAlignment::TopRight;
+            this->lbl_Ville->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
             // 
             // txt_Adresse
             // 
@@ -475,22 +482,24 @@ namespace A2POOCorb6
             // lbl_Adresse
             // 
             this->lbl_Adresse->AutoSize = true;
-            this->lbl_Adresse->Location = System::Drawing::Point(132, 250);
+            this->lbl_Adresse->Location = System::Drawing::Point(45, 250);
             this->lbl_Adresse->Name = L"lbl_Adresse";
+            this->lbl_Adresse->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->lbl_Adresse->Size = System::Drawing::Size(45, 13);
             this->lbl_Adresse->TabIndex = 22;
             this->lbl_Adresse->Text = L"Adresse";
-            this->lbl_Adresse->TextAlign = System::Drawing::ContentAlignment::TopRight;
+            this->lbl_Adresse->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
             // 
             // lbl_TypeAdresse
             // 
             this->lbl_TypeAdresse->AutoSize = true;
-            this->lbl_TypeAdresse->Location = System::Drawing::Point(97, 328);
+            this->lbl_TypeAdresse->Location = System::Drawing::Point(10, 328);
             this->lbl_TypeAdresse->Name = L"lbl_TypeAdresse";
+            this->lbl_TypeAdresse->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->lbl_TypeAdresse->Size = System::Drawing::Size(80, 13);
             this->lbl_TypeAdresse->TabIndex = 29;
             this->lbl_TypeAdresse->Text = L"Type d\'Adresse";
-            this->lbl_TypeAdresse->TextAlign = System::Drawing::ContentAlignment::TopRight;
+            this->lbl_TypeAdresse->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
             // 
             // txt_TypeAdresse
             // 
@@ -551,72 +560,79 @@ namespace A2POOCorb6
             // label9
             // 
             this->label9->AutoSize = true;
-            this->label9->Location = System::Drawing::Point(142, 354);
+            this->label9->Location = System::Drawing::Point(55, 354);
             this->label9->Name = L"label9";
+            this->label9->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->label9->Size = System::Drawing::Size(35, 13);
             this->label9->TabIndex = 37;
             this->label9->Text = L"label1";
-            this->label9->TextAlign = System::Drawing::ContentAlignment::TopRight;
+            this->label9->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
             // 
             // label10
             // 
             this->label10->AutoSize = true;
-            this->label10->Location = System::Drawing::Point(142, 380);
+            this->label10->Location = System::Drawing::Point(55, 380);
             this->label10->Name = L"label10";
+            this->label10->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->label10->Size = System::Drawing::Size(35, 13);
             this->label10->TabIndex = 38;
             this->label10->Text = L"label2";
-            this->label10->TextAlign = System::Drawing::ContentAlignment::TopRight;
+            this->label10->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
             // 
             // label11
             // 
             this->label11->AutoSize = true;
-            this->label11->Location = System::Drawing::Point(142, 406);
+            this->label11->Location = System::Drawing::Point(55, 406);
             this->label11->Name = L"label11";
+            this->label11->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->label11->Size = System::Drawing::Size(35, 13);
             this->label11->TabIndex = 39;
             this->label11->Text = L"label3";
-            this->label11->TextAlign = System::Drawing::ContentAlignment::TopRight;
+            this->label11->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
             // 
             // label12
             // 
             this->label12->AutoSize = true;
-            this->label12->Location = System::Drawing::Point(142, 432);
+            this->label12->Location = System::Drawing::Point(55, 432);
             this->label12->Name = L"label12";
+            this->label12->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->label12->Size = System::Drawing::Size(35, 13);
             this->label12->TabIndex = 40;
             this->label12->Text = L"label4";
-            this->label12->TextAlign = System::Drawing::ContentAlignment::TopRight;
+            this->label12->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
             // 
             // label13
             // 
             this->label13->AutoSize = true;
-            this->label13->Location = System::Drawing::Point(142, 458);
+            this->label13->Location = System::Drawing::Point(55, 458);
             this->label13->Name = L"label13";
+            this->label13->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->label13->Size = System::Drawing::Size(35, 13);
             this->label13->TabIndex = 41;
             this->label13->Text = L"label5";
-            this->label13->TextAlign = System::Drawing::ContentAlignment::TopRight;
+            this->label13->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
             // 
             // label14
             // 
             this->label14->AutoSize = true;
-            this->label14->Location = System::Drawing::Point(142, 484);
+            this->label14->Location = System::Drawing::Point(55, 484);
             this->label14->Name = L"label14";
+            this->label14->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->label14->Size = System::Drawing::Size(35, 13);
             this->label14->TabIndex = 42;
             this->label14->Text = L"label6";
-            this->label14->TextAlign = System::Drawing::ContentAlignment::TopRight;
+            this->label14->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
             // 
             // label15
             // 
             this->label15->AutoSize = true;
-            this->label15->Location = System::Drawing::Point(142, 510);
+            this->label15->Location = System::Drawing::Point(49, 510);
             this->label15->Name = L"label15";
+            this->label15->RightToLeft = System::Windows::Forms::RightToLeft::No;
             this->label15->Size = System::Drawing::Size(41, 13);
             this->label15->TabIndex = 43;
             this->label15->Text = L"label15";
-            this->label15->TextAlign = System::Drawing::ContentAlignment::TopRight;
+            this->label15->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
             // 
             // FRM_Principal
             // 
