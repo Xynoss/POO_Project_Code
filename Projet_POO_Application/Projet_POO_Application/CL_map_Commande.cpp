@@ -1,4 +1,4 @@
-#include "Commande.h"
+#include "CL_map_Commande.h"
 
 
 namespace NS_Composants
@@ -17,12 +17,12 @@ namespace NS_Composants
 
 	String^ CL_map_Commande::SELECT(void)
 	{
-		return "SELECT ID_Facture, RefCommande, ID_CLient, DateLivraison, DateSolde, MontantTVA, Remise" + "FROM facture;";
+		return "SELECT `Commande`.`ID_Facture`,`commande`.`QuantiteArticle`,`stock`.`PrixUnitaire`, `Facture`.* , `Date`.`ID_Date`, `Date`.`DatePaiment`,`Date`.`MontantPayment`,`Date`.`MoyenPayment`FROM `Commande` , `Facture`, `Date`, `stock` WHERE `Commande`.`ID_Facture` = `Facture`.`ID_Facture` AND `Facture`.`ID_Facture` = `Date`.`ID_Facture` ORDER BY `Commande`.`ID_Facture` ASC;";
 	}
 
 	String^ CL_map_Commande::INSERT(void)
 	{
-		return "INSERT INTO facture " + "(RefCommande,DateLivraison,DateSolde,MontantTVA,Remise,ID_Client) " + "VALUES('" + this->getRefCommande() + "', '" + this->getDateLivraison() + "', '" + this->getDateSolde() + "', '" + this->getMontantTVA() + "', '" + this->getRemise() + "', '" + this->getIDClient() + "');SELECT @@IDENTITY;";
+		return "INSERT INTO facture (RefCommande, DateLivraison, DateSolde, MontantTVA, Remise, ID_Client) " + "VALUES('" + this->getRefCommande() + "', '" + this->getDateLivraison() + "', '" + this->getDateSolde() + "', '" + this->getMontantTVA() + "', '" + this->getRemise() + "', '" + this->getIDClient() + "');SELECT @@IDENTITY;";
 	}
 
 	String^ CL_map_Commande::UPDATE(void)
