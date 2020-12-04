@@ -23,7 +23,7 @@ namespace NS_Composants
 	String^ CL_map_Commande::INSERT(void)
 	{
 		return "INSERT INTO facture (RefCommande, MontantTVA, DateLivraison, DateSolde, Remise, ID_Client, MontantHT, MontantTTC) " + "VALUES('" + this->getRefCommande() + "', '" + this->getMontantTVA() + "', '" + this->getDateLivraison() + "', '" + this->getDateSolde() + "', '" + this->getRemise() + "', '" + this->getIDClient() + "', '"+ this->getMontantHT() +"','"+ this->getMontantTTC() +"');SELECT @@IDENTITY;"+
-			"INSERT INTO `commande` (`ID_Article`, `ID_Facture`, `QuantiteArticle`) VALUES ('" + this->getIDClient() + "', '" + this->getIDFacture() + "', '" + this->getQuantitéArticle() + "');";
+			"INSERT INTO `commande` (`ID_Article`, `ID_Facture`, `QuantiteArticle`) VALUES ('" + this->getIDClient()/*Pourquoi IDClient ?*/ + "', '" + this->getIDFacture() + "', '" + this->getQuantitéArticle() + "');";
 	}
 
 	String^ CL_map_Commande::INSERTDATE(void) {
@@ -33,7 +33,7 @@ namespace NS_Composants
 	String^ CL_map_Commande::UPDATE(void)
 	{
 		return "UPDATE facture SET RefCommande = '"+this->getRefCommande()+"', MontantTVA = '"+ this->getMontantTVA()+"', DateLivraison = '"+ this->getDateLivraison()+"', DateSolde = '"+this->getDateSolde()+"', Remise = '"+this->getRemise()+"', ID_Client = '"+ this->getIDClient() +"', MontantHT = '"+ this->getMontantHT() +"', MontantTTC = '"+ this->getMontantTTC() + "'WHERE(Reference = " + this->getIDFacture() + "); "+
-			"UPDATE Commande SET ID_Article = '" + this->getIDClient() + "',  QuantiteArticle = '" + this->getQuantitéArticle() + "' WHERE(Reference = " + this->getIDFacture() + ");"+
+			"UPDATE Commande SET ID_Article = '" + this->getIDClient() /*Pourquoi IDClient ?*/ + "',  QuantiteArticle = '" + this->getQuantitéArticle() + "' WHERE(Reference = " + this->getIDFacture() + ");"+
 			"UPDATE `date` SET `DatePaiment` = '"+this->getDatePayement()+"',`MontantPayment`='"+this->getMontantPayment()+"',`MoyenPayment`='"+this->getMoyenPayement()+"';";
 	}
 
@@ -55,7 +55,11 @@ namespace NS_Composants
 	{
 		if (Reference != "")
 		{
-			this->RefCommande = Reference;
+			this->RefCommande = Reference; 
+			//Va falloir s'occuper de celui là : 
+			//Il faut ajouter getPrénom, getNom, getDateCommande, getVille 
+			//et peut être un random. 
+			//Après, c'est de l'addition à partir de ce que l'on recherche
 		}
 		
 	}
@@ -116,14 +120,14 @@ namespace NS_Composants
 	void CL_map_Commande::setMontantHT(String^ mht)
 	{
 		if (mht != "0") {
-			this->MontantHT = mht;
+			this->MontantHT = mht; //ici faut qu'on fasse getPrixUnitaire()*getQuantité()
 		}
 	}
 
 	void CL_map_Commande::setMontantTTC(String^ mttc)
 	{
 		if (mttc != "0") {
-			this->MontantTTC = mttc;
+			this->MontantTTC = mttc; //ici faut qu'on fasse getMontantHT()*getMontantTVA()
 		}
 	}
 

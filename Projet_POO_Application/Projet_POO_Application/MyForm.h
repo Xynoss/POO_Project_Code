@@ -871,7 +871,7 @@ namespace A2POOCorb6
             this->label9->Text = "Montant total TTC :";
             this->label10->Text = "Quantité d'article :";
             this->label11->Text = "prix à l'unité :";
-            this->label12->Text = "ID date :";
+            this->label12->Text = "ID date :"; //À retirer vu qu'on sent sert pas ?
             this->label13->Text = "Date du paiement :";
             this->label14->Text = "Montant réglé :";
             this->label15->Text = "Moyen de paiement :";
