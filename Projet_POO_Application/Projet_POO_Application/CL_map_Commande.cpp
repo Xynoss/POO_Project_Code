@@ -117,16 +117,16 @@ namespace NS_Composants
 		}
 	}
 
-	void CL_map_Commande::setMontantHT(String^ Quantité, String^Prixuni)
+	void CL_map_Commande::setMontantHT(double Quantité, double Prixuni)
 	{
-		if (mht != "0") {
+		if (Quantité != 0 && Prixuni != 0) {
 			this->MontantHT = Quantité * Prixuni; //ici faut qu'on fasse PrixUnitaire*Quantité
 		}
 	}
 
-	void CL_map_Commande::setMontantTTC(String^ MHT, String^ MTVA)
+	void CL_map_Commande::setMontantTTC(double MHT, double MTVA)
 	{
-		if (mttc != "0") {
+		if (MHT != 0 && MTVA != 0) {
 			this->MontantTTC = MHT * MTVA; //ici faut qu'on fasse MontantHT*MontantTVA
 		}
 	}
@@ -209,11 +209,11 @@ namespace NS_Composants
 
 	String^ CL_map_Commande::getMontantHT(void)
 	{
-		return this->MontantHT;
+		return Convert::ToString(this->MontantHT);
 	}
 	String^ CL_map_Commande::getMontantTTC(void)
 	{
-		return this->MontantTTC;
+		return Convert::ToString(this->MontantTTC);
 	}
 	String^ CL_map_Commande::getMontantPayment(void)
 	{

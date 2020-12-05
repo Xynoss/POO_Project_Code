@@ -18,8 +18,8 @@ namespace NS_Composants
 		String^ Remise;
 		String^ QuantitéArticle;
 		String^ MontantTVA;
-		String^ MontantHT;
-		String^ MontantTTC;
+		double MontantHT;
+		double MontantTTC;
 		String^ MontantPayement;
 	public:
 		CL_map_Commande(void);
@@ -37,8 +37,8 @@ namespace NS_Composants
 		void setDateSolde(String^);
 		void setRemise(String^);
 		void setMontantTVA(String^);
-		void setMontantHT(String^, String^);
-		void setMontantTTC(String^, String^);
+		void setMontantHT(double, double);
+		void setMontantTTC(double, double);
 		void setIDClient(int);
 		void setQuantitéArticle(String^);
 		void setMontantPayment(String^);
