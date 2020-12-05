@@ -117,7 +117,7 @@ namespace NS_Composants
 		MontantHT = this->getMontantHT();
 		if (MontantHT > 0)
 		{
-			this->MontantTVA = Convert::ToDouble(MontantHT)*0.2;
+			this->MontantTVA = MontantHT*0.2;
 		}
 	}
 
@@ -132,8 +132,6 @@ namespace NS_Composants
 
 	void CL_map_Commande::setMontantTTC(double MHT, double MTVA)
 	{
-		MHT = this->getMontantHT();
-		MTVA = this->getMontantTVA();
 		if (MHT > 0 && MTVA > 0) {
 			this->MontantTTC = MHT + MTVA - Convert::ToDouble(this->Remise); //ici faut qu'on fasse MontantHT + MontantTVA pour avoir le prix TTC 
 		}

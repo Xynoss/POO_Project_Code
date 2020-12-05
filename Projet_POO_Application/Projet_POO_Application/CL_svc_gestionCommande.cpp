@@ -35,7 +35,7 @@ namespace NS_Svc
 		this->Commande->setQuantitéArticle(quantité);
 		this->Commande->setMontantHT(Convert::ToDouble(this->Commande->getQuantitéArticle()), Convert::ToDouble(PU));
 		this->Commande->setMontantTVA(this->Commande->getMontantHT());
-		this->Commande->setMontantTTC(Convert::ToDouble(this->Commande->getMontantHT()), Convert::ToDouble(MontantTVA));
+		this->Commande->setMontantTTC(this->Commande->getMontantHT(), this->Commande->getMontantTVA());
 		this->Commande->setDatePayement(DatePaiment);
 		this->Commande->setMoyenPayement(MoyenPayment);
 		this->Commande->setMontantPayment(MontantPayment);
