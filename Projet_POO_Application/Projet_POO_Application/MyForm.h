@@ -1269,7 +1269,7 @@ private: System::Windows::Forms::TextBox^ textBox21;
             if (this->mode == "nouv")
             {
                 int Id;
-                Id = this->processusCommande->ajouter(this->txt_nom->Text/*Reference*/, this->txt_Adresse->Text/*Date de livraison*/, this->textBox13->Text/*Date Paiement*/, this->textBox15->Text/*Moyen de paiement*/, this->txt_CodePostal->Text/*Date de solde*/, this->textBox14->Text/*montant paiement*/, this->txt_Ville->Text/*Remise*/,this->txt_DateNaissance->Text/*Montant TVA*/,Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, this->textBox10->Text /*quantité de l'article*/, this->textBox11->Text /*PrixUnitaire*/, this->textBox19->Text/*PrenomClient*/, this->textBox20->Text/*NomClient*/,this->textBox21->Text/*CurentAnnee*/ ,this->textBox17->Text/*VilleClient*/);
+                Id = this->processusCommande->ajouter(this->txt_nom->Text/*Reference*/, this->txt_Adresse->Text/*Date de livraison*/, this->textBox13->Text/*Date Paiement*/, this->textBox15->Text/*Moyen de paiement*/, this->txt_CodePostal->Text/*Date de solde*/, this->textBox14->Text/*montant paiement*/, this->txt_Ville->Text/*Remise*/,Convert::ToDouble(this->txt_DateNaissance->Text)/*Montant TVA*/,Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, this->textBox10->Text /*quantité de l'article*/, this->textBox11->Text /*PrixUnitaire*/, this->textBox19->Text/*PrenomClient*/, this->textBox20->Text/*NomClient*/,this->textBox21->Text/*CurentAnnee*/ ,this->textBox17->Text/*VilleClient*/);
                 this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
                 this->mode = "RIEN";
             }

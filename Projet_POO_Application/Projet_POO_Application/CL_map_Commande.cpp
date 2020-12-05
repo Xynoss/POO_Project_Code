@@ -21,13 +21,13 @@ namespace NS_Composants
 
 	String^ CL_map_Commande::SELECT(void)
 	{
-		return "SELECT `Facture`.`ID_Facture`, `Facture`.`RefCommande`, `client`.`ID_Client`,  `Facture`.`MontantTVA`, `Facture`.`DateLivraison`, `Facture`.`Remise`, `Facture`.`DateSolde`, `Facture`.`MontantHT`,  `Facture`.`MontantTTC`, `commande`.`QuantiteArticle`, `commande`.`PrixUnitaire`,    `Date`.`ID_Date`,    `Date`.`DatePaiment`,    `Date`.`MontantPayment`,    `Date`.`MoyenPayment`, `Client`.`NaissanceClient`,    `region`.`Ville`,    `stock`.`ID_Article`FROM    `Commande`,    `Facture`,    `Date`,    `stock`,    `client`,    `region`,    `appartient` WHERE    `Commande`.`ID_Facture` = `Facture`.`ID_Facture` AND `Facture`.`ID_Facture` = `Date`.`ID_Facture` AND `stock`.`ID_Article` = `commande`.`ID_Article` AND `Facture`.`ID_Client` = `client`.`ID_Client` AND `region`.`ID_region` = `appartient`.`ID_region` AND `appartient`.`ID_Client` = `client`.`ID_Client` ORDER BY    `Commande`.`ID_Facture` ASC;";
+		return "SELECT `Facture`.`ID_Facture`, `Facture`.`RefCommande`, `client`.`ID_Client`,  `Facture`.`MontantTVA`, `Facture`.`DateLivraison`, `Facture`.`Remise`, `Facture`.`DateSolde`, `Facture`.`MontantHT`,  `Facture`.`MontantTTC`, `commande`.`QuantiteArticle`, `stock`.`PrixUnitaire`,    `Date`.`ID_Date`,    `Date`.`DatePaiment`,    `Date`.`MontantPayment`,    `Date`.`MoyenPayment`, `Client`.`NaissanceClient`,    `region`.`Ville`,    `stock`.`ID_Article`FROM    `Commande`,    `Facture`,    `Date`,    `stock`,    `client`,    `region`,    `appartient` WHERE    `Commande`.`ID_Facture` = `Facture`.`ID_Facture` AND `Facture`.`ID_Facture` = `Date`.`ID_Facture` AND `stock`.`ID_Article` = `commande`.`ID_Article` AND `Facture`.`ID_Client` = `client`.`ID_Client` AND `region`.`ID_region` = `appartient`.`ID_region` AND `appartient`.`ID_Client` = `client`.`ID_Client` ORDER BY    `Commande`.`ID_Facture` ASC;";
 	}
 
 	String^ CL_map_Commande::INSERT(void)
 	{
 		return "INSERT INTO facture (RefCommande, MontantTVA, DateLivraison, DateSolde, Remise, ID_Client, MontantHT, MontantTTC) " + "VALUES('" + this->getRefCommande() + "', '" + this->getMontantTVA() + "', '" + this->getDateLivraison() + "', '" + this->getDateSolde() + "', '" + this->getRemise() + "', '" + this->getIDClient() + "', '"+ this->getMontantHT() +"','"+ this->getMontantTTC() +"');SELECT @@IDENTITY;"+
-			"INSERT INTO `commande` (`ID_Article`, `ID_Facture`, `QuantiteArticle`, `PrixUnitaire`) VALUES ('" + this->getIDArticle() + "', '" + this->getIDFacture() + "', '" + this->getQuantitéArticle() + "'', '" + this->getPrixUnitaire() + "');";
+			"INSERT INTO `commande` (`ID_Article`, `ID_Facture`, `QuantiteArticle`, `PrixUnitaire`) VALUES ('" + this->getIDArticle() + "', '" + this->getIDFacture() + "', '" + this->getQuantitéArticle() + "', '" + this->getPrixUnitaire() + "');";
 		//INSERT INTO facture(RefCommande, MontantTVA, DateLivraison, DateSolde, Remise, ID_Client, MontantHT, MontantTTC) VALUES('MATH2020SAI2', '2.8', '04/12/2020', '04/12/2020', '5', (SELECT ID_Client FROM client WHERE client.NomClient =  AND client.PrenomClient = ), '14.6', '16.8')
 	}
 
@@ -123,6 +123,8 @@ namespace NS_Composants
 
 	void CL_map_Commande::setMontantHT(double QA, double PU)
 	{
+		QA = Convert::ToDouble(this->getQuantitéArticle());
+		PU = Convert::ToDouble(this->getPrixUnitaire());
 		if (QA > 0 && PU > 0) {
 			this->MontantHT = QA * PU; //ici faut qu'on fasse PrixUnitaire*Quantité
 		}
@@ -130,6 +132,8 @@ namespace NS_Composants
 
 	void CL_map_Commande::setMontantTTC(double MHT, double MTVA)
 	{
+		MHT = this->getMontantHT();
+		MTVA = this->getMontantTVA();
 		if (MHT > 0 && MTVA > 0) {
 			this->MontantTTC = MHT + MTVA - Convert::ToDouble(this->Remise); //ici faut qu'on fasse MontantHT + MontantTVA pour avoir le prix TTC 
 		}

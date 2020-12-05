@@ -25,7 +25,7 @@ namespace NS_Svc
 		return this->DT;
 	}
 
-	int Svc_commande::ajouter(String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, String^ MontantTVA, int Client, String^ quantité, String^ PU,String^ PrenomClient,String^ NomClient,String^ CurentAnnee,String^ VilleClient)
+	int Svc_commande::ajouter(String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, double MontantTVA, int Client, String^ quantité, String^ PU,String^ PrenomClient,String^ NomClient,String^ CurentAnnee,String^ VilleClient)
 	{
 		int ID;
 		this->Commande->setReference(RefCommande, PrenomClient, NomClient, CurentAnnee, VilleClient);
