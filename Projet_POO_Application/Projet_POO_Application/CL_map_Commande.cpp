@@ -12,12 +12,12 @@ namespace NS_Composants
 		this->MoyenPayement = "RIEN";
 		this->DateSolde = "RIEN";
 		this->Remise = "0";
-		this->MontantTVA = "0";
+		this->MontantTVA = 0;
 	}
 
 	String^ CL_map_Commande::SELECT(void)
 	{
-		return "SELECT `Facture`.`ID_Facture`,`Facture`.`RefCommande`, `client`.`NomClient`, `Facture`.`MontantTVA`, `Facture`.`DateLivraison`, `Facture`.`Remise`, `Facture`.`DateSolde`, `Facture`.`MontantHT`, `Facture`.`MontantTTC`, `commande`.`QuantiteArticle`, `stock`.`PrixUnitaire`, `Date`.`ID_Date`, `Date`.`DatePaiment`, `Date`.`MontantPayment`, `Date`.`MoyenPayment` FROM `Commande`, `Facture`, `Date`, `stock`, `client` WHERE `Commande`.`ID_Facture` = `Facture`.`ID_Facture` AND `Facture`.`ID_Facture` = `Date`.`ID_Facture` AND `stock`.`ID_Article` = `commande`.`ID_Article` AND `Facture`.`ID_Client` = `client`.`ID_Client` ORDER BY `Commande`.`ID_Facture` ASC;";
+		return "SELECT `Facture`.`ID_Facture`, `Facture`.`RefCommande`, `client`.`ID_Client`,  `Facture`.`MontantTVA`, `Facture`.`DateLivraison`, `Facture`.`Remise`, `Facture`.`DateSolde`, `Facture`.`MontantHT`,  `Facture`.`MontantTTC`,    `commande`.`QuantiteArticle`,    `commande`.`PrixUnitaire`,    `Date`.`ID_Date`,    `Date`.`DatePaiment`,    `Date`.`MontantPayment`,    `Date`.`MoyenPayment`, `Client`.`NaissanceClient`,    `region`.`Ville`,    `stock`.`ID_Article`FROM    `Commande`,    `Facture`,    `Date`,    `stock`,    `client`,    `region`,    `appartient` WHERE    `Commande`.`ID_Facture` = `Facture`.`ID_Facture` AND `Facture`.`ID_Facture` = `Date`.`ID_Facture` AND `stock`.`ID_Article` = `commande`.`ID_Article` AND `Facture`.`ID_Client` = `client`.`ID_Client` AND `region`.`ID_region` = `appartient`.`ID_region` AND `appartient`.`ID_Client` = `client`.`ID_Client` ORDER BY    `Commande`.`ID_Facture` ASC;";
 	}
 
 	String^ CL_map_Commande::INSERT(void)
@@ -33,7 +33,7 @@ namespace NS_Composants
 	String^ CL_map_Commande::UPDATE(void)
 	{
 		return "UPDATE facture SET RefCommande = '"+this->getRefCommande()+"', MontantTVA = '"+ this->getMontantTVA()+"', DateLivraison = '"+ this->getDateLivraison()+"', DateSolde = '"+this->getDateSolde()+"', Remise = '"+this->getRemise()+"', ID_Client = '"+ this->getIDClient() +"', MontantHT = '"+ this->getMontantHT() +"', MontantTTC = '"+ this->getMontantTTC() + "'WHERE(Reference = " + this->getIDFacture() + "); "+
-			"UPDATE Commande SET ID_Article = '" + this->getIDClient() /*Pourquoi IDClient ?*/ + "',  QuantiteArticle = '" + this->getQuantitéArticle() + "' WHERE(Reference = " + this->getIDFacture() + ");"+
+			"UPDATE Commande SET QuantiteArticle = '" + this->getQuantitéArticle() + "' WHERE(Reference = " + this->getIDFacture() + ");"+
 			"UPDATE `date` SET `DatePaiment` = '"+this->getDatePayement()+"',`MontantPayment`='"+this->getMontantPayment()+"',`MoyenPayment`='"+this->getMoyenPayement()+"';";
 	}
 
@@ -51,16 +51,14 @@ namespace NS_Composants
 		}
 	}
 
-	void CL_map_Commande::setReference(String^ Reference/*, String^ Reference2, String^ Reference3, String^ Reference4, String^ Reference5*/)
+	void CL_map_Commande::setReference(String^ Reference, String^ Prenom, String^ Nom, String^ annee, String^ Ville)
 	{
-		if (Reference != "")
-		{
-			this->RefCommande = Reference; 
-			//Va falloir s'occuper de celui là : 
-			//Il faut ajouter getPrénom, getNom, getDateCommande, getVille 
-			//et peut être un random. 
-			//Après, c'est de l'addition à partir de ce que l'on recherche
-		}
+		String^ P = Prenom->Substring(0,2);
+		String^ N = Nom->Substring(0, 2);
+		String^ V = Ville->Substring(0, 3);
+
+		Reference = P + N + annee + V;
+		this->RefCommande = Reference;
 		
 	}
 
@@ -109,25 +107,26 @@ namespace NS_Composants
 		}
 	}
 
-	void CL_map_Commande::setMontantTVA(String^ MontantTVA)
+	void CL_map_Commande::setMontantTVA(double MontantHT)
 	{
-		if (MontantTVA != "0")
+		MontantHT = this->getMontantHT();
+		if (MontantHT > 0)
 		{
-			this->MontantTVA = MontantTVA;
+			this->MontantTVA = Convert::ToDouble(MontantHT)*0.2;
 		}
 	}
 
-	void CL_map_Commande::setMontantHT(double Quantité, double Prixuni)
+	void CL_map_Commande::setMontantHT(double MHT)
 	{
-		if (Quantité != 0 && Prixuni != 0) {
-			this->MontantHT = Quantité * Prixuni; //ici faut qu'on fasse PrixUnitaire*Quantité
+		if (MHT > 0) {
+			this->MontantHT = MHT; //ici faut qu'on fasse PrixUnitaire*Quantité
 		}
 	}
 
 	void CL_map_Commande::setMontantTTC(double MHT, double MTVA)
 	{
-		if (MHT != 0 && MTVA != 0) {
-			this->MontantTTC = MHT * MTVA; //ici faut qu'on fasse MontantHT*MontantTVA
+		if (MHT > 0 && MTVA > 0) {
+			this->MontantTTC = MHT + MTVA; //ici faut qu'on fasse MontantHT + MontantTVA pour avoir le prix TTC 
 		}
 	}
 
@@ -152,6 +151,11 @@ namespace NS_Composants
 			this->MontantPayement = mt;
 		}
 	}
+
+	/*void CL_map_Commande::setPrixUnitaire()
+	{
+		
+	}*/
 
 	int CL_map_Commande::getIDFacture(void)
 	{
@@ -202,21 +206,25 @@ namespace NS_Composants
 	{
 		return this->Remise;
 	}
-	String^ CL_map_Commande::getMontantTVA(void)
+	double CL_map_Commande::getMontantTVA(void)
 	{
 		return this->MontantTVA;
 	}
 
-	String^ CL_map_Commande::getMontantHT(void)
+	double CL_map_Commande::getMontantHT(void)
 	{
-		return Convert::ToString(this->MontantHT);
+		return this->MontantHT;
 	}
-	String^ CL_map_Commande::getMontantTTC(void)
+	double CL_map_Commande::getMontantTTC(void)
 	{
-		return Convert::ToString(this->MontantTTC);
+		return this->MontantTTC;
 	}
 	String^ CL_map_Commande::getMontantPayment(void)
 	{
 		return this->MontantPayement;
 	}
+	/*double CL_map_Commande::getPrixUnitaire(void)
+	{
+		return this->PrixUnitaire;
+	}*/
 }

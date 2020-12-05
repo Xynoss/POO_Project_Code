@@ -119,7 +119,7 @@ namespace A2POOCorb6
 
     private: System::Windows::Forms::Label^ label15;
 
-
+    private: String^ PrixUnitaire = "0";
 
 
 
@@ -265,7 +265,7 @@ namespace A2POOCorb6
             // 
             // btn_first
             // 
-            this->btn_first->Location = System::Drawing::Point(223, 533);
+            this->btn_first->Location = System::Drawing::Point(197, 623);
             this->btn_first->Name = L"btn_first";
             this->btn_first->Size = System::Drawing::Size(46, 23);
             this->btn_first->TabIndex = 8;
@@ -275,7 +275,7 @@ namespace A2POOCorb6
             // 
             // btn_previous
             // 
-            this->btn_previous->Location = System::Drawing::Point(275, 533);
+            this->btn_previous->Location = System::Drawing::Point(249, 623);
             this->btn_previous->Name = L"btn_previous";
             this->btn_previous->Size = System::Drawing::Size(46, 23);
             this->btn_previous->TabIndex = 9;
@@ -285,7 +285,7 @@ namespace A2POOCorb6
             // 
             // btn_next
             // 
-            this->btn_next->Location = System::Drawing::Point(327, 533);
+            this->btn_next->Location = System::Drawing::Point(301, 623);
             this->btn_next->Name = L"btn_next";
             this->btn_next->Size = System::Drawing::Size(46, 23);
             this->btn_next->TabIndex = 10;
@@ -295,7 +295,7 @@ namespace A2POOCorb6
             // 
             // btn_end
             // 
-            this->btn_end->Location = System::Drawing::Point(379, 533);
+            this->btn_end->Location = System::Drawing::Point(353, 623);
             this->btn_end->Name = L"btn_end";
             this->btn_end->Size = System::Drawing::Size(46, 23);
             this->btn_end->TabIndex = 11;
@@ -305,7 +305,7 @@ namespace A2POOCorb6
             // 
             // btn_nouveau
             // 
-            this->btn_nouveau->Location = System::Drawing::Point(25, 604);
+            this->btn_nouveau->Location = System::Drawing::Point(18, 652);
             this->btn_nouveau->Name = L"btn_nouveau";
             this->btn_nouveau->Size = System::Drawing::Size(123, 46);
             this->btn_nouveau->TabIndex = 12;
@@ -315,7 +315,7 @@ namespace A2POOCorb6
             // 
             // btn_modifier
             // 
-            this->btn_modifier->Location = System::Drawing::Point(154, 604);
+            this->btn_modifier->Location = System::Drawing::Point(147, 652);
             this->btn_modifier->Name = L"btn_modifier";
             this->btn_modifier->Size = System::Drawing::Size(123, 46);
             this->btn_modifier->TabIndex = 13;
@@ -325,7 +325,7 @@ namespace A2POOCorb6
             // 
             // btn_sup
             // 
-            this->btn_sup->Location = System::Drawing::Point(283, 604);
+            this->btn_sup->Location = System::Drawing::Point(276, 652);
             this->btn_sup->Name = L"btn_sup";
             this->btn_sup->Size = System::Drawing::Size(123, 46);
             this->btn_sup->TabIndex = 14;
@@ -336,7 +336,7 @@ namespace A2POOCorb6
             // btn_enregistrer
             // 
             this->btn_enregistrer->BackColor = System::Drawing::SystemColors::Control;
-            this->btn_enregistrer->Location = System::Drawing::Point(25, 656);
+            this->btn_enregistrer->Location = System::Drawing::Point(18, 704);
             this->btn_enregistrer->Name = L"btn_enregistrer";
             this->btn_enregistrer->Size = System::Drawing::Size(381, 46);
             this->btn_enregistrer->TabIndex = 15;
@@ -355,7 +355,7 @@ namespace A2POOCorb6
             // 
             // btn_refresh
             // 
-            this->btn_refresh->Location = System::Drawing::Point(25, 708);
+            this->btn_refresh->Location = System::Drawing::Point(18, 756);
             this->btn_refresh->Name = L"btn_refresh";
             this->btn_refresh->Size = System::Drawing::Size(381, 46);
             this->btn_refresh->TabIndex = 17;
@@ -1101,13 +1101,13 @@ namespace A2POOCorb6
             if (this->mode == "nouv")
             {
                 int Id;
-                Id = this->processusCommande->ajouter(this->txt_nom->Text/*Reference*/, this->txt_Adresse->Text/*Date de livraison*/, this->textBox13->Text/*Date Paiement*/, this->textBox15->Text/*Moyen de paiement*/, this->txt_CodePostal->Text/*Date de solde*/, this->textBox14->Text/*montant paiement*/, this->txt_Ville->Text/*Remise*/,this->txt_DateNaissance->Text/*Montant TVA*/,Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, this->textBox10->Text /*quantité de l'article*/);
+                Id = this->processusCommande->ajouter(this->txt_nom->Text/*Reference*/, this->txt_Adresse->Text/*Date de livraison*/, this->textBox13->Text/*Date Paiement*/, this->textBox15->Text/*Moyen de paiement*/, this->txt_CodePostal->Text/*Date de solde*/, this->textBox14->Text/*montant paiement*/, this->txt_Ville->Text/*Remise*/,this->txt_DateNaissance->Text/*Montant TVA*/,Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, this->textBox10->Text /*quantité de l'article*/, PrixUnitaire);
                 this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
                 this->mode = "RIEN";
             }
             else if (this->mode == "maj")
             {
-                this->processusCommande->modifier(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text/*Reference*/, this->txt_Adresse->Text/*Date de livraison*/, this->textBox13->Text/*Date Paiement*/, this->textBox15->Text/*Moyen de paiement*/, this->txt_CodePostal->Text/*Date de solde*/, this->textBox14->Text/*montant paiement*/, this->txt_Ville->Text/*Remise*/, this->txt_DateNaissance->Text/*Montant TVA*/, Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/);
+                this->processusCommande->modifier(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text/*Reference*/, this->txt_Adresse->Text/*Date de livraison*/, this->textBox13->Text/*Date Paiement*/, this->textBox15->Text/*Moyen de paiement*/, this->txt_CodePostal->Text/*Date de solde*/, this->textBox14->Text/*montant paiement*/, this->txt_Ville->Text/*Remise*/, this->txt_DateNaissance->Text/*Montant TVA*/, Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, PrixUnitaire);
                 this->mode = "RIEN";
             }
             else if (this->mode == "sup")

@@ -17,10 +17,11 @@ namespace NS_Composants
 		String^ DateSolde;
 		String^ Remise;
 		String^ QuantitéArticle;
-		String^ MontantTVA;
+		double MontantTVA;
 		double MontantHT;
 		double MontantTTC;
 		String^ MontantPayement;
+		double PrixUnitaire;
 	public:
 		CL_map_Commande(void);
 		String^ SELECT(void);
@@ -28,20 +29,25 @@ namespace NS_Composants
 		String^ INSERTDATE(void);
 		String^ UPDATE(void);
 		String^ DELETE(void);
+
+		//setter
 		void setIDfacture(int);
-		void setReference(String^/*, String^, String^, String^, String^*/);
+		void setReference(String^ Reference, String^ Prenom, String^ Nom, String^ annee, String^ Ville);
 		void setDateCommande(String^);
 		void setDateLivraison(String^);
 		void setDatePayement(String^);
 		void setMoyenPayement(String^);
 		void setDateSolde(String^);
 		void setRemise(String^);
-		void setMontantTVA(String^);
-		void setMontantHT(double, double);
+		void setMontantTVA(double);
+		void setMontantHT(double);
 		void setMontantTTC(double, double);
 		void setIDClient(int);
 		void setQuantitéArticle(String^);
 		void setMontantPayment(String^);
+		//void setPrixUnitaire();
+
+		//getter
 		int getIDFacture(void);
 		int getIDClient(void);
 		int getIDDate(void);
@@ -53,9 +59,10 @@ namespace NS_Composants
 		String^ getDateSolde(void);
 		String^ getQuantitéArticle(void);
 		String^ getRemise(void);
-		String^ getMontantTVA(void);
-		String^ getMontantHT(void);
-		String^ getMontantTTC(void);
+		double getMontantTVA(void);
+		double getMontantHT(void);
+		double getMontantTTC(void);
 		String^ getMontantPayment(void);
+		//double getPrixUnitaire(void);
 	};
 }

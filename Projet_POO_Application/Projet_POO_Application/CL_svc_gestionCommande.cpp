@@ -25,10 +25,10 @@ namespace NS_Svc
 		return this->DT;
 	}
 
-	int Svc_commande::ajouter(String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, String^ MontantTVA, int Client, String^ quantité)
+	int Svc_commande::ajouter(String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, String^ MontantTVA, int Client, String^ quantité, String^ PU)
 	{
 		int ID;
-		this->Commande->setReference(RefCommande);
+		this->Commande->setReference(RefCommande, PrenomClient, NomClient, CurentAnnee, VilleClient);
 		this->Commande->setDateLivraison(DateLivraison);
 		this->Commande->setDateSolde(DateSolde);
 		this->Commande->setRemise(Remise);
@@ -48,7 +48,7 @@ namespace NS_Svc
 	void Svc_commande::modifier(int ID_Facture, String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, String^ MontantTVA, int Client)
 	{
 		this->Commande->setIDfacture(ID_Facture);
-		this->Commande->setReference(RefCommande);
+		this->Commande->setReference(RefCommande, PrenomClient, NomClient, CurentAnnee, VilleClient);
 		this->Commande->setDateLivraison(DateLivraison);
 		this->Commande->setDatePayement(DatePaiment);
 		this->Commande->setMoyenPayement(MoyenPayment);
