@@ -29,7 +29,7 @@ namespace NS_Composants
 		String^ UPDATE(void);
 		String^ DELETE(void);
 		void setIDfacture(int);
-		void setReference(String^);
+		void setReference(String^, String^, String^, String^, String^);
 		void setDateCommande(String^);
 		void setDateLivraison(String^);
 		void setDatePayement(String^);
@@ -37,8 +37,8 @@ namespace NS_Composants
 		void setDateSolde(String^);
 		void setRemise(String^);
 		void setMontantTVA(String^);
-		void setMontantHT(String^);
-		void setMontantTTC(String^);
+		void setMontantHT(String^, String^);
+		void setMontantTTC(String^, String^);
 		void setIDClient(int);
 		void setQuantitéArticle(String^);
 		void setMontantPayment(String^);

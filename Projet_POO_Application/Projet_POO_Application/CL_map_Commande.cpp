@@ -51,7 +51,7 @@ namespace NS_Composants
 		}
 	}
 
-	void CL_map_Commande::setReference(String^ Reference)
+	void CL_map_Commande::setReference(String^ Reference, String^ Reference2, String^ Reference3, String^ Reference4, String^ Reference5)
 	{
 		if (Reference != "")
 		{
@@ -117,17 +117,17 @@ namespace NS_Composants
 		}
 	}
 
-	void CL_map_Commande::setMontantHT(String^ mht)
+	void CL_map_Commande::setMontantHT(String^ Quantité, String^Prixuni)
 	{
 		if (mht != "0") {
-			this->MontantHT = mht; //ici faut qu'on fasse getPrixUnitaire()*getQuantité()
+			this->MontantHT = Quantité * Prixuni; //ici faut qu'on fasse PrixUnitaire*Quantité
 		}
 	}
 
-	void CL_map_Commande::setMontantTTC(String^ mttc)
+	void CL_map_Commande::setMontantTTC(String^ MHT, String^ MTVA)
 	{
 		if (mttc != "0") {
-			this->MontantTTC = mttc; //ici faut qu'on fasse getMontantHT()*getMontantTVA()
+			this->MontantTTC = MHT * MTVA; //ici faut qu'on fasse MontantHT*MontantTVA
 		}
 	}
 
