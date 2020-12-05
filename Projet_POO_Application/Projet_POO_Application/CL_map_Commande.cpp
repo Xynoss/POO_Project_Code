@@ -51,7 +51,7 @@ namespace NS_Composants
 		}
 	}
 
-	void CL_map_Commande::setReference(String^ Reference, String^ Reference2, String^ Reference3, String^ Reference4, String^ Reference5)
+	void CL_map_Commande::setReference(String^ Reference/*, String^ Reference2, String^ Reference3, String^ Reference4, String^ Reference5*/)
 	{
 		if (Reference != "")
 		{

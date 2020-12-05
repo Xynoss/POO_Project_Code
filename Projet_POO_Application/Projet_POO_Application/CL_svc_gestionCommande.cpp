@@ -25,18 +25,19 @@ namespace NS_Svc
 		return this->DT;
 	}
 
-	int Svc_commande::ajouter(String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, String^ MontantTVA, int Client, double quantité, double prixuni)
+	int Svc_commande::ajouter(String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, String^ MontantTVA, int Client, String^ quantité)
 	{
 		int ID;
 		this->Commande->setReference(RefCommande);
 		this->Commande->setDateLivraison(DateLivraison);
 		this->Commande->setDateSolde(DateSolde);
 		this->Commande->setRemise(Remise);
+		this->Commande->setQuantitéArticle(quantité);
 		this->Commande->setMontantTVA(MontantTVA);
 		this->Commande->setDatePayement(DatePaiment);
 		this->Commande->setMoyenPayement(MoyenPayment);
 		this->Commande->setMontantPayment(MontantPayment);
-		this->Commande->setMontantHT(quantité, prixuni);
+		this->Commande->setMontantHT(Convert::ToDouble(this->Commande->getQuantitéArticle()), Convert::ToDouble(this->Article->getPrixUnitaire()));
 		this->Commande->setMontantTTC(Convert::ToDouble(this->Commande->getMontantHT()), Convert::ToDouble(MontantTVA));
 		this->Commande->setIDClient(Client);
 		ID = this->cad->actionRowsID(this->Commande->INSERT());

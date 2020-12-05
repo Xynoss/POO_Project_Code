@@ -29,7 +29,7 @@ namespace NS_Composants
 		String^ UPDATE(void);
 		String^ DELETE(void);
 		void setIDfacture(int);
-		void setReference(String^, String^, String^, String^, String^);
+		void setReference(String^/*, String^, String^, String^, String^*/);
 		void setDateCommande(String^);
 		void setDateLivraison(String^);
 		void setDatePayement(String^);
