@@ -120,6 +120,26 @@ namespace A2POOCorb6
     private: System::Windows::Forms::Label^ label15;
 
     private: String^ PrixUnitaire = "0";
+private: System::Windows::Forms::TextBox^ textBox16;
+
+private: System::Windows::Forms::Label^ label16;
+private: System::Windows::Forms::TextBox^ textBox17;
+private: System::Windows::Forms::TextBox^ textBox18;
+private: System::Windows::Forms::TextBox^ textBox19;
+private: System::Windows::Forms::TextBox^ textBox20;
+
+
+
+
+private: System::Windows::Forms::Label^ label1;
+private: System::Windows::Forms::Label^ label17;
+private: System::Windows::Forms::Label^ label18;
+private: System::Windows::Forms::Label^ label19;
+private: System::Windows::Forms::Label^ label20;
+private: System::Windows::Forms::Label^ label21;
+private: System::Windows::Forms::TextBox^ textBox21;
+
+
 
 
 
@@ -186,6 +206,19 @@ namespace A2POOCorb6
             this->label13 = (gcnew System::Windows::Forms::Label());
             this->label14 = (gcnew System::Windows::Forms::Label());
             this->label15 = (gcnew System::Windows::Forms::Label());
+            this->textBox16 = (gcnew System::Windows::Forms::TextBox());
+            this->label16 = (gcnew System::Windows::Forms::Label());
+            this->textBox17 = (gcnew System::Windows::Forms::TextBox());
+            this->textBox18 = (gcnew System::Windows::Forms::TextBox());
+            this->textBox19 = (gcnew System::Windows::Forms::TextBox());
+            this->textBox20 = (gcnew System::Windows::Forms::TextBox());
+            this->label1 = (gcnew System::Windows::Forms::Label());
+            this->label17 = (gcnew System::Windows::Forms::Label());
+            this->label18 = (gcnew System::Windows::Forms::Label());
+            this->label19 = (gcnew System::Windows::Forms::Label());
+            this->label20 = (gcnew System::Windows::Forms::Label());
+            this->label21 = (gcnew System::Windows::Forms::Label());
+            this->textBox21 = (gcnew System::Windows::Forms::TextBox());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
             this->groupTable->SuspendLayout();
             this->SuspendLayout();
@@ -265,7 +298,7 @@ namespace A2POOCorb6
             // 
             // btn_first
             // 
-            this->btn_first->Location = System::Drawing::Point(197, 623);
+            this->btn_first->Location = System::Drawing::Point(475, 783);
             this->btn_first->Name = L"btn_first";
             this->btn_first->Size = System::Drawing::Size(46, 23);
             this->btn_first->TabIndex = 8;
@@ -275,7 +308,7 @@ namespace A2POOCorb6
             // 
             // btn_previous
             // 
-            this->btn_previous->Location = System::Drawing::Point(249, 623);
+            this->btn_previous->Location = System::Drawing::Point(527, 783);
             this->btn_previous->Name = L"btn_previous";
             this->btn_previous->Size = System::Drawing::Size(46, 23);
             this->btn_previous->TabIndex = 9;
@@ -285,7 +318,7 @@ namespace A2POOCorb6
             // 
             // btn_next
             // 
-            this->btn_next->Location = System::Drawing::Point(301, 623);
+            this->btn_next->Location = System::Drawing::Point(579, 783);
             this->btn_next->Name = L"btn_next";
             this->btn_next->Size = System::Drawing::Size(46, 23);
             this->btn_next->TabIndex = 10;
@@ -295,7 +328,7 @@ namespace A2POOCorb6
             // 
             // btn_end
             // 
-            this->btn_end->Location = System::Drawing::Point(353, 623);
+            this->btn_end->Location = System::Drawing::Point(631, 783);
             this->btn_end->Name = L"btn_end";
             this->btn_end->Size = System::Drawing::Size(46, 23);
             this->btn_end->TabIndex = 11;
@@ -305,7 +338,7 @@ namespace A2POOCorb6
             // 
             // btn_nouveau
             // 
-            this->btn_nouveau->Location = System::Drawing::Point(18, 652);
+            this->btn_nouveau->Location = System::Drawing::Point(694, 771);
             this->btn_nouveau->Name = L"btn_nouveau";
             this->btn_nouveau->Size = System::Drawing::Size(123, 46);
             this->btn_nouveau->TabIndex = 12;
@@ -315,7 +348,7 @@ namespace A2POOCorb6
             // 
             // btn_modifier
             // 
-            this->btn_modifier->Location = System::Drawing::Point(147, 652);
+            this->btn_modifier->Location = System::Drawing::Point(823, 771);
             this->btn_modifier->Name = L"btn_modifier";
             this->btn_modifier->Size = System::Drawing::Size(123, 46);
             this->btn_modifier->TabIndex = 13;
@@ -325,7 +358,7 @@ namespace A2POOCorb6
             // 
             // btn_sup
             // 
-            this->btn_sup->Location = System::Drawing::Point(276, 652);
+            this->btn_sup->Location = System::Drawing::Point(952, 771);
             this->btn_sup->Name = L"btn_sup";
             this->btn_sup->Size = System::Drawing::Size(123, 46);
             this->btn_sup->TabIndex = 14;
@@ -336,7 +369,7 @@ namespace A2POOCorb6
             // btn_enregistrer
             // 
             this->btn_enregistrer->BackColor = System::Drawing::SystemColors::Control;
-            this->btn_enregistrer->Location = System::Drawing::Point(18, 704);
+            this->btn_enregistrer->Location = System::Drawing::Point(1081, 771);
             this->btn_enregistrer->Name = L"btn_enregistrer";
             this->btn_enregistrer->Size = System::Drawing::Size(381, 46);
             this->btn_enregistrer->TabIndex = 15;
@@ -350,12 +383,12 @@ namespace A2POOCorb6
             this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
             this->dataGridView1->Location = System::Drawing::Point(454, 12);
             this->dataGridView1->Name = L"dataGridView1";
-            this->dataGridView1->Size = System::Drawing::Size(1395, 805);
+            this->dataGridView1->Size = System::Drawing::Size(1395, 753);
             this->dataGridView1->TabIndex = 16;
             // 
             // btn_refresh
             // 
-            this->btn_refresh->Location = System::Drawing::Point(18, 756);
+            this->btn_refresh->Location = System::Drawing::Point(1468, 771);
             this->btn_refresh->Name = L"btn_refresh";
             this->btn_refresh->Size = System::Drawing::Size(381, 46);
             this->btn_refresh->TabIndex = 17;
@@ -634,11 +667,129 @@ namespace A2POOCorb6
             this->label15->Text = L"label15";
             this->label15->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
             // 
+            // textBox16
+            // 
+            this->textBox16->Location = System::Drawing::Point(183, 534);
+            this->textBox16->Name = L"textBox16";
+            this->textBox16->Size = System::Drawing::Size(265, 20);
+            this->textBox16->TabIndex = 44;
+            // 
+            // label16
+            // 
+            this->label16->AutoSize = true;
+            this->label16->Location = System::Drawing::Point(9, 534);
+            this->label16->Name = L"label16";
+            this->label16->Size = System::Drawing::Size(41, 13);
+            this->label16->TabIndex = 46;
+            this->label16->Text = L"label16";
+            // 
+            // textBox17
+            // 
+            this->textBox17->Location = System::Drawing::Point(183, 561);
+            this->textBox17->Name = L"textBox17";
+            this->textBox17->Size = System::Drawing::Size(265, 20);
+            this->textBox17->TabIndex = 47;
+            // 
+            // textBox18
+            // 
+            this->textBox18->Location = System::Drawing::Point(183, 588);
+            this->textBox18->Name = L"textBox18";
+            this->textBox18->Size = System::Drawing::Size(265, 20);
+            this->textBox18->TabIndex = 48;
+            // 
+            // textBox19
+            // 
+            this->textBox19->Location = System::Drawing::Point(183, 615);
+            this->textBox19->Name = L"textBox19";
+            this->textBox19->Size = System::Drawing::Size(265, 20);
+            this->textBox19->TabIndex = 49;
+            // 
+            // textBox20
+            // 
+            this->textBox20->Location = System::Drawing::Point(183, 642);
+            this->textBox20->Name = L"textBox20";
+            this->textBox20->Size = System::Drawing::Size(265, 20);
+            this->textBox20->TabIndex = 50;
+            // 
+            // label1
+            // 
+            this->label1->AutoSize = true;
+            this->label1->Location = System::Drawing::Point(0, 0);
+            this->label1->Name = L"label1";
+            this->label1->Size = System::Drawing::Size(35, 13);
+            this->label1->TabIndex = 51;
+            this->label1->Text = L"label1";
+            // 
+            // label17
+            // 
+            this->label17->AutoSize = true;
+            this->label17->Location = System::Drawing::Point(9, 561);
+            this->label17->Name = L"label17";
+            this->label17->Size = System::Drawing::Size(41, 13);
+            this->label17->TabIndex = 52;
+            this->label17->Text = L"label17";
+            // 
+            // label18
+            // 
+            this->label18->AutoSize = true;
+            this->label18->Location = System::Drawing::Point(9, 588);
+            this->label18->Name = L"label18";
+            this->label18->Size = System::Drawing::Size(41, 13);
+            this->label18->TabIndex = 53;
+            this->label18->Text = L"label18";
+            // 
+            // label19
+            // 
+            this->label19->AutoSize = true;
+            this->label19->Location = System::Drawing::Point(12, 615);
+            this->label19->Name = L"label19";
+            this->label19->Size = System::Drawing::Size(41, 13);
+            this->label19->TabIndex = 54;
+            this->label19->Text = L"label19";
+            // 
+            // label20
+            // 
+            this->label20->AutoSize = true;
+            this->label20->Location = System::Drawing::Point(12, 642);
+            this->label20->Name = L"label20";
+            this->label20->Size = System::Drawing::Size(41, 13);
+            this->label20->TabIndex = 55;
+            this->label20->Text = L"label20";
+            // 
+            // label21
+            // 
+            this->label21->AutoSize = true;
+            this->label21->Location = System::Drawing::Point(10, 670);
+            this->label21->Name = L"label21";
+            this->label21->Size = System::Drawing::Size(41, 13);
+            this->label21->TabIndex = 56;
+            this->label21->Text = L"label21";
+            // 
+            // textBox21
+            // 
+            this->textBox21->Location = System::Drawing::Point(183, 667);
+            this->textBox21->Name = L"textBox21";
+            this->textBox21->Size = System::Drawing::Size(265, 20);
+            this->textBox21->TabIndex = 57;
+            // 
             // FRM_Principal
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
             this->ClientSize = System::Drawing::Size(1852, 896);
+            this->Controls->Add(this->textBox21);
+            this->Controls->Add(this->label21);
+            this->Controls->Add(this->label20);
+            this->Controls->Add(this->label19);
+            this->Controls->Add(this->label18);
+            this->Controls->Add(this->label17);
+            this->Controls->Add(this->label1);
+            this->Controls->Add(this->textBox20);
+            this->Controls->Add(this->textBox19);
+            this->Controls->Add(this->textBox18);
+            this->Controls->Add(this->textBox17);
+            this->Controls->Add(this->label16);
+            this->Controls->Add(this->textBox16);
             this->Controls->Add(this->label15);
             this->Controls->Add(this->label14);
             this->Controls->Add(this->label13);
@@ -754,6 +905,7 @@ namespace A2POOCorb6
             this->textBox13->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[12]);
             this->textBox14->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[13]);
             this->textBox15->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[14]);
+            this->textBox16->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[15]);
         }
         else if (this->radioButtonStock->Checked) {
             this->dsStock->Clear();
@@ -860,7 +1012,7 @@ namespace A2POOCorb6
             loadData(this->index);
             this->lbl_id->Text = "ID Facture :";
             this->lbl_nom->Text = "Reference de la commande :";
-            this->lbl_prenom->Text = "Nom du client :";
+            this->lbl_prenom->Text = "ID du client :";
             this->lbl_DateNaissance->Text = "Montant de la TVA :";
             this->lbl_Adresse->Text = "Date de livraison :";
             this->lbl_Ville->Text = "remise :";
@@ -875,6 +1027,12 @@ namespace A2POOCorb6
             this->label13->Text = "Date du paiement :";
             this->label14->Text = "Montant réglé :";
             this->label15->Text = "Moyen de paiement :";
+            this->label16->Text = "anniversaire du client :";
+            this->label17->Text = "Ville du client :";
+            this->label18->Text = "ID de l'article commander :";
+            this->label19->Text = "Prenom du client :";
+            this->label20->Text = "Nom du client :";
+            this->label21->Text = "année acutel :";
             this->textBox9->ReadOnly = false;
             this->textBox10->ReadOnly = false;
             this->textBox11->ReadOnly = false;
@@ -882,6 +1040,10 @@ namespace A2POOCorb6
             this->textBox13->ReadOnly = false;
             this->textBox14->ReadOnly = false;
             this->textBox15->ReadOnly = false;
+            this->textBox16->ReadOnly = false;
+            this->textBox17->ReadOnly = false;
+            this->textBox18->ReadOnly = false;
+            this->textBox19->ReadOnly = false;
             this->txt_message->Text = "update réussi commande";
         }
         else if (this->radioButtonStock->Checked) {
@@ -1019,6 +1181,12 @@ namespace A2POOCorb6
         this->textBox15->Clear();
         this->mode = "nouv";
         this->txt_message->Text = "Veuillez saisir les information de la nouvelle personne et enregistrer";
+        if (this->radioButtonCommande->Checked) {
+            this->dtStock = this->processusStock->TableStock();
+            BindingSource^ bs = gcnew BindingSource();
+            bs->DataSource = this->dtStock;
+            dataGridView1->DataSource = bs;
+        }
     }
 
     private: System::Void btn_modifier_Click(System::Object^ sender, System::EventArgs^ e)
@@ -1101,13 +1269,13 @@ namespace A2POOCorb6
             if (this->mode == "nouv")
             {
                 int Id;
-                Id = this->processusCommande->ajouter(this->txt_nom->Text/*Reference*/, this->txt_Adresse->Text/*Date de livraison*/, this->textBox13->Text/*Date Paiement*/, this->textBox15->Text/*Moyen de paiement*/, this->txt_CodePostal->Text/*Date de solde*/, this->textBox14->Text/*montant paiement*/, this->txt_Ville->Text/*Remise*/,this->txt_DateNaissance->Text/*Montant TVA*/,Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, this->textBox10->Text /*quantité de l'article*/, PrixUnitaire);
+                Id = this->processusCommande->ajouter(this->txt_nom->Text/*Reference*/, this->txt_Adresse->Text/*Date de livraison*/, this->textBox13->Text/*Date Paiement*/, this->textBox15->Text/*Moyen de paiement*/, this->txt_CodePostal->Text/*Date de solde*/, this->textBox14->Text/*montant paiement*/, this->txt_Ville->Text/*Remise*/,this->txt_DateNaissance->Text/*Montant TVA*/,Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, this->textBox10->Text /*quantité de l'article*/, this->textBox11->Text /*PrixUnitaire*/, this->textBox19->Text/*PrenomClient*/, this->textBox20->Text/*NomClient*/,this->textBox21->Text/*CurentAnnee*/ ,this->textBox17->Text/*VilleClient*/);
                 this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
                 this->mode = "RIEN";
             }
             else if (this->mode == "maj")
             {
-                this->processusCommande->modifier(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text/*Reference*/, this->txt_Adresse->Text/*Date de livraison*/, this->textBox13->Text/*Date Paiement*/, this->textBox15->Text/*Moyen de paiement*/, this->txt_CodePostal->Text/*Date de solde*/, this->textBox14->Text/*montant paiement*/, this->txt_Ville->Text/*Remise*/, this->txt_DateNaissance->Text/*Montant TVA*/, Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, PrixUnitaire);
+                this->processusCommande->modifier(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text/*Reference*/, this->txt_Adresse->Text/*Date de livraison*/, this->textBox13->Text/*Date Paiement*/, this->textBox15->Text/*Moyen de paiement*/, this->txt_CodePostal->Text/*Date de solde*/, this->textBox14->Text/*montant paiement*/, this->txt_Ville->Text/*Remise*/, this->txt_DateNaissance->Text/*Montant TVA*/, Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, this->textBox10->Text /*quantité de l'article*/, this->textBox11->Text /*PrixUnitaire*/, this->textBox19->Text/*PrenomClient*/, this->textBox20->Text/*NomClient*/, this->textBox21->Text/*CurentAnnee*/, this->textBox17->Text/*VilleClient*/);
                 this->mode = "RIEN";
             }
             else if (this->mode == "sup")

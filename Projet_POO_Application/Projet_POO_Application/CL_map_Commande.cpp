@@ -121,10 +121,10 @@ namespace NS_Composants
 		}
 	}
 
-	void CL_map_Commande::setMontantHT(double MHT)
+	void CL_map_Commande::setMontantHT(double QA, double PU)
 	{
-		if (MHT > 0) {
-			this->MontantHT = MHT; //ici faut qu'on fasse PrixUnitaire*Quantité
+		if (QA > 0 && PU > 0) {
+			this->MontantHT = QA * PU; //ici faut qu'on fasse PrixUnitaire*Quantité
 		}
 	}
 

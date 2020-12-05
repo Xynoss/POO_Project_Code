@@ -25,7 +25,7 @@ namespace NS_Svc
 		return this->DT;
 	}
 
-	int Svc_commande::ajouter(String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, String^ MontantTVA, int Client, String^ quantité, String^ PU)
+	int Svc_commande::ajouter(String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, String^ MontantTVA, int Client, String^ quantité, String^ PU,String^ PrenomClient,String^ NomClient,String^ CurentAnnee,String^ VilleClient)
 	{
 		int ID;
 		this->Commande->setReference(RefCommande, PrenomClient, NomClient, CurentAnnee, VilleClient);
@@ -33,29 +33,31 @@ namespace NS_Svc
 		this->Commande->setDateSolde(DateSolde);
 		this->Commande->setRemise(Remise);
 		this->Commande->setQuantitéArticle(quantité);
-		this->Commande->setMontantTVA(MontantTVA);
+		this->Commande->setMontantHT(Convert::ToDouble(this->Commande->getQuantitéArticle()), Convert::ToDouble(PU));
+		this->Commande->setMontantTVA(this->Commande->getMontantHT());
+		this->Commande->setMontantTTC(Convert::ToDouble(this->Commande->getMontantHT()), Convert::ToDouble(MontantTVA));
 		this->Commande->setDatePayement(DatePaiment);
 		this->Commande->setMoyenPayement(MoyenPayment);
 		this->Commande->setMontantPayment(MontantPayment);
-		this->Commande->setMontantHT(Convert::ToDouble(this->Commande->getQuantitéArticle()), PU);
-		this->Commande->setMontantTTC(Convert::ToDouble(this->Commande->getMontantHT()), Convert::ToDouble(MontantTVA));
 		this->Commande->setIDClient(Client);
 		ID = this->cad->actionRowsID(this->Commande->INSERT());
 		this->cad->actionRowsID(this->Commande->INSERTDATE());
 		return ID;
 	}
 
-	void Svc_commande::modifier(int ID_Facture, String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, String^ MontantTVA, int Client)
+	void Svc_commande::modifier(int ID_Facture, String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, String^ MontantTVA, int Client, String^ quantité, String^ PU, String^ PrenomClient, String^ NomClient, String^ CurentAnnee, String^ VilleClient)
 	{
 		this->Commande->setIDfacture(ID_Facture);
 		this->Commande->setReference(RefCommande, PrenomClient, NomClient, CurentAnnee, VilleClient);
+		this->Commande->setMontantHT(Convert::ToDouble(this->Commande->getQuantitéArticle()), Convert::ToDouble(PU));
+		this->Commande->setMontantTVA(this->Commande->getMontantHT());
+		this->Commande->setMontantTTC(Convert::ToDouble(this->Commande->getMontantHT()), Convert::ToDouble(MontantTVA));
 		this->Commande->setDateLivraison(DateLivraison);
 		this->Commande->setDatePayement(DatePaiment);
 		this->Commande->setMoyenPayement(MoyenPayment);
 		this->Commande->setDateSolde(DateSolde);
 		this->Commande->setMontantPayment(MontantPayment);
 		this->Commande->setRemise(Remise);
-		this->Commande->setMontantTVA(MontantTVA);
 		this->cad->actionRows(this->Commande->UPDATE());
 	}
 

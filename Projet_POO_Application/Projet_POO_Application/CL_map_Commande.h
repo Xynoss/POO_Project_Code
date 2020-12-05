@@ -41,7 +41,7 @@ namespace NS_Composants
 		void setDateSolde(String^);
 		void setRemise(String^);
 		void setMontantTVA(double);
-		void setMontantHT(double);
+		void setMontantHT(double, double);
 		void setMontantTTC(double, double);
 		void setIDClient(int);
 		void setIDArticle(int);
