@@ -6,7 +6,7 @@ namespace NS_Svc
 	Svc_commande::Svc_commande(void)
 	{
 		this->cad = gcnew NS_Composants::CL_CAD();
-		this->Commande = gcnew NS_Composants::CL_map_Commande();
+		this->Commande = gcnew NS_Composants::CL_map_Commande(); 
 		this->DS = gcnew Data::DataSet();
 		this->DT = gcnew Data::DataTable();
 	}
@@ -37,7 +37,7 @@ namespace NS_Svc
 		this->Commande->setDatePayement(DatePaiment);
 		this->Commande->setMoyenPayement(MoyenPayment);
 		this->Commande->setMontantPayment(MontantPayment);
-		this->Commande->setMontantHT(Convert::ToDouble(this->Commande->getQuantitéArticle()), Convert::ToDouble(this->Article->getPrixUnitaire()));
+		this->Commande->setMontantHT(Convert::ToDouble(this->Commande->getQuantitéArticle()), PU);
 		this->Commande->setMontantTTC(Convert::ToDouble(this->Commande->getMontantHT()), Convert::ToDouble(MontantTVA));
 		this->Commande->setIDClient(Client);
 		ID = this->cad->actionRowsID(this->Commande->INSERT());

@@ -8,6 +8,7 @@ namespace NS_Composants
 	private:
 		int ID_Facture;
 		int ID_Client;
+		int ID_Article;
 		int ID_Date;
 		String^ RefCommande;
 		String^ DateCommande;
@@ -21,7 +22,7 @@ namespace NS_Composants
 		double MontantHT;
 		double MontantTTC;
 		String^ MontantPayement;
-		double PrixUnitaire;
+		String^ PrixUnitaire;
 	public:
 		CL_map_Commande(void);
 		String^ SELECT(void);
@@ -43,13 +44,15 @@ namespace NS_Composants
 		void setMontantHT(double);
 		void setMontantTTC(double, double);
 		void setIDClient(int);
+		void setIDArticle(int);
 		void setQuantitéArticle(String^);
 		void setMontantPayment(String^);
-		//void setPrixUnitaire();
+		void setPrixUnitaire(String^);
 
 		//getter
 		int getIDFacture(void);
 		int getIDClient(void);
+		int getIDArticle(void);
 		int getIDDate(void);
 		String^ getRefCommande(void);
 		String^ getDateCommande(void);
@@ -63,6 +66,6 @@ namespace NS_Composants
 		double getMontantHT(void);
 		double getMontantTTC(void);
 		String^ getMontantPayment(void);
-		//double getPrixUnitaire(void);
+		String^ getPrixUnitaire(void);
 	};
 }

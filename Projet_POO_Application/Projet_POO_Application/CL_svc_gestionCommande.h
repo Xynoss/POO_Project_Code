@@ -12,7 +12,6 @@ namespace NS_Svc {
 	private:
 		NS_Composants::CL_CAD^ cad;
 		NS_Composants::CL_map_Commande^ Commande;
-		NS_Composants::CL_map_Stock^ Article;
 		DataSet^ DS;
 		DataTable^ DT;
 	public:
