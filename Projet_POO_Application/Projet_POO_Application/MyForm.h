@@ -878,6 +878,10 @@ private: System::Windows::Forms::Label^ label17;
             this->label15->Text = "";
             this->textBox15->Text = "";
             this->textBox15->ReadOnly = true;
+            this->label16->Text = "";
+            this->textBox16->ReadOnly = true;
+            this->label17->Text = "";
+            this->textBox17->ReadOnly = true;
             this->txt_message->Text = "update réussi Clients";
         }
         else if (this->radioButtonPersonnel->Checked) {
@@ -920,6 +924,10 @@ private: System::Windows::Forms::Label^ label17;
             this->label15->Text = "";
             this->textBox15->Text = "";
             this->textBox15->ReadOnly = true;
+            this->label16->Text = "";
+            this->textBox16->ReadOnly = true;
+            this->label17->Text = "";
+            this->textBox17->ReadOnly = true;
             this->txt_message->Text = "update réussi personnel";
         }
         else if (this->radioButtonCommande->Checked) {
@@ -947,7 +955,7 @@ private: System::Windows::Forms::Label^ label17;
             this->label14->Text = "ID de l'article commander :";
             this->label15->Text = "Prenom du client :";
             this->label16->Text = "Nom du client :";
-            this->label17->Text = "année acutel :";
+            this->label17->Text = "Année actuelle :";
             this->textBox9->ReadOnly = false;
             this->textBox10->ReadOnly = false;
             this->textBox11->ReadOnly = false;
@@ -998,6 +1006,10 @@ private: System::Windows::Forms::Label^ label17;
             this->label15->Text = "";
             this->textBox15->Text = "";
             this->textBox15->ReadOnly = true;
+            this->label16->Text = "";
+            this->textBox16->ReadOnly = true;
+            this->label17->Text = "";
+            this->textBox17->ReadOnly = true;
             this->txt_message->Text = "update réussi Stock";
         }
 
@@ -1008,7 +1020,7 @@ private: System::Windows::Forms::Label^ label17;
     {
         this->index = 0;
         this->loadData(this->index);
-        this->txt_message->Text = "Enregistrement né : " + (this->index + 1);
+        this->txt_message->Text = "Enregistrement n° : " + (this->index + 1);
     }
 
     private: System::Void btn_previous_Click(System::Object^ sender, System::EventArgs^ e)
@@ -1017,7 +1029,7 @@ private: System::Windows::Forms::Label^ label17;
         {
             this->index--;
             this->loadData(this->index);
-            this->txt_message->Text = "Enregistrement né : " + (this->index + 1);
+            this->txt_message->Text = "Enregistrement n° : " + (this->index + 1);
         }
     }
 
