@@ -12,9 +12,9 @@ namespace NS_Composants
 		this->MoyenPayement = "RIEN";
 		this->DateSolde = "RIEN";
 		this->Remise = "0";
-		this->MontantTVA = 0;
-		this->MontantHT = 0;
-		this->MontantTTC = 0;
+		this->MontantTVA = "0";
+		this->MontantHT = "0";
+		this->MontantTTC = "0";
 		this->QuantitéArticle = "0";
 		this->MontantPayement = "0";
 	}
@@ -26,13 +26,17 @@ namespace NS_Composants
 
 	String^ CL_map_Commande::INSERT(void)
 	{
-		return "INSERT INTO facture (RefCommande, MontantTVA, DateLivraison, DateSolde, Remise, ID_Client, MontantHT, MontantTTC) " + "VALUES('" + this->getRefCommande() + "', '" + this->getMontantTVA() + "', '" + this->getDateLivraison() + "', '" + this->getDateSolde() + "', '" + this->getRemise() + "', '" + this->getIDClient() + "', '"+ this->getMontantHT() +"','"+ this->getMontantTTC() +"');SELECT @@IDENTITY;"+
-			"INSERT INTO `commande` (`ID_Article`, `ID_Facture`, `QuantiteArticle`, `PrixUnitaire`) VALUES ('" + this->getIDArticle() + "', '" + this->getIDFacture() + "', '" + this->getQuantitéArticle() + "', '" + this->getPrixUnitaire() + "');";
+		return "INSERT INTO facture (RefCommande, MontantTVA, DateLivraison, DateSolde, Remise, ID_Client, MontantHT, MontantTTC) " + "VALUES('" + this->getRefCommande() + "', '" + this->getMontantTVA() + "', '" + this->getDateLivraison() + "', '" + this->getDateSolde() + "', '" + this->getRemise() + "', '" + this->getIDClient() + "', '" + this->getMontantHT() + "','" + this->getMontantTTC() + "');SELECT @@IDENTITY;";
+			
 		//INSERT INTO facture(RefCommande, MontantTVA, DateLivraison, DateSolde, Remise, ID_Client, MontantHT, MontantTTC) VALUES('MATH2020SAI2', '2.8', '04/12/2020', '04/12/2020', '5', (SELECT ID_Client FROM client WHERE client.NomClient =  AND client.PrenomClient = ), '14.6', '16.8')
 	}
 
-	String^ CL_map_Commande::INSERTDATE(void) {
-		return "INSERT INTO date (DatePaiment, MontantPayment, MoyenPayment, ID_Facture) VALUES ('"+this->getDatePayement() +"','"+ this->getMontantTTC() +"','"+ this->getMoyenPayement() +"','"+ this->getIDFacture() +"');SELECT @@IDENTITY;;;";
+	String^ CL_map_Commande::INSERTCOMMANDE(void) {
+		return "INSERT INTO `commande` (`ID_Article`, `ID_Facture`, `QuantiteArticle`) VALUES ('" + this->getIDArticle() + "', '" + this->getIDFacture() + "', '" + this->getQuantitéArticle() + "');SELECT @@IDENTITY;";
+	}
+
+	String^ CL_map_Commande::INSERTDATE(int IDFACTURE) {
+		return "INSERT INTO date (DatePaiment, MontantPayment, MoyenPayment, ID_Facture) VALUES ('"+this->getDatePayement() +"','"+ this->getMontantTTC() +"','"+ this->getMoyenPayement() +"','"+ IDFACTURE +"');";
 	}
 
 	String^ CL_map_Commande::UPDATE(void)
@@ -60,7 +64,7 @@ namespace NS_Composants
 	{
 		String^ P = Prenom->Substring(0,2);
 		String^ N = Nom->Substring(0, 2);
-		String^ V = Ville->Substring(0, 3);
+		String^ V = Ville->Substring(0,3);
 
 		Reference = P + N + annee + V;
 		this->RefCommande = Reference;
@@ -114,26 +118,24 @@ namespace NS_Composants
 
 	void CL_map_Commande::setMontantTVA(double MontantHT)
 	{
-		MontantHT = this->getMontantHT();
 		if (MontantHT > 0)
 		{
-			this->MontantTVA = MontantHT*0.2;
+			MontantHT = MontantHT * 0, 2;
+			this->MontantTVA = Convert::ToString(MontantHT);
 		}
 	}
 
 	void CL_map_Commande::setMontantHT(double QA, double PU)
 	{
-		QA = Convert::ToDouble(this->getQuantitéArticle());
-		PU = Convert::ToDouble(this->getPrixUnitaire());
 		if (QA > 0 && PU > 0) {
-			this->MontantHT = QA * PU; //ici faut qu'on fasse PrixUnitaire*Quantité
+			this->MontantHT = Convert::ToString(QA * PU); //ici faut qu'on fasse PrixUnitaire*Quantité
 		}
 	}
 
 	void CL_map_Commande::setMontantTTC(double MHT, double MTVA)
 	{
 		if (MHT > 0 && MTVA > 0) {
-			this->MontantTTC = MHT + MTVA - Convert::ToDouble(this->Remise); //ici faut qu'on fasse MontantHT + MontantTVA pour avoir le prix TTC 
+			this->MontantTTC = Convert::ToString( MHT + MTVA - Convert::ToDouble(this->Remise)); //ici faut qu'on fasse MontantHT + MontantTVA pour avoir le prix TTC 
 		}
 	}
 
@@ -229,16 +231,16 @@ namespace NS_Composants
 	{
 		return this->Remise;
 	}
-	double CL_map_Commande::getMontantTVA(void)
+	String^ CL_map_Commande::getMontantTVA(void)
 	{
 		return this->MontantTVA;
 	}
 
-	double CL_map_Commande::getMontantHT(void)
+	String^ CL_map_Commande::getMontantHT(void)
 	{
 		return this->MontantHT;
 	}
-	double CL_map_Commande::getMontantTTC(void)
+	String^ CL_map_Commande::getMontantTTC(void)
 	{
 		return this->MontantTTC;
 	}

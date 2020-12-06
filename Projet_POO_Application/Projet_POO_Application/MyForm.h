@@ -136,8 +136,8 @@ private: System::Windows::Forms::Label^ label17;
 private: System::Windows::Forms::Label^ label18;
 private: System::Windows::Forms::Label^ label19;
 private: System::Windows::Forms::Label^ label20;
-private: System::Windows::Forms::Label^ label21;
-private: System::Windows::Forms::TextBox^ textBox21;
+
+
 
 
 
@@ -217,8 +217,6 @@ private: System::Windows::Forms::TextBox^ textBox21;
             this->label18 = (gcnew System::Windows::Forms::Label());
             this->label19 = (gcnew System::Windows::Forms::Label());
             this->label20 = (gcnew System::Windows::Forms::Label());
-            this->label21 = (gcnew System::Windows::Forms::Label());
-            this->textBox21 = (gcnew System::Windows::Forms::TextBox());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
             this->groupTable->SuspendLayout();
             this->SuspendLayout();
@@ -756,29 +754,11 @@ private: System::Windows::Forms::TextBox^ textBox21;
             this->label20->TabIndex = 55;
             this->label20->Text = L"label20";
             // 
-            // label21
-            // 
-            this->label21->AutoSize = true;
-            this->label21->Location = System::Drawing::Point(10, 670);
-            this->label21->Name = L"label21";
-            this->label21->Size = System::Drawing::Size(41, 13);
-            this->label21->TabIndex = 56;
-            this->label21->Text = L"label21";
-            // 
-            // textBox21
-            // 
-            this->textBox21->Location = System::Drawing::Point(183, 667);
-            this->textBox21->Name = L"textBox21";
-            this->textBox21->Size = System::Drawing::Size(265, 20);
-            this->textBox21->TabIndex = 57;
-            // 
             // FRM_Principal
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
             this->ClientSize = System::Drawing::Size(1852, 896);
-            this->Controls->Add(this->textBox21);
-            this->Controls->Add(this->label21);
             this->Controls->Add(this->label20);
             this->Controls->Add(this->label19);
             this->Controls->Add(this->label18);
@@ -901,11 +881,10 @@ private: System::Windows::Forms::TextBox^ textBox21;
             this->textBox9->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[8]);
             this->textBox10->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[9]);
             this->textBox11->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[10]);
-            this->textBox12->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[11]);
-            this->textBox13->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[12]);
-            this->textBox14->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[13]);
-            this->textBox15->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[14]);
-            this->textBox16->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[15]);
+            this->textBox12->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[12]);
+            this->textBox13->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[13]);
+            this->textBox14->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[14]);
+            this->textBox15->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[15]);
         }
         else if (this->radioButtonStock->Checked) {
             this->dsStock->Clear();
@@ -1023,16 +1002,15 @@ private: System::Windows::Forms::TextBox^ textBox21;
             this->label9->Text = "Montant total TTC :";
             this->label10->Text = "Quantité d'article :";
             this->label11->Text = "prix à l'unité :";
-            this->label12->Text = "ID date :"; //À retirer vu qu'on sent sert pas ?
-            this->label13->Text = "Date du paiement :";
-            this->label14->Text = "Montant réglé :";
-            this->label15->Text = "Moyen de paiement :";
-            this->label16->Text = "anniversaire du client :";
-            this->label17->Text = "Ville du client :";
-            this->label18->Text = "ID de l'article commander :";
-            this->label19->Text = "Prenom du client :";
-            this->label20->Text = "Nom du client :";
-            this->label21->Text = "année acutel :";
+            this->label12->Text = "Date du paiement :";
+            this->label13->Text = "Montant réglé :";
+            this->label14->Text = "Moyen de paiement :";
+            this->label15->Text = "anniversaire du client :";
+            this->label16->Text = "Ville du client :";
+            this->label17->Text = "ID de l'article commander :";
+            this->label18->Text = "Prenom du client :";
+            this->label19->Text = "Nom du client :";
+            this->label20->Text = "année acutel :";
             this->textBox9->ReadOnly = false;
             this->textBox10->ReadOnly = false;
             this->textBox11->ReadOnly = false;
@@ -1179,13 +1157,17 @@ private: System::Windows::Forms::TextBox^ textBox21;
         this->textBox13->Clear();
         this->textBox14->Clear();
         this->textBox15->Clear();
+        this->textBox16->Clear();
+        this->textBox17->Clear();
+        this->textBox18->Clear();
+
         this->mode = "nouv";
         this->txt_message->Text = "Veuillez saisir les information de la nouvelle personne et enregistrer";
         if (this->radioButtonCommande->Checked) {
-            this->dtStock = this->processusStock->TableStock();
+            /*this->dtStock = this->processusStock->TableStock();
             BindingSource^ bs = gcnew BindingSource();
             bs->DataSource = this->dtStock;
-            dataGridView1->DataSource = bs;
+            dataGridView1->DataSource = bs;*/
         }
     }
 
@@ -1269,13 +1251,13 @@ private: System::Windows::Forms::TextBox^ textBox21;
             if (this->mode == "nouv")
             {
                 int Id;
-                Id = this->processusCommande->ajouter(this->txt_nom->Text/*Reference*/, this->txt_Adresse->Text/*Date de livraison*/, this->textBox13->Text/*Date Paiement*/, this->textBox15->Text/*Moyen de paiement*/, this->txt_CodePostal->Text/*Date de solde*/, this->textBox14->Text/*montant paiement*/, this->txt_Ville->Text/*Remise*/,Convert::ToDouble(this->txt_DateNaissance->Text)/*Montant TVA*/,Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, this->textBox10->Text /*quantité de l'article*/, this->textBox11->Text /*PrixUnitaire*/, this->textBox19->Text/*PrenomClient*/, this->textBox20->Text/*NomClient*/,this->textBox21->Text/*CurentAnnee*/ ,this->textBox17->Text/*VilleClient*/);
+                Id = this->processusCommande->ajouter(this->txt_nom->Text/*Reference*/, this->txt_Adresse->Text/*Date de livraison*/, this->textBox12->Text/*Date Paiement*/, this->textBox14->Text/*Moyen de paiement*/, this->txt_CodePostal->Text/*Date de solde*/, this->textBox13->Text/*montant paiement*/, this->txt_Ville->Text/*Remise*/,this->txt_DateNaissance->Text/*Montant TVA*/,Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, this->textBox10->Text /*quantité de l'article*/, this->textBox11->Text /*PrixUnitaire*/, this->textBox18->Text/*PrenomClient*/, this->textBox19->Text/*NomClient*/,this->textBox20->Text/*CurentAnnee*/ ,this->textBox16->Text/*VilleClient*/);
                 this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
                 this->mode = "RIEN";
             }
             else if (this->mode == "maj")
             {
-                this->processusCommande->modifier(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text/*Reference*/, this->txt_Adresse->Text/*Date de livraison*/, this->textBox13->Text/*Date Paiement*/, this->textBox15->Text/*Moyen de paiement*/, this->txt_CodePostal->Text/*Date de solde*/, this->textBox14->Text/*montant paiement*/, this->txt_Ville->Text/*Remise*/, this->txt_DateNaissance->Text/*Montant TVA*/, Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, this->textBox10->Text /*quantité de l'article*/, this->textBox11->Text /*PrixUnitaire*/, this->textBox19->Text/*PrenomClient*/, this->textBox20->Text/*NomClient*/, this->textBox21->Text/*CurentAnnee*/, this->textBox17->Text/*VilleClient*/);
+                this->processusCommande->modifier(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text/*Reference*/, this->txt_Adresse->Text/*Date de livraison*/, this->textBox12->Text/*Date Paiement*/, this->textBox14->Text/*Moyen de paiement*/, this->txt_CodePostal->Text/*Date de solde*/, this->textBox13->Text/*montant paiement*/, this->txt_Ville->Text/*Remise*/, this->txt_DateNaissance->Text/*Montant TVA*/, Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, this->textBox10->Text /*quantité de l'article*/, this->textBox11->Text /*PrixUnitaire*/, this->textBox18->Text/*PrenomClient*/, this->textBox19->Text/*NomClient*/, this->textBox20->Text/*CurentAnnee*/, this->textBox16->Text/*VilleClient*/);
                 this->mode = "RIEN";
             }
             else if (this->mode == "sup")

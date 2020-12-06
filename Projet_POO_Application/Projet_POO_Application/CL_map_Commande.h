@@ -18,16 +18,17 @@ namespace NS_Composants
 		String^ DateSolde;
 		String^ Remise;
 		String^ QuantitéArticle;
-		double MontantTVA;
-		double MontantHT;
-		double MontantTTC;
+		String^ MontantTVA;
+		String^ MontantHT;
+		String^ MontantTTC;
 		String^ MontantPayement;
 		String^ PrixUnitaire;
 	public:
 		CL_map_Commande(void);
 		String^ SELECT(void);
 		String^ INSERT(void);
-		String^ INSERTDATE(void);
+		String^ INSERTCOMMANDE(void);
+		String^ INSERTDATE(int IDFACTURE);
 		String^ UPDATE(void);
 		String^ DELETE(void);
 
@@ -62,9 +63,9 @@ namespace NS_Composants
 		String^ getDateSolde(void);
 		String^ getQuantitéArticle(void);
 		String^ getRemise(void);
-		double getMontantTVA(void);
-		double getMontantHT(void);
-		double getMontantTTC(void);
+		String^ getMontantTVA(void);
+		String^ getMontantHT(void);
+		String^ getMontantTTC(void);
 		String^ getMontantPayment(void);
 		String^ getPrixUnitaire(void);
 	};
