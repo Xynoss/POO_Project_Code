@@ -25,7 +25,7 @@ namespace NS_Svc
 		return this->DT;
 	}
 
-	int Svc_commande::ajouter(String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, String^ MontantTVA, int Client, String^ quantité, String^ PU,String^ PrenomClient,String^ NomClient,String^ CurentAnnee,String^ VilleClient)
+	int Svc_commande::ajouter(String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, String^ MontantTVA, int Client, String^ quantité, String^ PU,String^ PrenomClient,String^ NomClient,String^ CurentAnnee,String^ VilleClient, int Article)
 	{
 		int ID_facture;
 		this->Commande->setReference(RefCommande, PrenomClient, NomClient, CurentAnnee, VilleClient);
@@ -40,9 +40,10 @@ namespace NS_Svc
 		this->Commande->setMoyenPayement(MoyenPayment);
 		this->Commande->setMontantPayment(MontantPayment);
 		this->Commande->setIDClient(Client);
+		this->Commande->setIDArticle(Article);
 		ID_facture = this->cad->actionRowsID(this->Commande->INSERT());
-		this->cad->actionRowsID(this->Commande->INSERTCOMMANDE());
-		this->cad->actionRowsID(this->Commande->INSERTDATE(this->Commande->getIDFacture()));
+		this->cad->actionRowsID(this->Commande->INSERTCOMMANDE(ID_facture));
+		this->cad->actionRowsID(this->Commande->INSERTDATE(ID_facture));
 		return ID_facture;
 	}
 

@@ -27,7 +27,7 @@ namespace NS_Composants
 		CL_map_Commande(void);
 		String^ SELECT(void);
 		String^ INSERT(void);
-		String^ INSERTCOMMANDE(void);
+		String^ INSERTCOMMANDE(int IDFACTURE);
 		String^ INSERTDATE(int IDFACTURE);
 		String^ UPDATE(void);
 		String^ DELETE(void);

@@ -1251,7 +1251,7 @@ private: System::Windows::Forms::Label^ label20;
             if (this->mode == "nouv")
             {
                 int Id;
-                Id = this->processusCommande->ajouter(this->txt_nom->Text/*Reference*/, this->txt_Adresse->Text/*Date de livraison*/, this->textBox12->Text/*Date Paiement*/, this->textBox14->Text/*Moyen de paiement*/, this->txt_CodePostal->Text/*Date de solde*/, this->textBox13->Text/*montant paiement*/, this->txt_Ville->Text/*Remise*/,this->txt_DateNaissance->Text/*Montant TVA*/,Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, this->textBox10->Text /*quantité de l'article*/, this->textBox11->Text /*PrixUnitaire*/, this->textBox18->Text/*PrenomClient*/, this->textBox19->Text/*NomClient*/,this->textBox20->Text/*CurentAnnee*/ ,this->textBox16->Text/*VilleClient*/);
+                Id = this->processusCommande->ajouter(this->txt_nom->Text/*Reference*/, this->txt_Adresse->Text/*Date de livraison*/, this->textBox12->Text/*Date Paiement*/, this->textBox14->Text/*Moyen de paiement*/, this->txt_CodePostal->Text/*Date de solde*/, this->textBox13->Text/*montant paiement*/, this->txt_Ville->Text/*Remise*/,this->txt_DateNaissance->Text/*Montant TVA*/,Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, this->textBox10->Text /*quantité de l'article*/, this->textBox11->Text /*PrixUnitaire*/, this->textBox18->Text/*PrenomClient*/, this->textBox19->Text/*NomClient*/,this->textBox20->Text/*CurentAnnee*/ ,this->textBox16->Text/*VilleClient*/, Convert::ToInt16(this->textBox17->Text));
                 this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
                 this->mode = "RIEN";
             }
