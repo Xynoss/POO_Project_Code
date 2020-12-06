@@ -17,12 +17,12 @@ String^ NS_Composants::CL_map_Personnel::SELECT(void)
 
 String^ NS_Composants::CL_map_Personnel::INSERT(void)
 {
-    return "INSERT INTO Personnel " + "(PrenomPersonnel, AdressePersonnel, DateDembauche, NomPersonnel, ID_personnel_supervise) " + "VALUES('" + this->getPrenomPersonnel() + "', '" + this->getAdressePersonnel() + "', '" + this->getDateDembauche() + "', '" + this->getNomPersonnel() + "', '" + this->getIDSup() + "');SELECT @@IDENTITY;";
+    return "INSERT INTO Personnel " + "(NomPersonnel, PrenomPersonnel, AdressePersonnel, DateDembauche, ID_personnel_supervise) " + "VALUES('" + this->getNomPersonnel() + "', '" + this->getPrenomPersonnel() + "', '" + this->getAdressePersonnel() + "', '" + this->getDateDembauche() + "', '" + this->getIDSup() + "');SELECT @@IDENTITY;";
 }
 
 String^ NS_Composants::CL_map_Personnel::INSERTSSup(void)
 {
-    return "INSERT INTO Personnel " + "(PrenomPersonnel, AdressePersonnel, DateDembauche, NomPersonnel) " + "VALUES('" + this->getPrenomPersonnel() + "', '" + this->getAdressePersonnel() + "', '" + this->getDateDembauche() + "', '" + this->getNomPersonnel() + "');SELECT @@IDENTITY;";
+    return "INSERT INTO Personnel (NomPersonnel, PrenomPersonnel, AdressePersonnel, DateDembauche) " + "VALUES('" + this->getNomPersonnel() + "', '" + this->getPrenomPersonnel() + "', '" + this->getAdressePersonnel() + "', '" + this->getDateDembauche() + "');SELECT @@IDENTITY;";
 }
 
 String^ NS_Composants::CL_map_Personnel::UPDATE(void)

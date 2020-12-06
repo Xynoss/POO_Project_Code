@@ -26,9 +26,9 @@ namespace NS_Composants
 	public:
 		CL_map_Commande(void);
 		String^ SELECT(void);
-		String^ INSERT(void);
+		String^ INSERT(double HT, double TVA, double TTC);
 		String^ INSERTCOMMANDE(int IDFACTURE);
-		String^ INSERTDATE(int IDFACTURE);
+		String^ INSERTDATE(int IDFACTURE, double TTC);
 		String^ UPDATE(void);
 		String^ DELETE(void);
 
@@ -43,7 +43,7 @@ namespace NS_Composants
 		void setRemise(String^);
 		void setMontantTVA(double);
 		void setMontantHT(double, double);
-		void setMontantTTC(double, double);
+		void setMontantTTC(double, double, double);
 		void setIDClient(int);
 		void setIDArticle(int);
 		void setQuantitéArticle(String^);

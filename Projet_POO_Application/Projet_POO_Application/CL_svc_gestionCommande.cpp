@@ -25,41 +25,68 @@ namespace NS_Svc
 		return this->DT;
 	}
 
-	int Svc_commande::ajouter(String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, String^ MontantTVA, int Client, String^ quantité, String^ PU,String^ PrenomClient,String^ NomClient,String^ CurentAnnee,String^ VilleClient, int Article)
+	int Svc_commande::ajouter(String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, int Client, String^ quantité, String^ PU,String^ PrenomClient,String^ NomClient,String^ CurentAnnee,String^ VilleClient, int Article)
 	{
 		int ID_facture;
+		double QuatitArt;
+		double PrixUnit;
+		double montantHT;
+		double montantTTC;
+		double montantTVA;
+
+		this->Commande->setQuantitéArticle(quantité);
+		this->Commande->setPrixUnitaire(PU);
+		QuatitArt = Convert::ToDouble(this->Commande->getQuantitéArticle());
+		PrixUnit = Convert::ToDouble(this->Commande->getPrixUnitaire());
 		this->Commande->setReference(RefCommande, PrenomClient, NomClient, CurentAnnee, VilleClient);
 		this->Commande->setDateLivraison(DateLivraison);
 		this->Commande->setDateSolde(DateSolde);
 		this->Commande->setRemise(Remise);
-		this->Commande->setQuantitéArticle(quantité);
-		this->Commande->setMontantHT(Convert::ToDouble(this->Commande->getQuantitéArticle()), Convert::ToDouble(PU));
-		this->Commande->setMontantTVA(Convert::ToDouble(this->Commande->getMontantHT()));
-		this->Commande->setMontantTTC(Convert::ToDouble(this->Commande->getMontantHT()), Convert::ToDouble(this->Commande->getMontantTVA()));
+		this->Commande->setMontantHT(QuatitArt, PrixUnit);
+		montantHT = Convert::ToDouble(this->Commande->getMontantHT());
+		this->Commande->setMontantTVA(montantHT);
+		montantTVA = Convert::ToDouble(this->Commande->getMontantTVA());
+		double remise = Convert::ToDouble(this->Commande->getRemise());
+		this->Commande->setMontantTTC(montantHT, montantTVA, remise);
+		montantTTC = Convert::ToDouble(this->Commande->getMontantTTC());
 		this->Commande->setDatePayement(DatePaiment);
 		this->Commande->setMoyenPayement(MoyenPayment);
 		this->Commande->setMontantPayment(MontantPayment);
 		this->Commande->setIDClient(Client);
 		this->Commande->setIDArticle(Article);
-		ID_facture = this->cad->actionRowsID(this->Commande->INSERT());
+		
+		ID_facture = this->cad->actionRowsID(this->Commande->INSERT(montantHT, montantTVA, montantTTC));
 		this->cad->actionRowsID(this->Commande->INSERTCOMMANDE(ID_facture));
-		this->cad->actionRowsID(this->Commande->INSERTDATE(ID_facture));
+		this->cad->actionRowsID(this->Commande->INSERTDATE(ID_facture, montantTTC));
 		return ID_facture;
 	}
 
-	void Svc_commande::modifier(int ID_Facture, String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, String^ MontantTVA, int Client, String^ quantité, String^ PU, String^ PrenomClient, String^ NomClient, String^ CurentAnnee, String^ VilleClient)
+	void Svc_commande::modifier(int ID_Facture, String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, int Client, String^ quantité, String^ PU, String^ PrenomClient, String^ NomClient, String^ CurentAnnee, String^ VilleClient)
 	{
-		this->Commande->setIDfacture(ID_Facture);
+		double QuatitArt;
+		double PrixUnit;
+		double montantHT;
+		double montantTTC;
+		double montantTVA;
+		QuatitArt = Convert::ToDouble(this->Commande->getQuantitéArticle());
+		PrixUnit = Convert::ToDouble(this->Commande->getPrixUnitaire());
 		this->Commande->setReference(RefCommande, PrenomClient, NomClient, CurentAnnee, VilleClient);
-		this->Commande->setMontantHT(Convert::ToDouble(this->Commande->getQuantitéArticle()), Convert::ToDouble(PU));
-		this->Commande->setMontantTVA(Convert::ToDouble(this->Commande->getMontantHT()));
-		this->Commande->setMontantTTC(Convert::ToDouble(this->Commande->getMontantHT()), Convert::ToDouble(MontantTVA));
 		this->Commande->setDateLivraison(DateLivraison);
+		this->Commande->setDateSolde(DateSolde);
+		this->Commande->setRemise(Remise);
+		this->Commande->setQuantitéArticle(quantité);
+		this->Commande->setPrixUnitaire(PU);
+		this->Commande->setMontantHT(QuatitArt, PrixUnit);
+		montantHT = Convert::ToDouble(this->Commande->getMontantHT());
+		this->Commande->setMontantTVA(montantHT);
+		montantTVA = Convert::ToDouble(this->Commande->getMontantTVA());
+		double remise = Convert::ToDouble(this->Commande->getRemise());
+		this->Commande->setMontantTTC(montantHT, montantTVA, remise);
+		montantTTC = Convert::ToDouble(this->Commande->getMontantTTC());
 		this->Commande->setDatePayement(DatePaiment);
 		this->Commande->setMoyenPayement(MoyenPayment);
-		this->Commande->setDateSolde(DateSolde);
 		this->Commande->setMontantPayment(MontantPayment);
-		this->Commande->setRemise(Remise);
+		this->Commande->setIDClient(Client);
 		this->cad->actionRows(this->Commande->UPDATE());
 	}
 

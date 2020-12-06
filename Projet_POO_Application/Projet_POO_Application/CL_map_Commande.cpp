@@ -25,9 +25,9 @@ namespace NS_Composants
 	}
 
 
-	String^ CL_map_Commande::INSERT(void)
+	String^ CL_map_Commande::INSERT(double HT, double TVA, double TTC)
 	{
-		return "INSERT INTO facture (RefCommande, MontantTVA, DateLivraison, DateSolde, Remise, ID_Client, MontantHT, MontantTTC) " + "VALUES('" + this->getRefCommande() + "', '" + this->getMontantTVA() + "', '" + this->getDateLivraison() + "', '" + this->getDateSolde() + "', '" + this->getRemise() + "', '" + this->getIDClient() + "', '" + this->getMontantHT() + "','" + this->getMontantTTC() + "');SELECT @@IDENTITY;";
+		return "INSERT INTO facture (RefCommande, MontantTVA, DateLivraison, DateSolde, Remise, ID_Client, MontantHT, MontantTTC) " + "VALUES('" + this->getRefCommande() + "', '" + TVA + "', '" + this->getDateLivraison() + "', '" + this->getDateSolde() + "', '" + this->getRemise() + "', '" + this->getIDClient() + "', '" + HT + "','" + TTC + "');SELECT @@IDENTITY;";
 			
 		//INSERT INTO facture(RefCommande, MontantTVA, DateLivraison, DateSolde, Remise, ID_Client, MontantHT, MontantTTC) VALUES('MATH2020SAI2', '2.8', '04/12/2020', '04/12/2020', '5', (SELECT ID_Client FROM client WHERE client.NomClient =  AND client.PrenomClient = ), '14.6', '16.8')
 	}
@@ -37,8 +37,8 @@ namespace NS_Composants
 		//INSERT INTO `commande` (`ID_Article`, `ID_Facture`, `QuantiteArticle`) VALUES ((SELECT Stock.ID_Article FROM Stock WHERE Stock.ID_Article = '2'), '2', '12');
 	}
 
-	String^ CL_map_Commande::INSERTDATE(int IDFACTURE) {
-		return "INSERT INTO date (DatePaiment, MontantPayment, MoyenPayment, ID_Facture) VALUES ('"+this->getDatePayement() +"','"+ this->getMontantTTC() +"','"+ this->getMoyenPayement() +"','"+ IDFACTURE +"');";
+	String^ CL_map_Commande::INSERTDATE(int IDFACTURE, double TTC) {
+		return "INSERT INTO date (DatePaiment, MontantPayment, MoyenPayment, ID_Facture) VALUES ('"+this->getDatePayement() +"','"+ TTC +"','"+ this->getMoyenPayement() +"','"+ IDFACTURE +"');";
 	}
 
 	String^ CL_map_Commande::UPDATE(void)
@@ -122,22 +122,23 @@ namespace NS_Composants
 	{
 		if (MontantHT > 0)
 		{
-			MontantHT = MontantHT * 0, 2;
-			this->MontantTVA = Convert::ToString(MontantHT);
+			double TVA = MontantHT * 0.2;
+			this->MontantTVA = Convert::ToString(TVA);
 		}
 	}
 
 	void CL_map_Commande::setMontantHT(double QA, double PU)
 	{
 		if (QA > 0 && PU > 0) {
-			this->MontantHT = Convert::ToString(QA * PU); //ici faut qu'on fasse PrixUnitaire*Quantité
+			double result = QA * PU;
+			this->MontantHT = Convert::ToString(result); //ici faut qu'on fasse PrixUnitaire*Quantité
 		}
 	}
 
-	void CL_map_Commande::setMontantTTC(double MHT, double MTVA)
+	void CL_map_Commande::setMontantTTC(double MHT, double MTVA, double Rem)
 	{
 		if (MHT > 0 && MTVA > 0) {
-			this->MontantTTC = Convert::ToString( MHT + MTVA - Convert::ToDouble(this->Remise)); //ici faut qu'on fasse MontantHT + MontantTVA pour avoir le prix TTC 
+			this->MontantTTC = Convert::ToString( MHT + MTVA - Rem); //ici faut qu'on fasse MontantHT + MontantTVA pour avoir le prix TTC 
 		}
 	}
 
