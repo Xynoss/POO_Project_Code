@@ -156,6 +156,7 @@ private: System::Windows::Forms::Button^ buttonValider;
 
 private: double montantTotalHT;
 private: System::Windows::Forms::CheckBox^ checkBoxAjout;
+private: System::Windows::Forms::CheckBox^ checkBoxPrix;
 
 
 
@@ -247,6 +248,7 @@ private: System::Windows::Forms::CheckBox^ checkBoxAjout;
             this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
             this->buttonValider = (gcnew System::Windows::Forms::Button());
             this->checkBoxAjout = (gcnew System::Windows::Forms::CheckBox());
+            this->checkBoxPrix = (gcnew System::Windows::Forms::CheckBox());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
             this->groupTable->SuspendLayout();
             this->groupBox1->SuspendLayout();
@@ -839,11 +841,22 @@ private: System::Windows::Forms::CheckBox^ checkBoxAjout;
             this->checkBoxAjout->Text = L"Ajouter Article";
             this->checkBoxAjout->UseVisualStyleBackColor = true;
             // 
+            // checkBoxPrix
+            // 
+            this->checkBoxPrix->AutoSize = true;
+            this->checkBoxPrix->Location = System::Drawing::Point(368, 587);
+            this->checkBoxPrix->Name = L"checkBoxPrix";
+            this->checkBoxPrix->Size = System::Drawing::Size(70, 17);
+            this->checkBoxPrix->TabIndex = 63;
+            this->checkBoxPrix->Text = L"Sans Prix";
+            this->checkBoxPrix->UseVisualStyleBackColor = true;
+            // 
             // FRM_Principal
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
             this->ClientSize = System::Drawing::Size(1852, 896);
+            this->Controls->Add(this->checkBoxPrix);
             this->Controls->Add(this->checkBoxAjout);
             this->Controls->Add(this->groupBox1);
             this->Controls->Add(this->label17);
@@ -990,6 +1003,7 @@ private: System::Windows::Forms::CheckBox^ checkBoxAjout;
 
     private: void Actualiser() {
         checkBoxAjout->Visible = false;
+        checkBoxPrix->Visible = false;
         if (this->radioButtonClient->Checked) {
             this->index = 0;
             this->dtClient = this->processusClients->TableClient();
@@ -1082,6 +1096,7 @@ private: System::Windows::Forms::CheckBox^ checkBoxAjout;
         }
         else if (this->radioButtonCommande->Checked) {
             checkBoxAjout->Visible = true;
+            checkBoxPrix->Visible = true;
             if (this->checkBoxAjout->Checked) {
                 this->groupBox1->Visible = true;
                 this->labelA1->Text = "id article";
@@ -1368,6 +1383,10 @@ private: System::Windows::Forms::CheckBox^ checkBoxAjout;
             {
                 if (this->checkBoxAjout->Checked) {
                     this->processusCommande->modifierArticle(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text/*Reference*/, this->txt_DateNaissance->Text/*Date de livraison*/, this->textBox9->Text/*Date Paiement*/, this->textBox11->Text/*Moyen de paiement*/, this->txt_Ville->Text/*Date de solde*/, this->textBox10->Text/*montant paiement*/, this->txt_Adresse->Text/*Remise*/, Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, this->txt_CodePostal->Text /*quantité de l'article*/, this->txt_TypeAdresse->Text /*PrixUnitaire*/, this->textBox15->Text/*PrenomClient*/, this->textBox16->Text/*NomClient*/, this->textBox17->Text/*CurentAnnee*/, this->textBox13->Text/*VilleClient*/, this->montantTotalHT);
+                    this->mode = "RIEN";
+                }
+                else if (this->checkBoxPrix->Checked) {
+                    this->processusCommande->modifierSPrix(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text/*Reference*/, this->txt_DateNaissance->Text/*Date de livraison*/, this->textBox9->Text/*Date Paiement*/, this->textBox11->Text/*Moyen de paiement*/, this->txt_Ville->Text/*Date de solde*/, Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, this->textBox15->Text/*PrenomClient*/, this->textBox16->Text/*NomClient*/, this->textBox17->Text/*CurentAnnee*/, this->textBox13->Text/*VilleClient*/, Convert::ToInt16(this->textBox14->Text));
                     this->mode = "RIEN";
                 }
                 else {

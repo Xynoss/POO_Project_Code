@@ -126,6 +126,19 @@ namespace NS_Svc
 		this->cad->actionRows(this->Commande->UPDATEARTICLE2());
 	}
 
+	void Svc_commande::modifierSPrix(int ID_Facture, String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, int Client, String^ PrenomClient, String^ NomClient, String^ CurentAnnee, String^ VilleClient, int Article)
+	{
+		this->Commande->setIDfacture(ID_Facture);
+		this->Commande->setReference(RefCommande, PrenomClient, NomClient, CurentAnnee, VilleClient);
+		this->Commande->setDateLivraison(DateLivraison);
+		this->Commande->setDateSolde(DateSolde);
+		this->Commande->setDatePayement(DatePaiment);
+		this->Commande->setMoyenPayement(MoyenPayment);
+		this->Commande->setIDClient(Client);
+		this->Commande->setIDArticle(Article);
+		this->cad->actionRows(this->Commande->UPDATESPrix());
+	}
+
 	void Svc_commande::modifierArticle(int ID_Facture, String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, int Client, String^ quantité, String^ PU, String^ PrenomClient, String^ NomClient, String^ CurentAnnee, String^ VilleClient, double HT)
 	{
 		this->MontantHTDebut = this->cad->getRows(this->Commande->SELECTPRIXHT(), "datatable");
