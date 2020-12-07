@@ -25,7 +25,7 @@ namespace NS_Svc
 		return this->DT;
 	}
 
-	int Svc_commande::ajouter(String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, int Client,String^ PrenomClient,String^ NomClient,String^ CurentAnnee,String^ VilleClient, int Article)
+	int Svc_commande::ajouter(String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, int Client, String^ PrenomClient, String^ NomClient, String^ CurentAnnee, String^ VilleClient, int Article)
 	{
 		int ID_facture;
 		double montantHT;
@@ -34,6 +34,13 @@ namespace NS_Svc
 		this->Commande->setReference(RefCommande, PrenomClient, NomClient, CurentAnnee, VilleClient);
 		this->Commande->setDateLivraison(DateLivraison);
 		this->Commande->setDateSolde(DateSolde);
+		this->Commande->setRemise(Remise);
+		montantHT = Convert::ToDouble(this->Commande->getMontantHT());
+		this->Commande->setMontantTVA(montantHT);
+		montantTVA = Convert::ToDouble(this->Commande->getMontantTVA());
+		double remise = Convert::ToDouble(this->Commande->getRemise());
+		this->Commande->setMontantTTC(montantHT, montantTVA, remise);
+		montantTTC = Convert::ToDouble(this->Commande->getMontantTTC());
 		this->Commande->setDatePayement(DatePaiment);
 		this->Commande->setMoyenPayement(MoyenPayment);
 		this->Commande->setMontantPayment(MontantPayment);
@@ -48,7 +55,6 @@ namespace NS_Svc
 	double Svc_commande::ajouterArticle(String^ id_Article, String^ id_Facture, String^ Quant_, String^ PrixU_)
 	{
 		int ID_facture;
-		int id_commande;
 		double QuatitArt;
 		double PrixUnit;
 		double montantHT;
@@ -61,20 +67,25 @@ namespace NS_Svc
 		PrixUnit = Convert::ToDouble(this->Commande->getPrixUnitaire());
 		this->Commande->setMontantHT(QuatitArt, PrixUnit);
 		montantHT = Convert::ToDouble(this->Commande->getMontantHT());
-		id_commande = this->cad->actionRowsID(this->Commande->INSERTCOMMANDE(ID_facture));
+		this->cad->actionRowsID(this->Commande->INSERTCOMMANDE(ID_facture));
 		return montantHT;
 	}
 
 	int Svc_commande::update(int idf, double HT, String^ Remise)
 	{
+		double montantHT;
+		double montantTVA;
+		double remise;
+		double montantTTC;
 		this->Commande->setIDfacture(idf);
 		this->Commande->setRemise(Remise);
-		double montantHT = HT;
+		this->Commande->setMontantHT2(HT);
+		montantHT = Convert::ToDouble(this->Commande->getMontantHT2());
 		this->Commande->setMontantTVA(montantHT);
-		double montantTVA = Convert::ToDouble(this->Commande->getMontantTVA());
-		double remise = Convert::ToDouble(Remise);
+		montantTVA = Convert::ToDouble(this->Commande->getMontantTVA());
+		remise = Convert::ToDouble(Remise);
 		this->Commande->setMontantTTC(montantHT, montantTVA, remise);
-		double montantTTC = Convert::ToDouble(this->Commande->getMontantTTC());
+		montantTTC = Convert::ToDouble(this->Commande->getMontantTTC());
 
 		this->cad->actionRows(this->Commande->UPDATEARTICLE(montantHT, montantTVA, montantTTC));
 		return idf;
@@ -97,11 +108,44 @@ namespace NS_Svc
 		this->Commande->setReference(RefCommande, PrenomClient, NomClient, CurentAnnee, VilleClient);
 		this->Commande->setDateLivraison(DateLivraison);
 		this->Commande->setDateSolde(DateSolde);
+		this->Commande->setRemise(Remise);
+		this->Commande->setQuantitéArticle(quantité);
+		this->Commande->setPrixUnitaire(PU);
+		this->Commande->setMontantHT(QuatitArt, PrixUnit);
+		montantHT = Convert::ToDouble(this->Commande->getMontantHT());
+		this->Commande->setMontantTVA(montantHT);
+		montantTVA = Convert::ToDouble(this->Commande->getMontantTVA());
+		double remise = Convert::ToDouble(this->Commande->getRemise());
+		this->Commande->setMontantTTC(montantHT, montantTVA, remise);
+		montantTTC = Convert::ToDouble(this->Commande->getMontantTTC());
 		this->Commande->setDatePayement(DatePaiment);
 		this->Commande->setMoyenPayement(MoyenPayment);
 		this->Commande->setMontantPayment(MontantPayment);
 		this->Commande->setIDClient(Client);
-		this->cad->actionRows(this->Commande->UPDATE());
+		this->cad->actionRows(this->Commande->UPDATE(montantHT, montantTVA, montantTTC));
+	}
+
+	void Svc_commande::modifierArticle(int ID_Facture, String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, int Client, String^ quantité, String^ PU, String^ PrenomClient, String^ NomClient, String^ CurentAnnee, String^ VilleClient, double HT)
+	{
+		this->Commande->setMontantHT2(HT);
+		double montantTTC;
+		double montantTVA;
+		this->Commande->setIDfacture(ID_Facture);
+		this->Commande->setReference(RefCommande, PrenomClient, NomClient, CurentAnnee, VilleClient);
+		this->Commande->setDateLivraison(DateLivraison);
+		this->Commande->setDateSolde(DateSolde);
+		this->Commande->setRemise(Remise);
+		double montantHT = Convert::ToDouble(this->Commande->getMontantHT());
+		this->Commande->setMontantTVA(montantHT);
+		montantTVA = Convert::ToDouble(this->Commande->getMontantTVA());
+		double remise = Convert::ToDouble(this->Commande->getRemise());
+		this->Commande->setMontantTTC(montantHT, montantTVA, remise);
+		montantTTC = Convert::ToDouble(this->Commande->getMontantTTC());
+		this->Commande->setDatePayement(DatePaiment);
+		this->Commande->setMoyenPayement(MoyenPayment);
+		this->Commande->setMontantPayment(MontantPayment);
+		this->Commande->setIDClient(Client);
+		this->cad->actionRows(this->Commande->UPDATE(montantHT, montantTVA, montantTTC));
 	}
 
 	void Svc_commande::supprimer(int ID_Facture)

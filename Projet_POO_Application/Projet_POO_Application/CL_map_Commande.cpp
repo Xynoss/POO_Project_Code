@@ -52,10 +52,10 @@ namespace NS_Composants
 		return "INSERT INTO date (DatePaiment, MontantPayment, MoyenPayment, ID_Facture) VALUES ('"+this->getDatePayement() +"','"+ TTC +"','"+ this->getMoyenPayement() +"','"+ IDFACTURE +"');";
 	}
 
-	String^ CL_map_Commande::UPDATE()
+	String^ CL_map_Commande::UPDATE(double HT, double TVA, double TTC)
 	{
-		return "UPDATE facture SET RefCommande = '"+this->getRefCommande()+"', DateLivraison = '"+ this->getDateLivraison()+"', DateSolde = '"+this->getDateSolde()+"', ID_Client = '"+ this->getIDClient() +"'WHERE(ID_Facture = " + this->getIDFacture() + "); "+
-			//"UPDATE Commande SET QuantiteArticle = '" + this->getQuantitéArticle() + "' WHERE(ID_Facture = " + this->getIDFacture() + ");"+
+		return "UPDATE facture SET RefCommande = '"+this->getRefCommande()+"', DateLivraison = '"+ this->getDateLivraison()+"', DateSolde = '"+this->getDateSolde()+"', Remise = '"+ this->getRemise()+"', ID_Client = '"+ this->getIDClient() +"', MontantTVA = '" + TVA + "', MontantHT = '" + HT + "', MontantTTC = '" + TTC + "'WHERE(ID_Facture = " + this->getIDFacture() + "); "+
+			"UPDATE Commande SET QuantiteArticle = '" + this->getQuantitéArticle() + "' WHERE(ID_Facture = " + this->getIDFacture() + ");"+
 			"UPDATE `date` SET `DatePaiment` = '"+this->getDatePayement()+"',`MontantPayment`='"+this->getMontantPayment()+"',`MoyenPayment`='"+this->getMoyenPayement()+"' WHERE(ID_Facture = " + this->getIDFacture() + ");;";
 	}
 
@@ -140,7 +140,7 @@ namespace NS_Composants
 
 	void CL_map_Commande::setRemise(String^ remise)
 	{
-		if (remise != "0")
+		if (remise != "")
 		{
 			this->Remise = remise;
 		}
@@ -160,6 +160,13 @@ namespace NS_Composants
 		if (QA > 0 && PU > 0) {
 			double result = QA * PU;
 			this->MontantHT = Convert::ToString(result); //ici faut qu'on fasse PrixUnitaire*Quantité
+		}
+	}
+
+	void CL_map_Commande::setMontantHT2(double HT)
+	{
+		if(HT > 0) {
+			this->MontantHT = Convert::ToString(HT);
 		}
 	}
 
@@ -270,6 +277,10 @@ namespace NS_Composants
 	String^ CL_map_Commande::getMontantHT(void)
 	{
 		return this->MontantHT;
+	}
+	String^ CL_map_Commande::getMontantHT2(void)
+	{
+		return this->MontantHT2;
 	}
 	String^ CL_map_Commande::getMontantTTC(void)
 	{

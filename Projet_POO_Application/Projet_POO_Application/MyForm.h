@@ -3,7 +3,7 @@
 #include "CL_svc_gestionPersonnel.h"
 #include "CL_svc_gestionCommande.h"
 #include "CL_svc_gestionStock.h"
-#include "PopUp.h";
+
 
 namespace A2POOCorb6
 {
@@ -152,9 +152,12 @@ private: System::Windows::Forms::Label^ labelA4;
 
 private: System::Windows::Forms::GroupBox^ groupBox1;
 private: System::Windows::Forms::Button^ buttonValider;
-private: System::Windows::Forms::Button^ buttonAjoutArticle;
+
 
 private: double montantTotalHT;
+private: System::Windows::Forms::CheckBox^ checkBoxAjout;
+
+
 
 
 
@@ -243,7 +246,7 @@ private: double montantTotalHT;
             this->labelA4 = (gcnew System::Windows::Forms::Label());
             this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
             this->buttonValider = (gcnew System::Windows::Forms::Button());
-            this->buttonAjoutArticle = (gcnew System::Windows::Forms::Button());
+            this->checkBoxAjout = (gcnew System::Windows::Forms::CheckBox());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
             this->groupTable->SuspendLayout();
             this->groupBox1->SuspendLayout();
@@ -826,22 +829,22 @@ private: double montantTotalHT;
             this->buttonValider->UseVisualStyleBackColor = true;
             this->buttonValider->Click += gcnew System::EventHandler(this, &FRM_Principal::buttonValider_Click);
             // 
-            // buttonAjoutArticle
+            // checkBoxAjout
             // 
-            this->buttonAjoutArticle->Location = System::Drawing::Point(268, 601);
-            this->buttonAjoutArticle->Name = L"buttonAjoutArticle";
-            this->buttonAjoutArticle->Size = System::Drawing::Size(84, 28);
-            this->buttonAjoutArticle->TabIndex = 62;
-            this->buttonAjoutArticle->Text = L"Ajouter article";
-            this->buttonAjoutArticle->UseVisualStyleBackColor = true;
-            this->buttonAjoutArticle->Click += gcnew System::EventHandler(this, &FRM_Principal::buttonAjoutArticle_Click);
+            this->checkBoxAjout->AutoSize = true;
+            this->checkBoxAjout->Location = System::Drawing::Point(25, 643);
+            this->checkBoxAjout->Name = L"checkBoxAjout";
+            this->checkBoxAjout->Size = System::Drawing::Size(91, 17);
+            this->checkBoxAjout->TabIndex = 62;
+            this->checkBoxAjout->Text = L"Ajouter Article";
+            this->checkBoxAjout->UseVisualStyleBackColor = true;
             // 
             // FRM_Principal
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
             this->ClientSize = System::Drawing::Size(1852, 896);
-            this->Controls->Add(this->buttonAjoutArticle);
+            this->Controls->Add(this->checkBoxAjout);
             this->Controls->Add(this->groupBox1);
             this->Controls->Add(this->label17);
             this->Controls->Add(this->label1);
@@ -909,6 +912,7 @@ private: double montantTotalHT;
         this->index = 0;
         this->mode = "RIEN";
         this->SelectedTable = "personnel";
+        this->groupBox1->Visible = false;
         this->dsClient = gcnew Data::DataSet();
         this->dsPersonnel = gcnew Data::DataSet();
         this->dsCommande = gcnew Data::DataSet();
@@ -985,6 +989,7 @@ private: double montantTotalHT;
 
 
     private: void Actualiser() {
+        checkBoxAjout->Visible = false;
         if (this->radioButtonClient->Checked) {
             this->index = 0;
             this->dtClient = this->processusClients->TableClient();
@@ -1074,6 +1079,17 @@ private: double montantTotalHT;
             this->txt_message->Text = "update réussi personnel";
         }
         else if (this->radioButtonCommande->Checked) {
+            checkBoxAjout->Visible = true;
+            if (this->checkBoxAjout->Checked) {
+                this->groupBox1->Visible = true;
+                this->labelA1->Text = "id article";
+                this->labelA2->Text = "id facture";
+                this->labelA3->Text = "Quantité de l'article";
+                this->labelA4->Text = "Prix Unitaire";
+            }
+            else {
+                this->groupBox1->Visible = false;
+            }
             this->index = 0;
             this->dtCommande = this->processusCommande->TableCommande();
             BindingSource^ bs = gcnew BindingSource();
@@ -1337,7 +1353,6 @@ private: double montantTotalHT;
             this->txt_message->Text += "Traitement terminé.";
         }
         else if (this->radioButtonCommande->Checked) {
-            int NbrArt = 1;
             
             if (this->mode == "nouv")
             {
@@ -1348,6 +1363,10 @@ private: double montantTotalHT;
             }
             else if (this->mode == "maj")
             {
+                if (this->checkBoxAjout->Checked) {
+                    this->processusCommande->modifierArticle(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text/*Reference*/, this->txt_DateNaissance->Text/*Date de livraison*/, this->textBox9->Text/*Date Paiement*/, this->textBox11->Text/*Moyen de paiement*/, this->txt_Ville->Text/*Date de solde*/, this->textBox10->Text/*montant paiement*/, this->txt_Adresse->Text/*Remise*/, Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, this->txt_CodePostal->Text /*quantité de l'article*/, this->txt_TypeAdresse->Text /*PrixUnitaire*/, this->textBox15->Text/*PrenomClient*/, this->textBox16->Text/*NomClient*/, this->textBox17->Text/*CurentAnnee*/, this->textBox13->Text/*VilleClient*/, this->montantTotalHT);
+                    this->mode = "RIEN";
+                }
                 this->processusCommande->modifier(Convert::ToInt32(this->txt_idPersonne->Text),this->txt_nom->Text/*Reference*/, this->txt_DateNaissance->Text/*Date de livraison*/, this->textBox9->Text/*Date Paiement*/, this->textBox11->Text/*Moyen de paiement*/, this->txt_Ville->Text/*Date de solde*/, this->textBox10->Text/*montant paiement*/, this->txt_Adresse->Text/*Remise*/,Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, this->txt_CodePostal->Text /*quantité de l'article*/, this->txt_TypeAdresse->Text /*PrixUnitaire*/, this->textBox15->Text/*PrenomClient*/, this->textBox16->Text/*NomClient*/,this->textBox17->Text/*CurentAnnee*/ ,this->textBox13->Text/*VilleClient*/);
                 this->mode = "RIEN";
             }
@@ -1390,15 +1409,9 @@ private: double montantTotalHT;
     private: System::Void btn_refresh_Click(System::Object^ sender, System::EventArgs^ e) {
         Actualiser();
     }
-    private: System::Void buttonAjoutArticle_Click(System::Object^ sender, System::EventArgs^ e) {
-        this->labelA1->Text = "id article";
-        this->labelA2->Text = "id facture";
-        this->labelA3->Text = "Quantité de l'article";
-        this->labelA4->Text = "Prix Unitaire";
-    }
     private: System::Void buttonValider_Click(System::Object^ sender, System::EventArgs^ e) {
         this->montantTotalHT += this->processusCommande->ajouterArticle(this->textBoxA1->Text/*id de l'article*/, this->textBoxA2->Text/*id de la facture*/, this->textBoxA3->Text/*quantité de l'article*/, this->textBoxA4->Text/*prix a l'unité*/);
-        this->processusCommande->update(Convert::ToInt16(this->textBoxA2->Text), this->montantTotalHT, this->txt_Adresse->Text);
+        this->txt_message->Text = Convert::ToString(this->montantTotalHT);
     }
 };
 

@@ -20,6 +20,7 @@ namespace NS_Composants
 		String^ QuantitéArticle;
 		String^ MontantTVA;
 		String^ MontantHT;
+		String^ MontantHT2;
 		String^ MontantTTC;
 		String^ MontantPayement;
 		String^ PrixUnitaire;
@@ -31,7 +32,7 @@ namespace NS_Composants
 		String^ INSERT(double HT, double TVA, double TTC);
 		String^ INSERTCOMMANDE(int IDFACTURE);
 		String^ INSERTDATE(int IDFACTURE, double TTC);
-		String^ UPDATE();
+		String^ UPDATE(double HT, double TVA, double TTC);
 		String^ UPDATEARTICLE(double HT, double TVA, double TTC);
 		String^ DELETE(void);
 
@@ -46,6 +47,7 @@ namespace NS_Composants
 		void setRemise(String^);
 		void setMontantTVA(double);
 		void setMontantHT(double, double);
+		void setMontantHT2(double);
 		void setMontantTTC(double, double, double);
 		void setIDClient(int);
 		void setIDArticle(int);
@@ -68,6 +70,7 @@ namespace NS_Composants
 		String^ getRemise(void);
 		String^ getMontantTVA(void);
 		String^ getMontantHT(void);
+		String^ getMontantHT2(void);
 		String^ getMontantTTC(void);
 		String^ getMontantPayment(void);
 		String^ getPrixUnitaire(void);
