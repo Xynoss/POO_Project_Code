@@ -59,15 +59,20 @@ namespace NS_Composants
 
 	String^ CL_map_Commande::UPDATE(double HT, double TVA, double TTC)
 	{
-		return "UPDATE facture SET RefCommande = '"+this->getRefCommande()+"', DateLivraison = '"+ this->getDateLivraison()+"', DateSolde = '"+this->getDateSolde()+"', Remise = '"+ this->getRemise()+"', ID_Client = '"+ this->getIDClient() +"', MontantTVA = '" + TVA + "', MontantHT = '" + HT + "', MontantTTC = '" + TTC + "'WHERE(ID_Facture = " + this->getIDFacture() + "); "+
-			"UPDATE Commande SET QuantiteArticle = '" + this->getQuantitéArticle() + "' WHERE(ID_Facture = " + this->getIDFacture() + ");"+
-			"UPDATE `date` SET `DatePaiment` = '"+this->getDatePayement()+"',`MontantPayment`='"+this->getMontantPayment()+"',`MoyenPayment`='"+this->getMoyenPayement()+"' WHERE(ID_Facture = " + this->getIDFacture() + ");;";
+		return "UPDATE facture SET RefCommande = '"+this->getRefCommande()+"', DateLivraison = '"+ this->getDateLivraison()+"', DateSolde = '"+this->getDateSolde()+"', Remise = '"+ this->getRemise()+"', ID_Client = '"+ this->getIDClient() +"', MontantTVA = '" + TVA + "', MontantHT = '" + HT + "', MontantTTC = '" + TTC + "' WHERE(ID_Facture = " + this->getIDFacture() + "); "+
+			"UPDATE `date` SET `DatePaiment` = '"+this->getDatePayement()+"',`MontantPayment`='" + TTC + "',`MoyenPayment`='"+this->getMoyenPayement()+"' WHERE(ID_Facture = " + this->getIDFacture() + ");;";
 	}
 
 	String^ CL_map_Commande::UPDATEARTICLE(double HT, double TVA, double TTC)
 	{
 		return "UPDATE facture SET MontantTVA = '" + TVA + "', MontantHT = '" + HT + "', MontantTTC = '" + TTC + "'WHERE(ID_Facture = " + this->getIDFacture() + "); ";
 	}
+
+	String^ CL_map_Commande::UPDATEARTICLE2()
+	{
+		return "UPDATE Commande SET QuantiteArticle = '" + this->getQuantitéArticle() + "' WHERE(ID_Facture = " + this->getIDFacture() + " AND ID_Article = " +this->getIDArticle() +");";
+	}
+	
 
 	String^ CL_map_Commande::DELETE(void)
 	{

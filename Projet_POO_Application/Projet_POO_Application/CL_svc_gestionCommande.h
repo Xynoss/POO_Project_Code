@@ -22,7 +22,7 @@ namespace NS_Svc {
 		int ajouter(String^, String^, String^, String^, String^, String^, String^, int, String^, String^, String^, String^, int);
 		double ajouterArticle(String^, String^, String^, String^);
 		int update(int,double, String^);
-		void modifier(int, String^, String^, String^, String^, String^, String^, String^, int, String^, String^ , String^, String^, String^, String^);
+		void modifier(int, String^, String^, String^, String^, String^, String^, String^, int, String^, String^ , String^, String^, String^, String^, int);
 		void modifierArticle(int, String^, String^, String^, String^, String^, String^, String^, int, String^, String^ , String^, String^, String^, String^, double);
 		void supprimer(int);
 	};

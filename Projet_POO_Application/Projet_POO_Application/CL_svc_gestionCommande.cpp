@@ -94,7 +94,7 @@ namespace NS_Svc
 
 
 
-	void Svc_commande::modifier(int ID_Facture, String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, int Client, String^ quantité, String^ PU, String^ PrenomClient, String^ NomClient, String^ CurentAnnee, String^ VilleClient)
+	void Svc_commande::modifier(int ID_Facture, String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, int Client, String^ quantité, String^ PU, String^ PrenomClient, String^ NomClient, String^ CurentAnnee, String^ VilleClient, int Article)
 	{
 		double QuatitArt;
 		double PrixUnit;
@@ -105,14 +105,13 @@ namespace NS_Svc
 		this->Commande->setPrixUnitaire(PU);
 		QuatitArt = Convert::ToDouble(this->Commande->getQuantitéArticle());
 		PrixUnit = Convert::ToDouble(this->Commande->getPrixUnitaire());
+		this->Commande->setMontantHT(QuatitArt, PrixUnit);
 		this->Commande->setIDfacture(ID_Facture);
 		this->Commande->setReference(RefCommande, PrenomClient, NomClient, CurentAnnee, VilleClient);
 		this->Commande->setDateLivraison(DateLivraison);
 		this->Commande->setDateSolde(DateSolde);
 		this->Commande->setRemise(Remise);
-		this->Commande->setQuantitéArticle(quantité);
-		this->Commande->setPrixUnitaire(PU);
-		montantHT = Convert::ToDouble(this->Commande->getMontantHT3());
+		montantHT = Convert::ToDouble(this->Commande->getMontantHT());
 		this->Commande->setMontantTVA(montantHT);
 		montantTVA = Convert::ToDouble(this->Commande->getMontantTVA());
 		double remise = Convert::ToDouble(this->Commande->getRemise());
@@ -122,7 +121,9 @@ namespace NS_Svc
 		this->Commande->setMoyenPayement(MoyenPayment);
 		this->Commande->setMontantPayment(MontantPayment);
 		this->Commande->setIDClient(Client);
+		this->Commande->setIDArticle(Article);
 		this->cad->actionRows(this->Commande->UPDATE(montantHT, montantTVA, montantTTC));
+		this->cad->actionRows(this->Commande->UPDATEARTICLE2());
 	}
 
 	void Svc_commande::modifierArticle(int ID_Facture, String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, int Client, String^ quantité, String^ PU, String^ PrenomClient, String^ NomClient, String^ CurentAnnee, String^ VilleClient, double HT)
