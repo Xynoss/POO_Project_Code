@@ -34,6 +34,11 @@ namespace NS_Composants
 		return "SELECT `Facture`.`ID_Facture`, `Facture`.`RefCommande`, `client`.`ID_Client`,  `Facture`.`MontantTVA`, `Facture`.`DateLivraison`, `Facture`.`Remise`, `Facture`.`DateSolde`, `Facture`.`MontantHT`,  `Facture`.`MontantTTC`, `commande`.`QuantiteArticle`, `stock`.`PrixUnitaire`,    `Date`.`ID_Date`,    `Date`.`DatePaiment`,    `Date`.`MontantPayment`,    `Date`.`MoyenPayment`, `Client`.`NaissanceClient`,    `region`.`Ville`,    `stock`.`ID_Article`FROM    `Commande`,    `Facture`,    `Date`,    `stock`,    `client`,    `region`,    `appartient` WHERE    `Commande`.`ID_Facture` = `Facture`.`ID_Facture` AND `Facture`.`ID_Facture` = `Date`.`ID_Facture` AND `stock`.`ID_Article` = `commande`.`ID_Article` AND `Facture`.`ID_Client` = `client`.`ID_Client` AND `region`.`ID_region` = `appartient`.`ID_region` AND `appartient`.`ID_Client` = `client`.`ID_Client` ORDER BY    `Commande`.`ID_Facture` ASC;";
 	}
 
+	String^ CL_map_Commande::SELECTPRIXHT(void)
+	{
+		return "SELECT MontantHT FROM `facture` WHERE (ID_facture = '" + this->getIDFacture() + "');";
+	}
+
 
 
 	String^ CL_map_Commande::INSERT(double HT, double TVA, double TTC)
@@ -166,7 +171,14 @@ namespace NS_Composants
 	void CL_map_Commande::setMontantHT2(double HT)
 	{
 		if(HT > 0) {
-			this->MontantHT = Convert::ToString(HT);
+			this->MontantHT2 = Convert::ToString(HT);
+		}
+	}
+
+	void CL_map_Commande::setMontantHT3(double HT, double HTD)
+	{
+		if (HT > 0 && HTD > 0) {
+			this->MontantHT3 = Convert::ToString(HT + HTD);
 		}
 	}
 
@@ -281,6 +293,10 @@ namespace NS_Composants
 	String^ CL_map_Commande::getMontantHT2(void)
 	{
 		return this->MontantHT2;
+	}
+	String^ CL_map_Commande::getMontantHT3(void)
+	{
+		return this->MontantHT3;
 	}
 	String^ CL_map_Commande::getMontantTTC(void)
 	{

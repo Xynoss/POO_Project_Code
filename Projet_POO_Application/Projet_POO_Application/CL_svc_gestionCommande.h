@@ -13,6 +13,7 @@ namespace NS_Svc {
 		NS_Composants::CL_CAD^ cad;
 		NS_Composants::CL_map_Commande^ Commande;
 		DataSet^ DS;
+		DataSet^ MontantHTDebut;
 		DataTable^ DT;
 	public:
 		Svc_commande(void);

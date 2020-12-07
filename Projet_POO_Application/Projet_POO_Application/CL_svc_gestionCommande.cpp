@@ -9,6 +9,7 @@ namespace NS_Svc
 		this->Commande = gcnew NS_Composants::CL_map_Commande(); 
 		this->DS = gcnew Data::DataSet();
 		this->DT = gcnew Data::DataTable();
+		this->MontantHTDebut = gcnew Data::DataSet();
 	}
 
 	DataSet^ Svc_commande::listeCommande(String^ dataTableName)
@@ -111,8 +112,7 @@ namespace NS_Svc
 		this->Commande->setRemise(Remise);
 		this->Commande->setQuantitéArticle(quantité);
 		this->Commande->setPrixUnitaire(PU);
-		this->Commande->setMontantHT(QuatitArt, PrixUnit);
-		montantHT = Convert::ToDouble(this->Commande->getMontantHT());
+		montantHT = Convert::ToDouble(this->Commande->getMontantHT3());
 		this->Commande->setMontantTVA(montantHT);
 		montantTVA = Convert::ToDouble(this->Commande->getMontantTVA());
 		double remise = Convert::ToDouble(this->Commande->getRemise());
@@ -127,7 +127,8 @@ namespace NS_Svc
 
 	void Svc_commande::modifierArticle(int ID_Facture, String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, int Client, String^ quantité, String^ PU, String^ PrenomClient, String^ NomClient, String^ CurentAnnee, String^ VilleClient, double HT)
 	{
-		this->Commande->setMontantHT2(HT);
+		this->MontantHTDebut = this->cad->getRows(this->Commande->SELECTPRIXHT(), "datatable");
+		this->Commande->setMontantHT3(HT, Convert::ToDouble(this->MontantHTDebut->Tables["datatable"]->Rows[0]->ItemArray[0]));
 		double montantTTC;
 		double montantTVA;
 		this->Commande->setIDfacture(ID_Facture);
@@ -135,7 +136,7 @@ namespace NS_Svc
 		this->Commande->setDateLivraison(DateLivraison);
 		this->Commande->setDateSolde(DateSolde);
 		this->Commande->setRemise(Remise);
-		double montantHT = Convert::ToDouble(this->Commande->getMontantHT());
+		double montantHT = Convert::ToDouble(this->Commande->getMontantHT3());
 		this->Commande->setMontantTVA(montantHT);
 		montantTVA = Convert::ToDouble(this->Commande->getMontantTVA());
 		double remise = Convert::ToDouble(this->Commande->getRemise());

@@ -739,28 +739,28 @@ private: System::Windows::Forms::CheckBox^ checkBoxAjout;
             // 
             // textBoxA1
             // 
-            this->textBoxA1->Location = System::Drawing::Point(65, 15);
+            this->textBoxA1->Location = System::Drawing::Point(99, 16);
             this->textBoxA1->Name = L"textBoxA1";
             this->textBoxA1->Size = System::Drawing::Size(100, 20);
             this->textBoxA1->TabIndex = 53;
             // 
             // textBoxA2
             // 
-            this->textBoxA2->Location = System::Drawing::Point(65, 41);
+            this->textBoxA2->Location = System::Drawing::Point(99, 42);
             this->textBoxA2->Name = L"textBoxA2";
             this->textBoxA2->Size = System::Drawing::Size(100, 20);
             this->textBoxA2->TabIndex = 54;
             // 
             // textBoxA3
             // 
-            this->textBoxA3->Location = System::Drawing::Point(65, 67);
+            this->textBoxA3->Location = System::Drawing::Point(99, 67);
             this->textBoxA3->Name = L"textBoxA3";
             this->textBoxA3->Size = System::Drawing::Size(100, 20);
             this->textBoxA3->TabIndex = 55;
             // 
             // textBoxA4
             // 
-            this->textBoxA4->Location = System::Drawing::Point(65, 94);
+            this->textBoxA4->Location = System::Drawing::Point(99, 91);
             this->textBoxA4->Name = L"textBoxA4";
             this->textBoxA4->Size = System::Drawing::Size(100, 20);
             this->textBoxA4->TabIndex = 56;
@@ -814,14 +814,14 @@ private: System::Windows::Forms::CheckBox^ checkBoxAjout;
             this->groupBox1->Controls->Add(this->textBoxA1);
             this->groupBox1->Location = System::Drawing::Point(18, 666);
             this->groupBox1->Name = L"groupBox1";
-            this->groupBox1->Size = System::Drawing::Size(295, 124);
+            this->groupBox1->Size = System::Drawing::Size(352, 124);
             this->groupBox1->TabIndex = 61;
             this->groupBox1->TabStop = false;
             this->groupBox1->Text = L"Article";
             // 
             // buttonValider
             // 
-            this->buttonValider->Location = System::Drawing::Point(206, 88);
+            this->buttonValider->Location = System::Drawing::Point(257, 89);
             this->buttonValider->Name = L"buttonValider";
             this->buttonValider->Size = System::Drawing::Size(75, 23);
             this->buttonValider->TabIndex = 61;
@@ -1027,6 +1027,7 @@ private: System::Windows::Forms::CheckBox^ checkBoxAjout;
             this->textBox15->Text = "";
             this->textBox15->ReadOnly = true;
             this->label16->Text = "";
+            this->textBox16->Text = "";
             this->textBox16->ReadOnly = true;
             this->label17->Text = "";
             this->textBox17->ReadOnly = true;
@@ -1073,6 +1074,7 @@ private: System::Windows::Forms::CheckBox^ checkBoxAjout;
             this->textBox15->Text = "";
             this->textBox15->ReadOnly = true;
             this->label16->Text = "";
+            this->textBox16->Text = "";
             this->textBox16->ReadOnly = true;
             this->label17->Text = "";
             this->textBox17->ReadOnly = true;
@@ -1166,6 +1168,7 @@ private: System::Windows::Forms::CheckBox^ checkBoxAjout;
             this->textBox15->Text = "";
             this->textBox15->ReadOnly = true;
             this->label16->Text = "";
+            this->textBox16->Text = "";
             this->textBox16->ReadOnly = true;
             this->label17->Text = "";
             this->textBox17->ReadOnly = true;
@@ -1367,8 +1370,10 @@ private: System::Windows::Forms::CheckBox^ checkBoxAjout;
                     this->processusCommande->modifierArticle(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text/*Reference*/, this->txt_DateNaissance->Text/*Date de livraison*/, this->textBox9->Text/*Date Paiement*/, this->textBox11->Text/*Moyen de paiement*/, this->txt_Ville->Text/*Date de solde*/, this->textBox10->Text/*montant paiement*/, this->txt_Adresse->Text/*Remise*/, Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, this->txt_CodePostal->Text /*quantité de l'article*/, this->txt_TypeAdresse->Text /*PrixUnitaire*/, this->textBox15->Text/*PrenomClient*/, this->textBox16->Text/*NomClient*/, this->textBox17->Text/*CurentAnnee*/, this->textBox13->Text/*VilleClient*/, this->montantTotalHT);
                     this->mode = "RIEN";
                 }
-                this->processusCommande->modifier(Convert::ToInt32(this->txt_idPersonne->Text),this->txt_nom->Text/*Reference*/, this->txt_DateNaissance->Text/*Date de livraison*/, this->textBox9->Text/*Date Paiement*/, this->textBox11->Text/*Moyen de paiement*/, this->txt_Ville->Text/*Date de solde*/, this->textBox10->Text/*montant paiement*/, this->txt_Adresse->Text/*Remise*/,Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, this->txt_CodePostal->Text /*quantité de l'article*/, this->txt_TypeAdresse->Text /*PrixUnitaire*/, this->textBox15->Text/*PrenomClient*/, this->textBox16->Text/*NomClient*/,this->textBox17->Text/*CurentAnnee*/ ,this->textBox13->Text/*VilleClient*/);
-                this->mode = "RIEN";
+                else {
+                    this->processusCommande->modifier(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text/*Reference*/, this->txt_DateNaissance->Text/*Date de livraison*/, this->textBox9->Text/*Date Paiement*/, this->textBox11->Text/*Moyen de paiement*/, this->txt_Ville->Text/*Date de solde*/, this->textBox10->Text/*montant paiement*/, this->txt_Adresse->Text/*Remise*/, Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, this->txt_CodePostal->Text /*quantité de l'article*/, this->txt_TypeAdresse->Text /*PrixUnitaire*/, this->textBox15->Text/*PrenomClient*/, this->textBox16->Text/*NomClient*/, this->textBox17->Text/*CurentAnnee*/, this->textBox13->Text/*VilleClient*/);
+                    this->mode = "RIEN";
+                }
             }
             else if (this->mode == "sup")
             {
@@ -1412,6 +1417,10 @@ private: System::Windows::Forms::CheckBox^ checkBoxAjout;
     private: System::Void buttonValider_Click(System::Object^ sender, System::EventArgs^ e) {
         this->montantTotalHT += this->processusCommande->ajouterArticle(this->textBoxA1->Text/*id de l'article*/, this->textBoxA2->Text/*id de la facture*/, this->textBoxA3->Text/*quantité de l'article*/, this->textBoxA4->Text/*prix a l'unité*/);
         this->txt_message->Text = Convert::ToString(this->montantTotalHT);
+        this->textBoxA1->Clear();
+        this->textBoxA2->Clear();
+        this->textBoxA3->Clear();
+        this->textBoxA4->Clear();
     }
 };
 
