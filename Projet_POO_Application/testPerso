@@ -1,0 +1,41 @@
+#include "pch.h"
+#include "CppUnitTest.h"
+#include "../corbeille/CL_map_TBPERSONNE.h"
+#include "../corbeille/CL_svc_gestionPersonnes.h"
+#include <string>
+using namespace std;
+
+using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+
+namespace TestPersonnel
+{
+	TEST_CLASS(TestPersonnel)
+	{
+	public:
+		TEST_METHOD(TestMethod1)
+		{
+			int objet = NULL;
+			string nom = "Bertrand";
+			string prenom = "Kamal";
+			int i = ajouter(nom, prenom);
+			Assert::AreEqual(objet, i);
+			
+		}
+		TEST_METHOD(TestMethod2)
+		{
+			int objet = 10;
+			string nom = "Bertrand";
+			string prenom = "Kamal";
+			int i = ajouter("Bertrand", "Kamal");
+			Assert::AreEqual(objet, i);
+		}
+		TEST_METHOD(TestMethod3)
+		{
+			int objet = 11;
+			string nom = "Bertrand";
+			string prenom = "Kamal";
+			int i = ajouter("Bertrand", "Kamal");
+			Assert::AreEqual(objet, i);
+		}
+	};
+}
