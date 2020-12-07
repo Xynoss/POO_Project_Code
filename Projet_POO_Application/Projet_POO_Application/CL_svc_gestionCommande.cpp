@@ -26,16 +26,19 @@ namespace NS_Svc
 		return this->DT;
 	}
 
-	int Svc_commande::ajouter(String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, int Client, String^ PrenomClient, String^ NomClient, String^ CurentAnnee, String^ VilleClient, int Article)
+	int Svc_commande::ajouter(String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ MontantPayment, String^ Remise, int Client, String^ QArticle,String^ PU, String^ PrenomClient, String^ NomClient, String^ CurentAnnee, String^ VilleClient, int Article)
 	{
 		int ID_facture;
 		double montantHT;
 		double montantTTC;
 		double montantTVA;
+		this->Commande->setQuantitéArticle(QArticle);
+		this->Commande->setPrixUnitaire(PU);
 		this->Commande->setReference(RefCommande, PrenomClient, NomClient, CurentAnnee, VilleClient);
 		this->Commande->setDateLivraison(DateLivraison);
 		this->Commande->setDateSolde(DateSolde);
 		this->Commande->setRemise(Remise);
+		this->Commande->setMontantHT(Convert::ToDouble(this->Commande->getQuantitéArticle()), Convert::ToDouble(this->Commande->getPrixUnitaire()));
 		montantHT = Convert::ToDouble(this->Commande->getMontantHT());
 		this->Commande->setMontantTVA(montantHT);
 		montantTVA = Convert::ToDouble(this->Commande->getMontantTVA());
@@ -165,7 +168,7 @@ namespace NS_Svc
 
 	void Svc_commande::supprimer(int ID_Facture)
 	{
-		//this->Commande->setIDFacture(ID_Facture);
+		this->Commande->setIDfacture(ID_Facture);
 		this->cad->actionRows(this->Commande->DELETE());
 	}
 }
