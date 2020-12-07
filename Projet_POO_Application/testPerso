@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../corbeille/CL_map_TBPERSONNE.h"
-#include "../corbeille/CL_svc_gestionPersonnes.h"
+#include "../corbeille/CL_map_Personnel.h"
+#include "../corbeille/CL_svc_gestionPersonnel.h"
 #include <string>
 using namespace std;
 
@@ -39,3 +39,4 @@ namespace TestPersonnel
 		}
 	};
 }
+
