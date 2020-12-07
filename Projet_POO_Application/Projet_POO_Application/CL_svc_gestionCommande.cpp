@@ -21,7 +21,7 @@ namespace NS_Svc
 	DataTable^ Svc_commande::TableCommande()
 	{
 		this->DT->Clear();
-		this->DT = this->cad->getRows(this->Commande->SELECT());
+		this->DT = this->cad->getRows(this->Commande->SELECTDGV());
 		return this->DT;
 	}
 
@@ -54,7 +54,6 @@ namespace NS_Svc
 		this->Commande->setMontantPayment(MontantPayment);
 		this->Commande->setIDClient(Client);
 		this->Commande->setIDArticle(Article);
-		
 		ID_facture = this->cad->actionRowsID(this->Commande->INSERT(montantHT, montantTVA, montantTTC));
 		this->cad->actionRowsID(this->Commande->INSERTCOMMANDE(ID_facture));
 		this->cad->actionRowsID(this->Commande->INSERTDATE(ID_facture, montantTTC));
@@ -68,8 +67,11 @@ namespace NS_Svc
 		double montantHT;
 		double montantTTC;
 		double montantTVA;
+		this->Commande->setQuantitéArticle(quantité);
+		this->Commande->setPrixUnitaire(PU);
 		QuatitArt = Convert::ToDouble(this->Commande->getQuantitéArticle());
 		PrixUnit = Convert::ToDouble(this->Commande->getPrixUnitaire());
+		this->Commande->setIDfacture(ID_Facture);
 		this->Commande->setReference(RefCommande, PrenomClient, NomClient, CurentAnnee, VilleClient);
 		this->Commande->setDateLivraison(DateLivraison);
 		this->Commande->setDateSolde(DateSolde);
@@ -87,7 +89,7 @@ namespace NS_Svc
 		this->Commande->setMoyenPayement(MoyenPayment);
 		this->Commande->setMontantPayment(MontantPayment);
 		this->Commande->setIDClient(Client);
-		this->cad->actionRows(this->Commande->UPDATE());
+		this->cad->actionRows(this->Commande->UPDATE(montantHT, montantTVA, montantTTC));
 	}
 
 	void Svc_commande::supprimer(int ID_Facture)

@@ -76,7 +76,10 @@ namespace NS_Composants {
 	void CL_map_TBCLIENT::setDateNaissance(String^ date)
 	{
 		if (date != "") {
-			this->DateNaissance = date;
+			String^ D = date->Substring(0, 2);//jours
+			String^ M = date->Substring(3, 2);//mois
+			String^ Y = date->Substring(6, 4);//année
+			this->DateNaissance = Y + "-" + M + "-" + D;
 		}
 	}
 

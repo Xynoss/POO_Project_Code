@@ -83,7 +83,10 @@ void NS_Composants::CL_map_Personnel::setDateDembauche(String^ DateDembauche)
 {
     if (DateDembauche != "")
     {
-        this->DateDembauche = DateDembauche;
+        String^ D = DateDembauche->Substring(0, 2);//jours
+        String^ M = DateDembauche->Substring(3, 2);//mois
+        String^ Y = DateDembauche->Substring(6, 4);//année
+        this->DateDembauche = Y + "-" + M + "-" + D;
     }
 }
 

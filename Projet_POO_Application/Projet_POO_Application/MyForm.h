@@ -3,6 +3,7 @@
 #include "CL_svc_gestionPersonnel.h"
 #include "CL_svc_gestionCommande.h"
 #include "CL_svc_gestionStock.h"
+#include "PopUp.h";
 
 namespace A2POOCorb6
 {
@@ -824,6 +825,8 @@ private: System::Windows::Forms::Label^ label17;
                 this->textBox12->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[15]);//anniversaire du client
                 this->textBox13->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[16]);//Ville du client
                 this->textBox14->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[17]);//id de l'article commander
+                this->textBox15->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[18]);//prenom du client  
+                this->textBox16->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[19]);//nom du client
             
         }
         else if (this->radioButtonStock->Checked) {
@@ -1194,6 +1197,8 @@ private: System::Windows::Forms::Label^ label17;
             this->txt_message->Text += "Traitement terminé.";
         }
         else if (this->radioButtonCommande->Checked) {
+            int NbrArt = 1;
+            
             if (this->mode == "nouv")
             {
                 int Id;

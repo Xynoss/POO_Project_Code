@@ -137,6 +137,7 @@
     <ClCompile Include="CL_svc_gestionStock.cpp" />
     <ClCompile Include="CL_map_Commande.cpp" />
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="PopUp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CL_CAD.h" />
@@ -151,10 +152,16 @@
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="PopUp.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopUp.resx">
+      <DependentUpon>PopUp.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -21,8 +21,19 @@ namespace NS_Composants
 
 	String^ CL_map_Commande::SELECT(void)
 	{
+		return "SELECT `Facture`.`ID_Facture`, `Facture`.`RefCommande`, `client`.`ID_Client`, `Facture`.`MontantTVA`, `Facture`.`DateLivraison`, `Facture`.`Remise`, `Facture`.`DateSolde`, `Facture`.`MontantHT`, `Facture`.`MontantTTC`, `commande`.`QuantiteArticle`, `stock`.`PrixUnitaire`, `Date`.`ID_Date`, `Date`.`DatePaiment`, `Date`.`MontantPayment`, `Date`.`MoyenPayment`, `Client`.`NaissanceClient`, `region`.`Ville`, `stock`.`ID_Article` ,`client`.`PrenomClient`, `client`.`NomClient` FROM `Commande`, `Facture`, `Date`, `stock`, `client`, `region`, `appartient` WHERE `Commande`.`ID_Facture` = `Facture`.`ID_Facture` AND `Facture`.`ID_Facture` = `Date`.`ID_Facture` AND `stock`.`ID_Article` = `commande`.`ID_Article` AND `Facture`.`ID_Client` = `client`.`ID_Client` AND `region`.`ID_region` = `appartient`.`ID_region` AND `appartient`.`ID_Client` = `client`.`ID_Client` ORDER BY `Commande`.`ID_Facture` ASC";
+	}
+	String^ CL_map_Commande::SELECTCOM(void)
+	{
+		return "SELECT `commande`.`ID_Article`, `stock`.`PrixUnitaire` ,`commande`.`ID_Facture`, `QuantiteArticle`, `facture`.`RefCommande` FROM `commande`, `facture`,`stock` WHERE `commande`.`ID_Facture` = `facture`.`ID_Facture` AND `commande`.`ID_Article` = `stock`.`ID_Article`;";
+	}
+
+
+	String^ CL_map_Commande::SELECTDGV(void)
+	{
 		return "SELECT `Facture`.`ID_Facture`, `Facture`.`RefCommande`, `client`.`ID_Client`,  `Facture`.`MontantTVA`, `Facture`.`DateLivraison`, `Facture`.`Remise`, `Facture`.`DateSolde`, `Facture`.`MontantHT`,  `Facture`.`MontantTTC`, `commande`.`QuantiteArticle`, `stock`.`PrixUnitaire`,    `Date`.`ID_Date`,    `Date`.`DatePaiment`,    `Date`.`MontantPayment`,    `Date`.`MoyenPayment`, `Client`.`NaissanceClient`,    `region`.`Ville`,    `stock`.`ID_Article`FROM    `Commande`,    `Facture`,    `Date`,    `stock`,    `client`,    `region`,    `appartient` WHERE    `Commande`.`ID_Facture` = `Facture`.`ID_Facture` AND `Facture`.`ID_Facture` = `Date`.`ID_Facture` AND `stock`.`ID_Article` = `commande`.`ID_Article` AND `Facture`.`ID_Client` = `client`.`ID_Client` AND `region`.`ID_region` = `appartient`.`ID_region` AND `appartient`.`ID_Client` = `client`.`ID_Client` ORDER BY    `Commande`.`ID_Facture` ASC;";
 	}
+
 
 
 	String^ CL_map_Commande::INSERT(double HT, double TVA, double TTC)
@@ -41,9 +52,9 @@ namespace NS_Composants
 		return "INSERT INTO date (DatePaiment, MontantPayment, MoyenPayment, ID_Facture) VALUES ('"+this->getDatePayement() +"','"+ TTC +"','"+ this->getMoyenPayement() +"','"+ IDFACTURE +"');";
 	}
 
-	String^ CL_map_Commande::UPDATE(void)
+	String^ CL_map_Commande::UPDATE(double HT, double TVA, double TTC)
 	{
-		return "UPDATE facture SET RefCommande = '"+this->getRefCommande()+"', MontantTVA = '"+ this->getMontantTVA()+"', DateLivraison = '"+ this->getDateLivraison()+"', DateSolde = '"+this->getDateSolde()+"', Remise = '"+this->getRemise()+"', ID_Client = '"+ this->getIDClient() +"', MontantHT = '"+ this->getMontantHT() +"', MontantTTC = '"+ this->getMontantTTC() + "'WHERE(ID_Facture = " + this->getIDFacture() + "); "+
+		return "UPDATE facture SET RefCommande = '"+this->getRefCommande()+"', MontantTVA = '"+ TVA +"', DateLivraison = '"+ this->getDateLivraison()+"', DateSolde = '"+this->getDateSolde()+"', Remise = '"+this->getRemise()+"', ID_Client = '"+ this->getIDClient() +"', MontantHT = '"+ HT +"', MontantTTC = '"+ TTC + "'WHERE(ID_Facture = " + this->getIDFacture() + "); "+
 			"UPDATE Commande SET QuantiteArticle = '" + this->getQuantitéArticle() + "' WHERE(ID_Facture = " + this->getIDFacture() + ");"+
 			"UPDATE `date` SET `DatePaiment` = '"+this->getDatePayement()+"',`MontantPayment`='"+this->getMontantPayment()+"',`MoyenPayment`='"+this->getMoyenPayement()+"' WHERE(ID_Facture = " + this->getIDFacture() + ");;";
 	}
@@ -77,7 +88,10 @@ namespace NS_Composants
 	{
 		if (DateCommande != "")
 		{
-			this->DateCommande = DateCommande;
+			String^ D = DateCommande->Substring(0,2);//jours
+			String^ M = DateCommande->Substring(4,2);//mois
+			String^ Y = DateCommande->Substring(7,4);//année
+			this->DateCommande = Y + "-" + M + "-" + D;
 		}
 	}
 
@@ -85,14 +99,20 @@ namespace NS_Composants
 	{
 		if (DateLivraison != "")
 		{
-			this->DateLivraison = DateLivraison;
+			String^ D = DateLivraison->Substring(0, 2);//jours
+			String^ M = DateLivraison->Substring(3, 2);//mois
+			String^ Y = DateLivraison->Substring(6, 4);//année
+			this->DateLivraison = Y + "-" + M + "-" + D;
 		}
 	}
 	void CL_map_Commande::setDatePayement(String^ DatePayement)
 	{
 		if (DatePayement != "")
 		{
-			this->DatePayement = DatePayement;
+			String^ D = DatePayement->Substring(0, 2);//jours
+			String^ M = DatePayement->Substring(3, 2);//mois
+			String^ Y = DatePayement->Substring(6, 4);//année
+			this->DatePayement = Y + "-" + M + "-" + D;
 		}
 	}
 	void CL_map_Commande::setMoyenPayement(String^ MoyenPayement)
@@ -106,7 +126,10 @@ namespace NS_Composants
 	{
 		if (DateSolde != "")
 		{
-			this->DateSolde = DateSolde;
+			String^ D = DateSolde->Substring(0, 2);//jours
+			String^ M = DateSolde->Substring(3, 2);//mois
+			String^ Y = DateSolde->Substring(6, 4);//année
+			this->DateSolde = Y + "-" + M + "-" + D;
 		}
 	}
 

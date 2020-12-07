@@ -26,10 +26,12 @@ namespace NS_Composants
 	public:
 		CL_map_Commande(void);
 		String^ SELECT(void);
+		String^ SELECTCOM(void);
+		String^ SELECTDGV(void);
 		String^ INSERT(double HT, double TVA, double TTC);
 		String^ INSERTCOMMANDE(int IDFACTURE);
 		String^ INSERTDATE(int IDFACTURE, double TTC);
-		String^ UPDATE(void);
+		String^ UPDATE(double HT, double TVA, double TTC);
 		String^ DELETE(void);
 
 		//setter
