@@ -52,11 +52,16 @@ namespace NS_Composants
 		return "INSERT INTO date (DatePaiment, MontantPayment, MoyenPayment, ID_Facture) VALUES ('"+this->getDatePayement() +"','"+ TTC +"','"+ this->getMoyenPayement() +"','"+ IDFACTURE +"');";
 	}
 
-	String^ CL_map_Commande::UPDATE(double HT, double TVA, double TTC)
+	String^ CL_map_Commande::UPDATE()
 	{
-		return "UPDATE facture SET RefCommande = '"+this->getRefCommande()+"', MontantTVA = '"+ TVA +"', DateLivraison = '"+ this->getDateLivraison()+"', DateSolde = '"+this->getDateSolde()+"', Remise = '"+this->getRemise()+"', ID_Client = '"+ this->getIDClient() +"', MontantHT = '"+ HT +"', MontantTTC = '"+ TTC + "'WHERE(ID_Facture = " + this->getIDFacture() + "); "+
-			"UPDATE Commande SET QuantiteArticle = '" + this->getQuantitéArticle() + "' WHERE(ID_Facture = " + this->getIDFacture() + ");"+
+		return "UPDATE facture SET RefCommande = '"+this->getRefCommande()+"', DateLivraison = '"+ this->getDateLivraison()+"', DateSolde = '"+this->getDateSolde()+"', ID_Client = '"+ this->getIDClient() +"'WHERE(ID_Facture = " + this->getIDFacture() + "); "+
+			//"UPDATE Commande SET QuantiteArticle = '" + this->getQuantitéArticle() + "' WHERE(ID_Facture = " + this->getIDFacture() + ");"+
 			"UPDATE `date` SET `DatePaiment` = '"+this->getDatePayement()+"',`MontantPayment`='"+this->getMontantPayment()+"',`MoyenPayment`='"+this->getMoyenPayement()+"' WHERE(ID_Facture = " + this->getIDFacture() + ");;";
+	}
+
+	String^ CL_map_Commande::UPDATEARTICLE(double HT, double TVA, double TTC)
+	{
+		return "UPDATE facture SET MontantTVA = '" + TVA + "', MontantHT = '" + HT + "', MontantTTC = '" + TTC + "'WHERE(ID_Facture = " + this->getIDFacture() + "); ";
 	}
 
 	String^ CL_map_Commande::DELETE(void)

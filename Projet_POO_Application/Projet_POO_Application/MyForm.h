@@ -134,17 +134,27 @@ private: System::Windows::Forms::TextBox^ textBox17;
 
 private: System::Windows::Forms::Label^ label1;
 private: System::Windows::Forms::Label^ label17;
-private: System::Windows::Forms::TextBox^ textBox1;
-private: System::Windows::Forms::TextBox^ textBox2;
-private: System::Windows::Forms::TextBox^ textBox3;
-private: System::Windows::Forms::TextBox^ textBox4;
-private: System::Windows::Forms::Label^ label2;
-private: System::Windows::Forms::Label^ label3;
-private: System::Windows::Forms::Label^ label4;
-private: System::Windows::Forms::Label^ label5;
+private: System::Windows::Forms::TextBox^ textBoxA1;
+private: System::Windows::Forms::TextBox^ textBoxA2;
+private: System::Windows::Forms::TextBox^ textBoxA3;
+private: System::Windows::Forms::TextBox^ textBoxA4;
+
+
+
+
+private: System::Windows::Forms::Label^ labelA1;
+private: System::Windows::Forms::Label^ labelA2;
+private: System::Windows::Forms::Label^ labelA3;
+private: System::Windows::Forms::Label^ labelA4;
+
+
+
+
 private: System::Windows::Forms::GroupBox^ groupBox1;
-private: System::Windows::Forms::Button^ button1;
-private: System::Windows::Forms::Button^ button2;
+private: System::Windows::Forms::Button^ buttonValider;
+private: System::Windows::Forms::Button^ buttonAjoutArticle;
+
+private: double montantTotalHT;
 
 
 
@@ -223,17 +233,17 @@ private: System::Windows::Forms::Button^ button2;
             this->textBox17 = (gcnew System::Windows::Forms::TextBox());
             this->label1 = (gcnew System::Windows::Forms::Label());
             this->label17 = (gcnew System::Windows::Forms::Label());
-            this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-            this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-            this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-            this->textBox4 = (gcnew System::Windows::Forms::TextBox());
-            this->label2 = (gcnew System::Windows::Forms::Label());
-            this->label3 = (gcnew System::Windows::Forms::Label());
-            this->label4 = (gcnew System::Windows::Forms::Label());
-            this->label5 = (gcnew System::Windows::Forms::Label());
+            this->textBoxA1 = (gcnew System::Windows::Forms::TextBox());
+            this->textBoxA2 = (gcnew System::Windows::Forms::TextBox());
+            this->textBoxA3 = (gcnew System::Windows::Forms::TextBox());
+            this->textBoxA4 = (gcnew System::Windows::Forms::TextBox());
+            this->labelA1 = (gcnew System::Windows::Forms::Label());
+            this->labelA2 = (gcnew System::Windows::Forms::Label());
+            this->labelA3 = (gcnew System::Windows::Forms::Label());
+            this->labelA4 = (gcnew System::Windows::Forms::Label());
             this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-            this->button1 = (gcnew System::Windows::Forms::Button());
-            this->button2 = (gcnew System::Windows::Forms::Button());
+            this->buttonValider = (gcnew System::Windows::Forms::Button());
+            this->buttonAjoutArticle = (gcnew System::Windows::Forms::Button());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
             this->groupTable->SuspendLayout();
             this->groupBox1->SuspendLayout();
@@ -724,81 +734,81 @@ private: System::Windows::Forms::Button^ button2;
             this->label17->TabIndex = 52;
             this->label17->Text = L"label17";
             // 
-            // textBox1
+            // textBoxA1
             // 
-            this->textBox1->Location = System::Drawing::Point(65, 15);
-            this->textBox1->Name = L"textBox1";
-            this->textBox1->Size = System::Drawing::Size(100, 20);
-            this->textBox1->TabIndex = 53;
+            this->textBoxA1->Location = System::Drawing::Point(65, 15);
+            this->textBoxA1->Name = L"textBoxA1";
+            this->textBoxA1->Size = System::Drawing::Size(100, 20);
+            this->textBoxA1->TabIndex = 53;
             // 
-            // textBox2
+            // textBoxA2
             // 
-            this->textBox2->Location = System::Drawing::Point(65, 41);
-            this->textBox2->Name = L"textBox2";
-            this->textBox2->Size = System::Drawing::Size(100, 20);
-            this->textBox2->TabIndex = 54;
+            this->textBoxA2->Location = System::Drawing::Point(65, 41);
+            this->textBoxA2->Name = L"textBoxA2";
+            this->textBoxA2->Size = System::Drawing::Size(100, 20);
+            this->textBoxA2->TabIndex = 54;
             // 
-            // textBox3
+            // textBoxA3
             // 
-            this->textBox3->Location = System::Drawing::Point(65, 67);
-            this->textBox3->Name = L"textBox3";
-            this->textBox3->Size = System::Drawing::Size(100, 20);
-            this->textBox3->TabIndex = 55;
+            this->textBoxA3->Location = System::Drawing::Point(65, 67);
+            this->textBoxA3->Name = L"textBoxA3";
+            this->textBoxA3->Size = System::Drawing::Size(100, 20);
+            this->textBoxA3->TabIndex = 55;
             // 
-            // textBox4
+            // textBoxA4
             // 
-            this->textBox4->Location = System::Drawing::Point(65, 94);
-            this->textBox4->Name = L"textBox4";
-            this->textBox4->Size = System::Drawing::Size(100, 20);
-            this->textBox4->TabIndex = 56;
+            this->textBoxA4->Location = System::Drawing::Point(65, 94);
+            this->textBoxA4->Name = L"textBoxA4";
+            this->textBoxA4->Size = System::Drawing::Size(100, 20);
+            this->textBoxA4->TabIndex = 56;
             // 
-            // label2
+            // labelA1
             // 
-            this->label2->AutoSize = true;
-            this->label2->Location = System::Drawing::Point(4, 17);
-            this->label2->Name = L"label2";
-            this->label2->Size = System::Drawing::Size(35, 13);
-            this->label2->TabIndex = 57;
-            this->label2->Text = L"label2";
+            this->labelA1->AutoSize = true;
+            this->labelA1->Location = System::Drawing::Point(4, 17);
+            this->labelA1->Name = L"labelA1";
+            this->labelA1->Size = System::Drawing::Size(42, 13);
+            this->labelA1->TabIndex = 57;
+            this->labelA1->Text = L"labelA1";
             // 
-            // label3
+            // labelA2
             // 
-            this->label3->AutoSize = true;
-            this->label3->Location = System::Drawing::Point(4, 42);
-            this->label3->Name = L"label3";
-            this->label3->Size = System::Drawing::Size(35, 13);
-            this->label3->TabIndex = 58;
-            this->label3->Text = L"label3";
+            this->labelA2->AutoSize = true;
+            this->labelA2->Location = System::Drawing::Point(4, 42);
+            this->labelA2->Name = L"labelA2";
+            this->labelA2->Size = System::Drawing::Size(42, 13);
+            this->labelA2->TabIndex = 58;
+            this->labelA2->Text = L"labelA2";
             // 
-            // label4
+            // labelA3
             // 
-            this->label4->AutoSize = true;
-            this->label4->Location = System::Drawing::Point(4, 68);
-            this->label4->Name = L"label4";
-            this->label4->Size = System::Drawing::Size(35, 13);
-            this->label4->TabIndex = 59;
-            this->label4->Text = L"label4";
+            this->labelA3->AutoSize = true;
+            this->labelA3->Location = System::Drawing::Point(4, 68);
+            this->labelA3->Name = L"labelA3";
+            this->labelA3->Size = System::Drawing::Size(42, 13);
+            this->labelA3->TabIndex = 59;
+            this->labelA3->Text = L"labelA3";
             // 
-            // label5
+            // labelA4
             // 
-            this->label5->AutoSize = true;
-            this->label5->Location = System::Drawing::Point(4, 94);
-            this->label5->Name = L"label5";
-            this->label5->Size = System::Drawing::Size(35, 13);
-            this->label5->TabIndex = 60;
-            this->label5->Text = L"label5";
+            this->labelA4->AutoSize = true;
+            this->labelA4->Location = System::Drawing::Point(4, 94);
+            this->labelA4->Name = L"labelA4";
+            this->labelA4->Size = System::Drawing::Size(42, 13);
+            this->labelA4->TabIndex = 60;
+            this->labelA4->Text = L"labelA4";
             // 
             // groupBox1
             // 
-            this->groupBox1->Controls->Add(this->button1);
-            this->groupBox1->Controls->Add(this->label5);
-            this->groupBox1->Controls->Add(this->label4);
-            this->groupBox1->Controls->Add(this->label3);
-            this->groupBox1->Controls->Add(this->label2);
-            this->groupBox1->Controls->Add(this->textBox4);
-            this->groupBox1->Controls->Add(this->textBox3);
-            this->groupBox1->Controls->Add(this->textBox2);
-            this->groupBox1->Controls->Add(this->textBox1);
+            this->groupBox1->Controls->Add(this->buttonValider);
+            this->groupBox1->Controls->Add(this->labelA4);
+            this->groupBox1->Controls->Add(this->labelA3);
+            this->groupBox1->Controls->Add(this->labelA2);
+            this->groupBox1->Controls->Add(this->labelA1);
+            this->groupBox1->Controls->Add(this->textBoxA4);
+            this->groupBox1->Controls->Add(this->textBoxA3);
+            this->groupBox1->Controls->Add(this->textBoxA2);
+            this->groupBox1->Controls->Add(this->textBoxA1);
             this->groupBox1->Location = System::Drawing::Point(18, 666);
             this->groupBox1->Name = L"groupBox1";
             this->groupBox1->Size = System::Drawing::Size(295, 124);
@@ -806,30 +816,32 @@ private: System::Windows::Forms::Button^ button2;
             this->groupBox1->TabStop = false;
             this->groupBox1->Text = L"Article";
             // 
-            // button1
+            // buttonValider
             // 
-            this->button1->Location = System::Drawing::Point(206, 88);
-            this->button1->Name = L"button1";
-            this->button1->Size = System::Drawing::Size(75, 23);
-            this->button1->TabIndex = 61;
-            this->button1->Text = L"Valider";
-            this->button1->UseVisualStyleBackColor = true;
+            this->buttonValider->Location = System::Drawing::Point(206, 88);
+            this->buttonValider->Name = L"buttonValider";
+            this->buttonValider->Size = System::Drawing::Size(75, 23);
+            this->buttonValider->TabIndex = 61;
+            this->buttonValider->Text = L"Valider";
+            this->buttonValider->UseVisualStyleBackColor = true;
+            this->buttonValider->Click += gcnew System::EventHandler(this, &FRM_Principal::buttonValider_Click);
             // 
-            // button2
+            // buttonAjoutArticle
             // 
-            this->button2->Location = System::Drawing::Point(268, 601);
-            this->button2->Name = L"button2";
-            this->button2->Size = System::Drawing::Size(84, 28);
-            this->button2->TabIndex = 62;
-            this->button2->Text = L"Ajouter article";
-            this->button2->UseVisualStyleBackColor = true;
+            this->buttonAjoutArticle->Location = System::Drawing::Point(268, 601);
+            this->buttonAjoutArticle->Name = L"buttonAjoutArticle";
+            this->buttonAjoutArticle->Size = System::Drawing::Size(84, 28);
+            this->buttonAjoutArticle->TabIndex = 62;
+            this->buttonAjoutArticle->Text = L"Ajouter article";
+            this->buttonAjoutArticle->UseVisualStyleBackColor = true;
+            this->buttonAjoutArticle->Click += gcnew System::EventHandler(this, &FRM_Principal::buttonAjoutArticle_Click);
             // 
             // FRM_Principal
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
             this->ClientSize = System::Drawing::Size(1852, 896);
-            this->Controls->Add(this->button2);
+            this->Controls->Add(this->buttonAjoutArticle);
             this->Controls->Add(this->groupBox1);
             this->Controls->Add(this->label17);
             this->Controls->Add(this->label1);
@@ -909,6 +921,7 @@ private: System::Windows::Forms::Button^ button2;
         this->Actualiser();
         this->txt_message->Text = "Data chargées";
     }
+
     private: void loadData(int index)
     {
         if (this->radioButtonClient->Checked) {
@@ -939,21 +952,21 @@ private: System::Windows::Forms::Button^ button2;
             this->dsCommande->Clear();
             this->dsCommande = this->processusCommande->listeCommande("liste");
             this->txt_idPersonne->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[0]);//id facture
-                this->txt_nom->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[1]);//ref facture
-                this->txt_prenom->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[2]);//id client
-                this->txt_DateNaissance->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[4]);//date livraison
-                this->txt_Adresse->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[5]);//remise
-                this->txt_Ville->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[6]);//date solde
-                this->txt_CodePostal->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[9]);//quantité d'article
-                this->txt_TypeAdresse->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[10]);//prix unité
-                this->textBox9->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[12]);//date du payement
-                this->textBox10->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[13]);//montant réglé
-                this->textBox11->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[14]);//moyen de payement
-                this->textBox12->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[15]);//anniversaire du client
-                this->textBox13->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[16]);//Ville du client
-                this->textBox14->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[17]);//id de l'article commander
-                this->textBox15->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[18]);//prenom du client  
-                this->textBox16->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[19]);//nom du client
+            this->txt_nom->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[1]);//ref facture
+            this->txt_prenom->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[2]);//id client
+            this->txt_DateNaissance->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[4]);//date livraison
+            this->txt_Adresse->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[5]);//remise
+            this->txt_Ville->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[6]);//date solde
+            this->txt_CodePostal->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[9]);//quantité d'article
+            this->txt_TypeAdresse->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[10]);//prix unité
+            this->textBox9->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[12]);//date du payement
+            this->textBox10->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[13]);//montant réglé
+            this->textBox11->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[14]);//moyen de payement
+            this->textBox12->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[15]);//anniversaire du client
+            this->textBox13->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[16]);//Ville du client
+            this->textBox14->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[17]);//id de l'article commander
+            this->textBox15->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[18]);//prenom du client  
+            this->textBox16->Text = Convert::ToString(this->dsCommande->Tables["liste"]->Rows[this->index]->ItemArray[19]);//nom du client
             
         }
         else if (this->radioButtonStock->Checked) {
@@ -1240,10 +1253,10 @@ private: System::Windows::Forms::Button^ button2;
         this->mode = "nouv";
         this->txt_message->Text = "Veuillez saisir les information de la nouvelle personne et enregistrer";
         if (this->radioButtonCommande->Checked) {
-            /*this->dtStock = this->processusStock->TableStock();
+            this->dtStock = this->processusStock->TableStock();
             BindingSource^ bs = gcnew BindingSource();
             bs->DataSource = this->dtStock;
-            dataGridView1->DataSource = bs;*/
+            dataGridView1->DataSource = bs;
         }
     }
 
@@ -1329,7 +1342,7 @@ private: System::Windows::Forms::Button^ button2;
             if (this->mode == "nouv")
             {
                 int Id;
-                Id = this->processusCommande->ajouter(this->txt_nom->Text/*Reference*/, this->txt_DateNaissance->Text/*Date de livraison*/, this->textBox9->Text/*Date Paiement*/, this->textBox11->Text/*Moyen de paiement*/, this->txt_Ville->Text/*Date de solde*/, this->textBox10->Text/*montant paiement*/, this->txt_Adresse->Text/*Remise*/,Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, this->txt_CodePostal->Text /*quantité de l'article*/, this->txt_TypeAdresse->Text /*PrixUnitaire*/, this->textBox15->Text/*PrenomClient*/, this->textBox16->Text/*NomClient*/,this->textBox17->Text/*CurentAnnee*/ ,this->textBox13->Text/*VilleClient*/, Convert::ToInt16(this->textBox14->Text)/*id de l'article commandé*/);
+                Id = this->processusCommande->ajouter(this->txt_nom->Text/*Reference*/, this->txt_DateNaissance->Text/*Date de livraison*/, this->textBox9->Text/*Date Paiement*/, this->textBox11->Text/*Moyen de paiement*/, this->txt_Ville->Text/*Date de solde*/, this->textBox10->Text/*montant paiement*/, this->txt_Adresse->Text/*Remise*/,Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/,  this->textBox15->Text/*PrenomClient*/, this->textBox16->Text/*NomClient*/,this->textBox17->Text/*CurentAnnee*/ ,this->textBox13->Text/*VilleClient*/, Convert::ToInt16(this->textBox14->Text)/*id de l'article commandé*/);
                 this->txt_message->Text = "L'ID généré est le : " + Id + ". ";
                 this->mode = "RIEN";
             }
@@ -1376,6 +1389,16 @@ private: System::Windows::Forms::Button^ button2;
 
     private: System::Void btn_refresh_Click(System::Object^ sender, System::EventArgs^ e) {
         Actualiser();
+    }
+    private: System::Void buttonAjoutArticle_Click(System::Object^ sender, System::EventArgs^ e) {
+        this->labelA1->Text = "id article";
+        this->labelA2->Text = "id facture";
+        this->labelA3->Text = "Quantité de l'article";
+        this->labelA4->Text = "Prix Unitaire";
+    }
+    private: System::Void buttonValider_Click(System::Object^ sender, System::EventArgs^ e) {
+        this->montantTotalHT += this->processusCommande->ajouterArticle(this->textBoxA1->Text/*id de l'article*/, this->textBoxA2->Text/*id de la facture*/, this->textBoxA3->Text/*quantité de l'article*/, this->textBoxA4->Text/*prix a l'unité*/);
+        this->processusCommande->update(Convert::ToInt16(this->textBoxA2->Text), this->montantTotalHT, this->txt_Adresse->Text);
     }
 };
 

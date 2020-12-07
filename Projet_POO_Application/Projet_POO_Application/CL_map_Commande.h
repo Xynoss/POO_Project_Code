@@ -31,7 +31,8 @@ namespace NS_Composants
 		String^ INSERT(double HT, double TVA, double TTC);
 		String^ INSERTCOMMANDE(int IDFACTURE);
 		String^ INSERTDATE(int IDFACTURE, double TTC);
-		String^ UPDATE(double HT, double TVA, double TTC);
+		String^ UPDATE();
+		String^ UPDATEARTICLE(double HT, double TVA, double TTC);
 		String^ DELETE(void);
 
 		//setter
