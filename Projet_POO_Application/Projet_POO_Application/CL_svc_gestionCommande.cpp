@@ -65,16 +65,18 @@ namespace NS_Svc
 		double QuatitArt;
 		double PrixUnit;
 		double montantHT;
+		double montantHTArticle;
 		this->Commande->setIDfacture(Convert::ToInt16(id_Facture));
 		ID_facture = this->Commande->getIDFacture();
 		this->Commande->setIDArticle(Convert::ToInt16(id_Article));
 		this->Commande->setQuantitéArticle(Quant_);
 		QuatitArt = Convert::ToDouble(this->Commande->getQuantitéArticle());
 		PrixUnit = Convert::ToDouble(this->Commande->getPrixUnitaire());
-		this->Commande->setMontantHT(QuatitArt, PrixUnit);
-		montantHT = Convert::ToDouble(this->Commande->getMontantHT());
+		montantHT = QuatitArt * PrixUnit;
+		this->Commande->setMontantHT2(montantHT);
 		this->cad->actionRowsID(this->Commande->INSERTCOMMANDE(ID_facture));
-		return montantHT;
+		montantHTArticle = Convert::ToDouble(this->Commande->getMontantHT2());
+		return montantHTArticle;
 	}
 
 	int Svc_commande::update(int idf, double HT, String^ Remise)
