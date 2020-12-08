@@ -70,7 +70,7 @@ namespace NS_Composants
 
 	String^ CL_map_Commande::UPDATESPrix()
 	{
-		return "UPDATE facture SET RefCommande = '" + this->getRefCommande() + "', DateLivraison = '" + this->getDateLivraison() + "', DateSolde = '" + this->getDateSolde() + "', ID_Client = '" + this->getIDClient() + "' WHERE(ID_Facture = " + this->getIDFacture() + "); " +
+		return "UPDATE facture SET RefCommande = '" + this->getRefCommande() + "', DateLivraison = '" + this->getDateLivraison() + "', DateSolde = '" + this->getDateSolde() + "', Remise = '" + this->getRemise() + "', ID_Client = '" + this->getIDClient() + "' WHERE(ID_Facture = " + this->getIDFacture() + "); " +
 			"UPDATE `date` SET `DatePaiment` = '" + this->getDatePayement() + "',`MoyenPayment`='" + this->getMoyenPayement() + "' WHERE(ID_Facture = " + this->getIDFacture() + ");;";
 	}
 

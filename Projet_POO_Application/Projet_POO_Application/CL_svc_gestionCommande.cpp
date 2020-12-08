@@ -133,7 +133,7 @@ namespace NS_Svc
 		this->cad->actionRows(this->Commande->UPDATEARTICLE2());
 	}
 
-	void Svc_commande::modifierSPrix(int ID_Facture, String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, int Client, String^ PrenomClient, String^ NomClient, String^ CurentAnnee, String^ VilleClient, int Article)
+	void Svc_commande::modifierSPrix(int ID_Facture, String^ RefCommande, String^ DateLivraison, String^ DatePaiment, String^ MoyenPayment, String^ DateSolde, String^ Remise, int Client, String^ PrenomClient, String^ NomClient, String^ CurentAnnee, String^ VilleClient, int Article)
 	{
 		this->Commande->setIDfacture(ID_Facture);
 		this->Commande->setReference(RefCommande, PrenomClient, NomClient, CurentAnnee, VilleClient);
@@ -141,6 +141,7 @@ namespace NS_Svc
 		this->Commande->setDateSolde(DateSolde);
 		this->Commande->setDatePayement(DatePaiment);
 		this->Commande->setMoyenPayement(MoyenPayment);
+		this->Commande->setRemise(Remise)
 		this->Commande->setIDClient(Client);
 		this->Commande->setIDArticle(Article);
 		this->cad->actionRows(this->Commande->UPDATESPrix());
