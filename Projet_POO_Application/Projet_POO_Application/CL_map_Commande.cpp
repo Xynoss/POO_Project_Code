@@ -39,6 +39,11 @@ namespace NS_Composants
 		return "SELECT MontantHT FROM `facture` WHERE (ID_facture = '" + this->getIDFacture() + "');";
 	}
 
+	String^ CL_map_Commande::SELECTPrixUni(int ID_Article)
+	{
+		return "SELECT PrixUnitaire FROM stock WHERE `stock`.`ID_Article` = '" + ID_Article + "';";
+	}
+
 
 
 	String^ CL_map_Commande::INSERT(double HT, double TVA, double TTC)

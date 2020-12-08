@@ -31,6 +31,7 @@ namespace NS_Composants
 		String^ SELECTCOM(void);
 		String^ SELECTDGV(void);
 		String^ SELECTPRIXHT(void);
+		String^ SELECTPrixUni(int ID_Article);
 		String^ INSERT(double HT, double TVA, double TTC);
 		String^ INSERTCOMMANDE(int IDFACTURE);
 		String^ INSERTDATE(int IDFACTURE, double TTC);

@@ -10,6 +10,7 @@ namespace NS_Svc
 		this->DS = gcnew Data::DataSet();
 		this->DT = gcnew Data::DataTable();
 		this->MontantHTDebut = gcnew Data::DataSet();
+		this->PrixUni = gcnew Data::DataSet();
 	}
 
 	DataSet^ Svc_commande::listeCommande(String^ dataTableName)
@@ -56,8 +57,10 @@ namespace NS_Svc
 		return ID_facture;
 	}
 
-	double Svc_commande::ajouterArticle(String^ id_Article, String^ id_Facture, String^ Quant_, String^ PrixU_)
+	double Svc_commande::ajouterArticle(String^ id_Article, String^ id_Facture, String^ Quant_)
 	{
+		this->PrixUni = this->cad->getRows(this->Commande->SELECTPrixUni(Convert::ToInt16(id_Article)), "datatable");
+		this->Commande->setPrixUnitaire(Convert::ToString(this->PrixUni->Tables["datatable"]->Rows[0]->ItemArray[0]));
 		int ID_facture;
 		double QuatitArt;
 		double PrixUnit;
@@ -66,7 +69,6 @@ namespace NS_Svc
 		ID_facture = this->Commande->getIDFacture();
 		this->Commande->setIDArticle(Convert::ToInt16(id_Article));
 		this->Commande->setQuantitéArticle(Quant_);
-		this->Commande->setPrixUnitaire(PrixU_);
 		QuatitArt = Convert::ToDouble(this->Commande->getQuantitéArticle());
 		PrixUnit = Convert::ToDouble(this->Commande->getPrixUnitaire());
 		this->Commande->setMontantHT(QuatitArt, PrixUnit);

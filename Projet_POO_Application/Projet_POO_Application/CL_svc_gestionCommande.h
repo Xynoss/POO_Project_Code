@@ -14,13 +14,14 @@ namespace NS_Svc {
 		NS_Composants::CL_map_Commande^ Commande;
 		DataSet^ DS;
 		DataSet^ MontantHTDebut;
+		DataSet^ PrixUni;
 		DataTable^ DT;
 	public:
 		Svc_commande(void);
 		DataTable^ TableCommande();
 		DataSet^ listeCommande(String^);
 		int ajouter(String^, String^, String^, String^, String^, String^, String^, int, String^, String^, String^, String^, String^, String^, int);
-		double ajouterArticle(String^, String^, String^, String^);
+		double ajouterArticle(String^, String^, String^);
 		int update(int,double, String^);
 		void modifier(int, String^, String^, String^, String^, String^, String^, String^, int, String^, String^, String^, String^, String^, String^, int);
 		void modifierSPrix(int, String^, String^, String^, String^, String^, int, String^, String^, String^, String^, int);
