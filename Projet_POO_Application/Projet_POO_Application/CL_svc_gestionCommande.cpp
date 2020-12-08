@@ -141,7 +141,7 @@ namespace NS_Svc
 		this->Commande->setDateSolde(DateSolde);
 		this->Commande->setDatePayement(DatePaiment);
 		this->Commande->setMoyenPayement(MoyenPayment);
-		this->Commande->setRemise(Remise)
+		this->Commande->setRemise(Remise);
 		this->Commande->setIDClient(Client);
 		this->Commande->setIDArticle(Article);
 		this->cad->actionRows(this->Commande->UPDATESPrix());
