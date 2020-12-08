@@ -156,7 +156,8 @@ private: System::Windows::Forms::Button^ buttonValider;
 
 private: double montantTotalHT;
 private: System::Windows::Forms::CheckBox^ checkBoxAjout;
-private: System::Windows::Forms::Button^ buttonReset;
+private: System::Windows::Forms::Button^ button1;
+
 
 
 
@@ -248,7 +249,7 @@ private: System::Windows::Forms::Button^ buttonReset;
             this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
             this->buttonValider = (gcnew System::Windows::Forms::Button());
             this->checkBoxAjout = (gcnew System::Windows::Forms::CheckBox());
-            this->buttonReset = (gcnew System::Windows::Forms::Button());
+            this->button1 = (gcnew System::Windows::Forms::Button());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
             this->groupTable->SuspendLayout();
             this->groupBox1->SuspendLayout();
@@ -823,22 +824,22 @@ private: System::Windows::Forms::Button^ buttonReset;
             this->checkBoxAjout->Text = L"Ajouter Article";
             this->checkBoxAjout->UseVisualStyleBackColor = true;
             // 
-            // buttonReset
+            // button1
             // 
-            this->buttonReset->Location = System::Drawing::Point(242, 587);
-            this->buttonReset->Name = L"buttonReset";
-            this->buttonReset->Size = System::Drawing::Size(142, 23);
-            this->buttonReset->TabIndex = 63;
-            this->buttonReset->Text = L"Réinitialiser à un article";
-            this->buttonReset->UseVisualStyleBackColor = true;
-            this->buttonReset->Click += gcnew System::EventHandler(this, &FRM_Principal::button1_Click);
+            this->button1->Location = System::Drawing::Point(242, 587);
+            this->button1->Name = L"button1";
+            this->button1->Size = System::Drawing::Size(142, 23);
+            this->button1->TabIndex = 63;
+            this->button1->Text = L"Réinitialiser à un article";
+            this->button1->UseVisualStyleBackColor = true;
+            this->button1->Click += gcnew System::EventHandler(this, &FRM_Principal::button1_Click);
             // 
             // FRM_Principal
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
             this->ClientSize = System::Drawing::Size(1852, 896);
-            this->Controls->Add(this->buttonReset);
+            this->Controls->Add(this->button1);
             this->Controls->Add(this->checkBoxAjout);
             this->Controls->Add(this->groupBox1);
             this->Controls->Add(this->label17);
@@ -985,6 +986,7 @@ private: System::Windows::Forms::Button^ buttonReset;
 
     private: void Actualiser() {
         checkBoxAjout->Visible = false;
+        button1->Visible = false;
         if (this->radioButtonClient->Checked) {
             this->index = 0;
             this->dtClient = this->processusClients->TableClient();
@@ -1077,6 +1079,7 @@ private: System::Windows::Forms::Button^ buttonReset;
         }
         else if (this->radioButtonCommande->Checked) {
             checkBoxAjout->Visible = true;
+            button1->Visible = true;
             if (this->checkBoxAjout->Checked) {
                 this->groupBox1->Visible = true;
                 this->labelA1->Text = "id article";
@@ -1418,7 +1421,7 @@ private: System::Windows::Forms::Button^ buttonReset;
     }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
     this->processusCommande->modifier(Convert::ToInt32(this->txt_idPersonne->Text), this->txt_nom->Text/*Reference*/, this->txt_DateNaissance->Text/*Date de livraison*/, this->textBox9->Text/*Date Paiement*/, this->textBox11->Text/*Moyen de paiement*/, this->txt_Ville->Text/*Date de solde*/, this->textBox10->Text/*montant paiement*/, this->txt_Adresse->Text/*Remise*/, Convert::ToInt16(this->txt_prenom->Text)/*ID du client*/, this->txt_CodePostal->Text /*quantité de l'article*/, this->txt_TypeAdresse->Text /*PrixUnitaire*/, this->textBox15->Text/*PrenomClient*/, this->textBox16->Text/*NomClient*/, this->textBox17->Text/*CurentAnnee*/, this->textBox13->Text/*VilleClient*/, Convert::ToInt16(this->textBox14->Text));
+    Actualiser();
 }
 };
-
 }
