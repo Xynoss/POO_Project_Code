@@ -1041,6 +1041,7 @@ private: System::Windows::Forms::Button^ button2;
             this->textBox16->ReadOnly = true;
             this->label17->Text = "";
             this->textBox17->ReadOnly = true;
+            this->button2->Visible = false;
             this->txt_message->Text = "update réussi Clients";
         }
         else if (this->radioButtonPersonnel->Checked) {
@@ -1088,6 +1089,7 @@ private: System::Windows::Forms::Button^ button2;
             this->textBox16->ReadOnly = true;
             this->label17->Text = "";
             this->textBox17->ReadOnly = true;
+            this->button2->Visible = false;
             this->txt_message->Text = "update réussi personnel";
         }
         else if (this->radioButtonCommande->Checked) {
@@ -1136,6 +1138,7 @@ private: System::Windows::Forms::Button^ button2;
             this->textBox15->ReadOnly = false;
             this->textBox16->ReadOnly = false;
             this->textBox17->ReadOnly = false;
+            this->button2->Visible = true;
             this->txt_message->Text = "update réussi commande";
         }
         else if (this->radioButtonStock->Checked) {
@@ -1182,6 +1185,7 @@ private: System::Windows::Forms::Button^ button2;
             this->textBox16->ReadOnly = true;
             this->label17->Text = "";
             this->textBox17->ReadOnly = true;
+            this->button2->Visible = false;
             this->txt_message->Text = "update réussi Stock";
         }
 
