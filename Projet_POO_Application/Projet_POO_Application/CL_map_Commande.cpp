@@ -92,6 +92,10 @@ namespace NS_Composants
 			"DELETE FROM facture WHERE (ID_Facture ='"+ this->getIDFacture()+"');";
 	}
 
+	String^ CL_map_Commande::DELETEArticle(void) {
+		return "DELETE FROM Commande " + "WHERE(ID_Facture = " + this->getIDFacture() + " AND ID_Article = " + this->getIDArticle() + ");";
+	}
+
 	void CL_map_Commande::setIDfacture(int idfac)
 	{
 		if (idfac > 0) {

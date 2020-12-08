@@ -27,6 +27,7 @@ namespace NS_Svc {
 		void modifierSPrix(int, String^, String^, String^, String^, String^, int, String^, String^, String^, String^, int);
 		void modifierArticle(int, String^, String^, String^, String^, String^, String^, String^, int, String^, String^ , String^, String^, String^, String^, double);
 		void supprimer(int);
+		void supprimerArticle(int, int);
 		
 	};
 }

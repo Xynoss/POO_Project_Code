@@ -40,6 +40,7 @@ namespace NS_Composants
 		String^ UPDATEARTICLE(double HT, double TVA, double TTC);
 		String^ UPDATEARTICLE2();
 		String^ DELETE(void);
+		String^ DELETEArticle(void);
 
 		//setter
 		void setIDfacture(int);

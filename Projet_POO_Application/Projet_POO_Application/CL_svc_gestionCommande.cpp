@@ -175,4 +175,11 @@ namespace NS_Svc
 		this->Commande->setIDfacture(ID_Facture);
 		this->cad->actionRows(this->Commande->DELETE());
 	}
+
+	void Svc_commande::supprimerArticle(int ID_Facture, int ID_Article)
+	{
+		this->Commande->setIDfacture(ID_Facture);
+		this->Commande->setIDArticle(ID_Article);
+		this->cad->actionRows(this->Commande->DELETEArticle());
+	}
 }
